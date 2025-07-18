@@ -70,12 +70,12 @@ export const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto">
           {/* Animated Slideshow Text */}
-          <div className="min-h-[300px] flex flex-col justify-center items-center">
+          <div className="min-h-[300px] flex flex-col justify-center items-center relative">
             {slides.map((slide, index) => (
               <div
                 key={index}
-                className={`absolute transition-all duration-1000 transform ${
-                  index <= currentSlide 
+                className={`absolute inset-0 flex flex-col justify-center items-center text-center transition-all duration-1000 transform ${
+                  index === currentSlide 
                     ? 'opacity-100 translate-y-0 scale-100' 
                     : 'opacity-0 translate-y-10 scale-95'
                 } ${
@@ -83,17 +83,14 @@ export const Hero = () => {
                   index === 1 ? 'text-xl md:text-2xl opacity-90' :
                   'text-lg md:text-xl opacity-80'
                 }`}
-                style={{
-                  animationDelay: `${index * 2}s`
-                }}
               >
                 {index === 0 ? (
                   <>
-                    Excellence in 
-                    <span className="block text-brand-yellow animate-pulse">Every Inch</span>
+                    <span className="mb-4">Excellence in</span>
+                    <span className="text-brand-yellow animate-pulse">Every Inch</span>
                   </>
                 ) : (
-                  slide
+                  <span>{slide}</span>
                 )}
               </div>
             ))}
