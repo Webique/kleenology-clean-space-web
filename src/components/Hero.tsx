@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles, Shield, Users } from "lucide-react";
-import heroBackground from "@/assets/hero-background.jpg";
+import cleanApartmentBg from "@/assets/clean-apartment-bg.jpg";
 import { useEffect, useState } from "react";
 
 export const Hero = () => {
@@ -62,31 +62,36 @@ export const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-[130vh] flex items-center justify-center overflow-hidden pb-24">
-      {/* Animated Light Blue Background */}
+      {/* Clean Apartment Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50 to-sky-100"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/15 via-transparent to-blue-200/20"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(135,206,235,0.15)_0%,transparent_50%)]"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${cleanApartmentBg})`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-100/70 via-blue-50/60 to-sky-100/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-blue-200/15"></div>
         
-        {/* Moving animated gradient waves */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-sky-300/40 to-blue-400/30 rounded-full mix-blend-multiply filter blur-2xl animate-blob"></div>
-          <div className="absolute top-20 -right-20 w-80 h-80 bg-gradient-to-l from-blue-300/50 to-sky-200/40 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-10 left-10 w-72 h-72 bg-gradient-to-t from-blue-200/60 to-sky-300/30 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-4000"></div>
-          <div className="absolute bottom-32 right-32 w-64 h-64 bg-gradient-to-br from-sky-400/40 to-blue-300/50 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-6000"></div>
+        {/* Moving animated gradient waves for depth */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-sky-300/30 to-blue-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute top-20 -right-20 w-80 h-80 bg-gradient-to-l from-blue-300/40 to-sky-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-10 left-10 w-72 h-72 bg-gradient-to-t from-blue-200/50 to-sky-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute bottom-32 right-32 w-64 h-64 bg-gradient-to-br from-sky-400/30 to-blue-300/40 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-6000"></div>
         </div>
         
-        {/* Moving geometric shapes */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(20)].map((_, i) => (
+        {/* Cleaning-themed floating particles */}
+        <div className="absolute inset-0 opacity-15">
+          {[...Array(15)].map((_, i) => (
             <div
               key={i}
               className={`absolute ${
-                i % 5 === 0 ? 'w-3 h-3 bg-sky-400/60 rounded-full animate-float' :
-                i % 5 === 1 ? 'w-2 h-2 bg-blue-400/70 rounded-full animate-pulse' :
-                i % 5 === 2 ? 'w-4 h-4 bg-blue-300/50 rounded-full animate-float' :
-                i % 5 === 3 ? 'w-1 h-1 bg-sky-500/80 rounded-full animate-pulse' :
-                'w-2.5 h-2.5 bg-blue-200/60 rounded-full animate-float'
+                i % 5 === 0 ? 'w-2 h-2 bg-white/80 rounded-full animate-float' :
+                i % 5 === 1 ? 'w-1.5 h-1.5 bg-sky-200/90 rounded-full animate-pulse' :
+                i % 5 === 2 ? 'w-3 h-3 bg-blue-100/70 rounded-full animate-float' :
+                i % 5 === 3 ? 'w-1 h-1 bg-white/90 rounded-full animate-pulse' :
+                'w-2.5 h-2.5 bg-sky-100/80 rounded-full animate-float'
               }`}
               style={{
                 left: `${Math.random() * 100}%`,
@@ -98,8 +103,8 @@ export const Hero = () => {
           ))}
         </div>
 
-        {/* Animated gradient overlay that moves */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sky-100/30 to-transparent animate-pulse"></div>
+        {/* Subtle moving overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
       </div>
 
       {/* Content */}
