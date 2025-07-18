@@ -5,7 +5,7 @@ import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 
 export const About = () => {
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       {/* Background Images */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-5">
@@ -17,28 +17,28 @@ export const About = () => {
       </div>
       <div className="absolute inset-0 bg-secondary/30 z-1"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* About Kleenology */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+        <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
             About <span className="text-primary">Kleenology</span>
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed px-4">
             Kleenology is a specialized cleaning company committed to delivering spotless results using the latest technologies and eco-friendly products. We prioritize your comfort and trust and are proud to serve hundreds of satisfied customers.
           </p>
         </div>
 
         {/* Why Choose Us */}
-        <div className="mb-20">
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
+        <div className="mb-12 sm:mb-16 lg:mb-20">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 sm:mb-12 text-foreground">
             Why Choose <span className="text-primary">Kleenology?</span>
           </h3>
           
-          <p className="text-center text-lg text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-base sm:text-lg text-muted-foreground mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
             At Kleenology, cleaning is just the beginning. We're all about creating a space that feels fresh, safe, and truly cared for, with every detail tailored to your comfort and peace of mind.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
                 title: "Masterful Performance",
@@ -66,12 +66,12 @@ export const About = () => {
               }
             ].map((feature, index) => (
               <Card key={index} className="border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-clean">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-foreground mb-2">{feature.title}</h4>
-                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                      <h4 className="font-semibold text-foreground mb-2 text-sm sm:text-base">{feature.title}</h4>
+                      <p className="text-xs sm:text-sm text-muted-foreground">{feature.description}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -81,7 +81,7 @@ export const About = () => {
         </div>
 
         {/* Philosophy, Mission, Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           <Card className="text-center border-primary/10 hover:shadow-clean transition-all duration-300">
             <CardContent className="p-8">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">

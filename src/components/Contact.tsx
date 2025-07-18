@@ -18,7 +18,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       {/* Background Images */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-1/2 h-1/2 opacity-5">
@@ -30,17 +30,17 @@ export const Contact = () => {
       </div>
       <div className="absolute inset-0 bg-secondary/30 z-1"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
             Want to Contact <span className="text-primary">with us?</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground">
             Get in touch with our team for a free consultation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {/* WhatsApp */}
           <Card className="text-center border-primary/10 hover:shadow-clean transition-all duration-300 hover:border-primary/30">
             <CardContent className="p-8">

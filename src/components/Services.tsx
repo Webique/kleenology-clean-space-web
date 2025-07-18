@@ -41,7 +41,7 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 relative overflow-hidden">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       {/* Background Images and Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-10 right-10 w-64 h-64 opacity-5">
@@ -57,22 +57,22 @@ export const Services = () => {
         <div className="absolute bottom-1/4 right-1/3 w-8 h-8 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Featured Service */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
             Featured <span className="text-primary">Service</span>
           </h2>
-          <h3 className="text-xl md:text-2xl font-semibold mb-4 text-primary">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 text-primary px-4">
             Your comfort starts with clean — and we're here to make it effortless
           </h3>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             Our services are tailored to fit your lifestyle — whether you need precise home cleaning or professional care for offices and commercial spaces. In Kleenology, we deliver all-around cleaning solutions — accurate, dependable, and held to the highest standards.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {services.map((service, index) => (
             <Card key={index} className="group border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-clean overflow-hidden">
               <div className="relative">
