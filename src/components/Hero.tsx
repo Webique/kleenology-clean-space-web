@@ -60,7 +60,7 @@ export const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[120vh] flex items-center justify-center overflow-hidden pb-20">
       {/* Modern Light Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"></div>
