@@ -33,10 +33,46 @@ export const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
-              <a href="#home" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">Home</a>
-              <a href="#about" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">About Us</a>
-              <a href="#services" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">Services</a>
-              <a href="#contact" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">Contact</a>
+              <a 
+                href="#home" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                Home
+              </a>
+              <a 
+                href="#about" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                About Us
+              </a>
+              <a 
+                href="#services" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                Services
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                Contact
+              </a>
             </div>
           </div>
 

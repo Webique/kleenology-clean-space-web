@@ -22,10 +22,46 @@ export const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="text-foreground hover:text-primary transition-colors">Home</a>
-          <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
-          <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
-          <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+          <a 
+            href="#home" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            Home
+          </a>
+          <a 
+            href="#about" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            About
+          </a>
+          <a 
+            href="#services" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            Services
+          </a>
+          <a 
+            href="#contact" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            Contact
+          </a>
         </nav>
 
         <div className="flex items-center gap-3">
