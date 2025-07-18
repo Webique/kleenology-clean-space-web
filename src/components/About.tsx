@@ -6,16 +6,20 @@ import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 export const About = () => {
   return (
     <section id="about" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-      {/* Background Images */}
+      {/* Enhanced Background Images */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-5">
-          <img src={teamCleaningBg} alt="" className="w-full h-full object-cover" />
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-6">
+          <img src={teamCleaningBg} alt="" className="w-full h-full object-cover rounded-bl-3xl" />
         </div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 opacity-10">
-          <img src={cleaningPattern} alt="" className="w-full h-full object-cover" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 opacity-12">
+          <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-tr-2xl" />
         </div>
+        {/* Floating decorative elements */}
+        <div className="absolute top-1/3 left-1/4 w-16 h-16 bg-primary/20 rounded-full animate-float"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-12 h-12 bg-brand-yellow/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-3/4 left-1/5 w-8 h-8 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
-      <div className="absolute inset-0 bg-secondary/30 z-1"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/90 to-background/95 z-1"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* About Kleenology */}

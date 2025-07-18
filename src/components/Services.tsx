@@ -42,19 +42,24 @@ export const Services = () => {
 
   return (
     <section id="services" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-      {/* Background Images and Elements */}
+      {/* Enhanced Background Images and Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-10 right-10 w-64 h-64 opacity-5">
-          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-full" />
+        <div className="absolute top-10 right-10 w-80 h-80 opacity-8">
+          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-full shadow-2xl" />
         </div>
-        <div className="absolute bottom-10 left-10 w-48 h-48 opacity-8">
-          <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-lg rotate-12" />
+        <div className="absolute bottom-10 left-10 w-60 h-60 opacity-12">
+          <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
         </div>
         
-        {/* Floating decorative elements */}
-        <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-brand-yellow/20 rounded-full animate-float"></div>
-        <div className="absolute top-1/3 right-1/5 w-4 h-4 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/4 right-1/3 w-8 h-8 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+        {/* Enhanced floating decorative elements */}
+        <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-brand-yellow/30 rounded-full animate-float shadow-lg"></div>
+        <div className="absolute top-1/3 right-1/5 w-6 h-6 bg-primary/25 rounded-full animate-float shadow-md" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/4 right-1/3 w-10 h-10 bg-accent/25 rounded-full animate-float shadow-lg" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-2/3 left-1/6 w-4 h-4 bg-brand-yellow/20 rounded-full animate-float" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-1/3 right-1/6 w-6 h-6 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '1.5s' }}></div>
+        
+        {/* Gradient overlays for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/85 to-background/90"></div>
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
