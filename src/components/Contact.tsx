@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
+import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
+import cleanResultsBg from "@/assets/clean-results-bg.jpg";
 
 export const Contact = () => {
   const handleWhatsAppClick = () => {
@@ -16,8 +18,19 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 opacity-5">
+          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 opacity-8">
+          <img src={cleanResultsBg} alt="" className="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div className="absolute inset-0 bg-secondary/30 z-1"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
             Want to Contact <span className="text-primary">with us?</span>
@@ -105,12 +118,12 @@ export const Contact = () => {
               Book via WhatsApp
             </Button>
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="lg"
               onClick={handleCallClick}
-              className="text-lg px-8 py-6 h-auto border-white/30 text-white hover:bg-white hover:text-primary"
+              className="text-lg px-8 py-6 h-auto bg-white/20 backdrop-blur-sm border-2 border-white/50 text-white hover:bg-white hover:text-primary transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
-              <Phone className="h-5 w-5" />
+              <Phone className="h-5 w-5 mr-3" />
               Call Now
             </Button>
           </div>

@@ -1,10 +1,23 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Target, Eye, Heart } from "lucide-react";
+import teamCleaningBg from "@/assets/team-cleaning-bg.jpg";
+import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 
 export const About = () => {
   return (
-    <section id="about" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 relative overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-5">
+          <img src={teamCleaningBg} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 opacity-10">
+          <img src={cleaningPattern} alt="" className="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div className="absolute inset-0 bg-secondary/30 z-1"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* About Kleenology */}
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">

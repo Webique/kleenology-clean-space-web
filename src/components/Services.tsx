@@ -5,6 +5,8 @@ import deepCleaningImg from "@/assets/deep-cleaning.jpg";
 import furnitureCleaningImg from "@/assets/furniture-cleaning.jpg";
 import acCleaningImg from "@/assets/ac-cleaning.jpg";
 import moveCleaningImg from "@/assets/move-cleaning.jpg";
+import cleaningPattern from "@/assets/cleaning-pattern.jpg";
+import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
 
 export const Services = () => {
   const handleWhatsAppClick = () => {
@@ -39,8 +41,23 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-20 relative overflow-hidden">
+      {/* Background Images and Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-10 right-10 w-64 h-64 opacity-5">
+          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-full" />
+        </div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 opacity-8">
+          <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-lg rotate-12" />
+        </div>
+        
+        {/* Floating decorative elements */}
+        <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-brand-yellow/20 rounded-full animate-float"></div>
+        <div className="absolute top-1/3 right-1/5 w-4 h-4 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/4 right-1/3 w-8 h-8 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Featured Service */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
