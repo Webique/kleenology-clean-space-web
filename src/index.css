@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,6 +146,10 @@ All colors MUST be HSL.
 
   .animation-delay-4000 {
     animation-delay: 4s;
+  }
+
+  .animation-delay-6000 {
+    animation-delay: 6s;
   }
 
   @keyframes float {

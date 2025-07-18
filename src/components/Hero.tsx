@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles, Shield, Users } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
@@ -61,39 +62,44 @@ export const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-[130vh] flex items-center justify-center overflow-hidden pb-24">
-      {/* Modern Light Gradient Background */}
+      {/* Animated Light Blue Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-brand-yellow/15"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50 to-sky-100"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/15 via-transparent to-blue-200/20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(135,206,235,0.15)_0%,transparent_50%)]"></div>
         
-        {/* Animated light mesh gradient */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-brand-yellow/30 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-primary/40 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-accent/30 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        {/* Moving animated gradient waves */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-sky-300/40 to-blue-400/30 rounded-full mix-blend-multiply filter blur-2xl animate-blob"></div>
+          <div className="absolute top-20 -right-20 w-80 h-80 bg-gradient-to-l from-blue-300/50 to-sky-200/40 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-10 left-10 w-72 h-72 bg-gradient-to-t from-blue-200/60 to-sky-300/30 rounded-full mix-blend-multiply filter blur-2xl animate-blob animation-delay-4000"></div>
+          <div className="absolute bottom-32 right-32 w-64 h-64 bg-gradient-to-br from-sky-400/40 to-blue-300/50 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-6000"></div>
         </div>
         
-        {/* Floating particles */}
-        <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+        {/* Moving geometric shapes */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className={`absolute rounded-full ${
-                i % 4 === 0 ? 'w-2 h-2 bg-brand-yellow/40 animate-float' :
-                i % 4 === 1 ? 'w-1 h-1 bg-primary/50 animate-pulse' :
-                i % 4 === 2 ? 'w-3 h-3 bg-primary/30 animate-float' :
-                'w-1.5 h-1.5 bg-accent/40 animate-pulse'
+              className={`absolute ${
+                i % 5 === 0 ? 'w-3 h-3 bg-sky-400/60 rounded-full animate-float' :
+                i % 5 === 1 ? 'w-2 h-2 bg-blue-400/70 rounded-full animate-pulse' :
+                i % 5 === 2 ? 'w-4 h-4 bg-blue-300/50 rounded-full animate-float' :
+                i % 5 === 3 ? 'w-1 h-1 bg-sky-500/80 rounded-full animate-pulse' :
+                'w-2.5 h-2.5 bg-blue-200/60 rounded-full animate-float'
               }`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${4 + Math.random() * 3}s`
               }}
             />
           ))}
         </div>
+
+        {/* Animated gradient overlay that moves */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sky-100/30 to-transparent animate-pulse"></div>
       </div>
 
       {/* Content */}
@@ -106,12 +112,12 @@ export const Hero = () => {
             <div className={`transition-all duration-1000 ease-in-out transform ${
               textAnimating ? 'opacity-100 translate-y-0 scale-100' : 'opacity-80 translate-y-1 scale-[0.99]'
             }`}>
-              {/* Main Title */}
+              {/* Main Title - Made Smaller */}
               <div className="mb-6 sm:mb-8">
                 <div className="text-sm sm:text-base md:text-lg font-semibold tracking-widest text-brand-yellow mb-2">
                   {slides[currentSlide].accent}
                 </div>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight mb-4">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight mb-4">
                   <span className="block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-500">
                     {slides[currentSlide].main}
                   </span>
