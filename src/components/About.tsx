@@ -20,26 +20,26 @@ export const About = () => {
         <div className="absolute top-3/4 left-1/5 w-12 h-12 bg-accent/15 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/5 right-1/5 w-8 h-8 bg-primary/20 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-background/92 via-background/88 to-background/95 z-1"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/96 via-background/93 to-background/98 z-1"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* About Kleenology */}
         <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-foreground drop-shadow-sm">
             About <span className="text-primary">Kleenology</span>
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed px-4">
+          <p className="text-lg sm:text-xl text-foreground/90 leading-relaxed px-4 font-medium drop-shadow-sm">
             Kleenology is a specialized cleaning company committed to delivering spotless results using the latest technologies and eco-friendly products. We prioritize your comfort and trust and are proud to serve hundreds of satisfied customers.
           </p>
         </div>
 
         {/* Why Choose Us */}
         <div className="mb-12 sm:mb-16 lg:mb-20">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 sm:mb-12 text-foreground">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-foreground drop-shadow-sm">
             Why Choose <span className="text-primary">Kleenology?</span>
           </h3>
           
-          <p className="text-center text-base sm:text-lg text-muted-foreground mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
+          <p className="text-center text-lg sm:text-xl text-foreground/90 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 font-medium drop-shadow-sm">
             At Kleenology, cleaning is just the beginning. We're all about creating a space that feels fresh, safe, and truly cared for, with every detail tailored to your comfort and peace of mind.
           </p>
 
@@ -70,13 +70,13 @@ export const About = () => {
                 description: "We are always just a call away to meet your needs."
               }
             ].map((feature, index) => (
-              <Card key={index} className="border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-clean">
+              <Card key={index} className="border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-clean bg-background/95 backdrop-blur-sm">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-foreground mb-2 text-sm sm:text-base">{feature.title}</h4>
-                      <p className="text-xs sm:text-sm text-muted-foreground">{feature.description}</p>
+                      <h4 className="font-bold text-foreground mb-2 text-base sm:text-lg drop-shadow-sm">{feature.title}</h4>
+                      <p className="text-sm sm:text-base text-foreground/80 font-medium">{feature.description}</p>
                     </div>
                   </div>
                 </CardContent>
