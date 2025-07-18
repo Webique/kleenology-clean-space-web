@@ -61,35 +61,35 @@ export const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Modern Gradient Background */}
+      {/* Modern Light Gradient Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-brand-yellow/20 animate-pulse"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0%,transparent_50%)] animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-brand-yellow/15"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_50%)]"></div>
         
-        {/* Animated mesh gradient */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-brand-yellow rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        {/* Animated light mesh gradient */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-brand-yellow/30 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-primary/40 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-accent/30 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
         
-        {/* Modern floating particles */}
+        {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <div
               key={i}
               className={`absolute rounded-full ${
-                i % 4 === 0 ? 'w-2 h-2 bg-brand-yellow/60 animate-ping' :
-                i % 4 === 1 ? 'w-1 h-1 bg-white/80 animate-pulse' :
-                i % 4 === 2 ? 'w-3 h-3 bg-primary/40 animate-bounce' :
-                'w-1.5 h-1.5 bg-accent/50 animate-pulse'
+                i % 4 === 0 ? 'w-2 h-2 bg-brand-yellow/40 animate-float' :
+                i % 4 === 1 ? 'w-1 h-1 bg-primary/50 animate-pulse' :
+                i % 4 === 2 ? 'w-3 h-3 bg-primary/30 animate-float' :
+                'w-1.5 h-1.5 bg-accent/40 animate-pulse'
               }`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
+                animationDuration: `${3 + Math.random() * 2}s`
               }}
             />
           ))}
@@ -97,26 +97,26 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className={`relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white transition-all duration-1000 ${
+      <div className={`relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-900 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         <div className="max-w-7xl mx-auto">
           {/* Dynamic Hero Text */}
           <div className="min-h-[400px] sm:min-h-[450px] flex flex-col justify-center items-center relative mb-8 sm:mb-12">
-            <div className={`transition-all duration-700 transform ${
-              textAnimating ? 'opacity-100 translate-y-0 scale-100' : 'opacity-60 translate-y-2 scale-98'
+            <div className={`transition-all duration-1000 ease-in-out transform ${
+              textAnimating ? 'opacity-100 translate-y-0 scale-100' : 'opacity-80 translate-y-1 scale-[0.99]'
             }`}>
               {/* Main Title */}
               <div className="mb-6 sm:mb-8">
-                <div className="text-sm sm:text-base md:text-lg font-semibold tracking-widest text-brand-yellow/80 mb-2 animate-pulse">
+                <div className="text-sm sm:text-base md:text-lg font-semibold tracking-widest text-brand-yellow mb-2">
                   {slides[currentSlide].accent}
                 </div>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight mb-4">
-                  <span className="block bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-500">
+                  <span className="block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-500">
                     {slides[currentSlide].main}
                   </span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto leading-relaxed text-gray-200">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto leading-relaxed text-gray-700">
                   {slides[currentSlide].sub}
                 </p>
               </div>
@@ -129,7 +129,7 @@ export const Hero = () => {
                     className={`h-1 rounded-full transition-all duration-500 ${
                       index === currentSlide 
                         ? 'w-12 bg-brand-yellow shadow-lg shadow-brand-yellow/50' 
-                        : 'w-3 bg-white/40 hover:bg-white/60'
+                        : 'w-3 bg-gray-400 hover:bg-gray-600'
                     }`}
                   />
                 ))}
@@ -149,7 +149,7 @@ export const Hero = () => {
             </Button>
             <Button 
               onClick={handleLearnMore}
-              className="group text-base sm:text-lg font-semibold px-8 sm:px-12 py-4 sm:py-6 h-auto border-2 border-white/40 text-white bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/60 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-full w-full sm:w-auto max-w-xs"
+              className="group text-base sm:text-lg font-semibold px-8 sm:px-12 py-4 sm:py-6 h-auto border-2 border-gray-300 text-gray-800 bg-white/80 backdrop-blur-md hover:bg-white hover:border-gray-400 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-full w-full sm:w-auto max-w-xs"
             >
               <span className="group-hover:tracking-wider transition-all duration-300">Learn More</span>
             </Button>
@@ -174,10 +174,10 @@ export const Hero = () => {
                 <div className={`inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${stat.color} rounded-2xl mb-3 sm:mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-3`}>
                   <stat.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white drop-shadow-lg" />
                 </div>
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                   {stat.number}
                 </div>
-                <div className="text-sm sm:text-base font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
+                <div className="text-sm sm:text-base font-medium text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
                   {stat.label}
                 </div>
               </div>
@@ -188,8 +188,8 @@ export const Hero = () => {
 
       {/* Modern Scroll indicator */}
       <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 sm:w-8 sm:h-12 border-2 border-white/40 rounded-full flex justify-center backdrop-blur-md bg-white/5 shadow-lg hover:border-brand-yellow/60 transition-colors duration-300">
-          <div className="w-1 h-3 sm:w-2 sm:h-4 bg-gradient-to-b from-brand-yellow to-white rounded-full mt-2 animate-pulse"></div>
+        <div className="w-6 h-10 sm:w-8 sm:h-12 border-2 border-gray-400 rounded-full flex justify-center backdrop-blur-md bg-white/50 shadow-lg hover:border-brand-yellow transition-colors duration-300">
+          <div className="w-1 h-3 sm:w-2 sm:h-4 bg-gradient-to-b from-brand-yellow to-gray-600 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

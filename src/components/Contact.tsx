@@ -21,17 +21,18 @@ export const Contact = () => {
     <section id="contact" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       {/* Enhanced Background Images */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 opacity-8">
-          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-br-3xl" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-8">
+          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover" />
         </div>
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-10">
-          <img src={cleanResultsBg} alt="" className="w-full h-full object-cover rounded-tl-3xl" />
+        <div className="absolute bottom-0 right-0 w-full h-full opacity-12">
+          <img src={cleanResultsBg} alt="" className="w-full h-full object-cover" />
         </div>
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-brand-yellow/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-24 h-24 bg-primary/10 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Moving decorative elements */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-brand-yellow/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-24 h-24 bg-primary/10 rounded-full blur-lg animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-2/3 right-1/3 w-16 h-16 bg-accent/10 rounded-full blur-md animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/90 z-1"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95 z-1"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 sm:mb-16">
