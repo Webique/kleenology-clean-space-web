@@ -186,8 +186,8 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Modern Scroll indicator */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Modern Scroll indicator - positioned below stats */}
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
         <div className="w-6 h-10 sm:w-8 sm:h-12 border-2 border-gray-400 rounded-full flex justify-center backdrop-blur-md bg-white/50 shadow-lg hover:border-brand-yellow transition-colors duration-300">
           <div className="w-1 h-3 sm:w-2 sm:h-4 bg-gradient-to-b from-brand-yellow to-gray-600 rounded-full mt-2 animate-pulse"></div>
         </div>
