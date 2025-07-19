@@ -9,6 +9,7 @@ export const Hero = () => {
   const [showStats, setShowStats] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [textAnimating, setTextAnimating] = useState(true);
+  const [isSliding, setIsSliding] = useState(false);
 
   const slides = [
     { 
@@ -33,7 +34,9 @@ export const Hero = () => {
     setTimeout(() => setIsLoaded(true), 300);
     
     const timer = setInterval(() => {
+      setIsSliding(true);
       setTextAnimating(false);
+      
       setTimeout(() => {
         setCurrentSlide((prev) => {
           if (prev === slides.length - 1) {
@@ -42,8 +45,12 @@ export const Hero = () => {
           }
           return prev + 1;
         });
-        setTextAnimating(true);
-      }, 200);
+        
+        setTimeout(() => {
+          setIsSliding(false);
+          setTextAnimating(true);
+        }, 100);
+      }, 300);
     }, 4000);
 
     return () => clearInterval(timer);
@@ -113,21 +120,21 @@ export const Hero = () => {
       }`}>
         <div className="max-w-7xl mx-auto">
           {/* Dynamic Hero Text */}
-          <div className="min-h-[400px] sm:min-h-[450px] flex flex-col justify-center items-center relative mb-8 sm:mb-12">
-            <div className={`transition-all duration-1000 ease-in-out transform ${
-              textAnimating ? 'opacity-100 translate-y-0 scale-100' : 'opacity-80 translate-y-1 scale-[0.99]'
+          <div className="min-h-[400px] sm:min-h-[450px] flex flex-col justify-center items-center relative mb-8 sm:mb-12 overflow-hidden">
+            <div className={`transition-all duration-500 ease-in-out transform ${
+              isSliding ? 'animate-slide-down' : textAnimating ? 'animate-slide-up opacity-100' : 'opacity-80'
             }`}>
-              {/* Main Title - Made Smaller */}
+              {/* Main Title - With Bubbly Font */}
               <div className="mb-6 sm:mb-8">
-                <div className="text-sm sm:text-base md:text-lg font-semibold tracking-widest text-brand-yellow mb-2">
+                <div className="text-sm sm:text-base md:text-lg font-fredoka font-medium tracking-widest text-brand-yellow mb-2 animate-pulse">
                   {slides[currentSlide].accent}
                 </div>
-                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight mb-4">
-                  <span className="block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-500">
+                <h1 className="font-fredoka text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-4">
+                  <span className="block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-500 drop-shadow-lg">
                     {slides[currentSlide].main}
                   </span>
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto leading-relaxed text-gray-700">
+                <p className="font-fredoka text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal max-w-4xl mx-auto leading-relaxed text-gray-700 drop-shadow-sm">
                   {slides[currentSlide].sub}
                 </p>
               </div>
@@ -152,7 +159,7 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-20">
             <Button 
               onClick={handleWhatsAppClick}
-              className="group relative text-base sm:text-lg font-bold px-8 sm:px-12 py-4 sm:py-6 h-auto bg-gradient-to-r from-brand-yellow to-yellow-400 hover:from-yellow-400 hover:to-brand-yellow text-slate-900 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-brand-yellow/40 border-0 rounded-full overflow-hidden w-full sm:w-auto max-w-xs"
+              className="group relative font-fredoka text-base sm:text-lg font-bold px-8 sm:px-12 py-4 sm:py-6 h-auto bg-gradient-to-r from-brand-yellow to-yellow-400 hover:from-yellow-400 hover:to-brand-yellow text-slate-900 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-brand-yellow/40 border-0 rounded-full overflow-hidden w-full sm:w-auto max-w-xs"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" />
@@ -160,7 +167,7 @@ export const Hero = () => {
             </Button>
             <Button 
               onClick={handleLearnMore}
-              className="group text-base sm:text-lg font-semibold px-8 sm:px-12 py-4 sm:py-6 h-auto border-2 border-gray-300 text-gray-800 bg-white/80 backdrop-blur-md hover:bg-white hover:border-gray-400 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-full w-full sm:w-auto max-w-xs"
+              className="group font-fredoka text-base sm:text-lg font-semibold px-8 sm:px-12 py-4 sm:py-6 h-auto border-2 border-gray-300 text-gray-800 bg-white/80 backdrop-blur-md hover:bg-white hover:border-gray-400 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-full w-full sm:w-auto max-w-xs"
             >
               <span className="group-hover:tracking-wider transition-all duration-300">Learn More</span>
             </Button>
