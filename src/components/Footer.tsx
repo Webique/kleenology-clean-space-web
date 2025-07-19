@@ -20,7 +20,7 @@ export const Footer = () => {
           {/* Logo and Description */}
           <div>
             <img 
-              src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
+              src="/logo.png" 
               alt="Kleenology Logo" 
               className="h-12 w-auto mb-4 brightness-0 invert"
             />
