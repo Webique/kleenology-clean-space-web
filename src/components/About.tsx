@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Target, Eye, Heart } from "lucide-react";
-import teamCleaningBg from "@/assets/team-cleaning-bg.jpg";
+import aboutBlurredBg from "@/assets/about-blurred-bg.jpg";
 import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 
 export const About = () => {
@@ -9,7 +9,7 @@ export const About = () => {
       {/* Enhanced Background Images */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 right-0 w-full h-full opacity-8">
-          <img src={teamCleaningBg} alt="" className="w-full h-full object-cover" />
+          <img src={aboutBlurredBg} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="absolute bottom-0 left-0 w-full h-full opacity-15">
           <img src={cleaningPattern} alt="" className="w-full h-full object-cover" />
