@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles, Shield, Users } from "lucide-react";
 import cleanApartmentBg from "@/assets/clean-apartment-bg.jpg";
+import heroMobileBg from "@/assets/hero-mobile-bg.jpg";
 import { useEffect, useState } from "react";
 
 export const Hero = () => {
@@ -78,11 +79,11 @@ export const Hero = () => {
             backgroundImage: `url(${cleanApartmentBg})`
           }}
         ></div>
-        {/* Mobile Background - Better positioned */}
+        {/* Mobile Background - Vertical oriented */}
         <div 
-          className="md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat scale-150"
+          className="md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${cleanApartmentBg})`
+            backgroundImage: `url(${heroMobileBg})`
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-100/70 via-blue-50/60 to-sky-100/70"></div>
