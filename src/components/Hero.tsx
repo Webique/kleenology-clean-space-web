@@ -33,6 +33,8 @@ export const Hero = () => {
   useEffect(() => {
     // Initial load animation
     setTimeout(() => setIsLoaded(true), 300);
+    // Show stats immediately after load
+    setTimeout(() => setShowStats(true), 500);
     
     const timer = setInterval(() => {
       setIsSliding(true);
@@ -41,7 +43,6 @@ export const Hero = () => {
       setTimeout(() => {
         setCurrentSlide((prev) => {
           if (prev === slides.length - 1) {
-            setTimeout(() => setShowStats(true), 1000);
             return 0; // Loop back to start
           }
           return prev + 1;
@@ -183,7 +184,7 @@ export const Hero = () => {
           </div>
 
           {/* Enhanced Animated Stats */}
-          <div className={`grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto transition-all duration-1000 delay-500 ${
+          <div className={`grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto transition-all duration-1000 ${
             showStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             {[
