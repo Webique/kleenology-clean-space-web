@@ -12,7 +12,7 @@ export const Footer = () => {
   const handleEmailClick = () => {
     window.location.href = 'mailto:abdulhadi@kleenology.net';
   };
-
+//
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
@@ -23,7 +23,7 @@ export const Footer = () => {
               src="/logo.png" 
               alt="Kleenology Logo" 
               className="h-12 w-auto mb-4 brightness-0 invert"
-            />
+            /> 
             <p className="text-sm text-background/80 leading-relaxed">
               Specialized cleaning company committed to delivering spotless results using the latest technologies and eco-friendly products.
             </p>
