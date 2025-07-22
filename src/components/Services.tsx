@@ -102,63 +102,6 @@ export const Services = () => {
             </Card>
           ))}
         </div>
-
-        {/* Steps to Reach */}
-        <div className="bg-secondary/30 rounded-2xl p-8 md:p-12">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-              Steps to reach <span className="text-primary">here</span>
-            </h3>
-            <p className="text-lg text-muted-foreground">
-              Simple steps to get your space clean Fast, easy, and professional
-            </p>
-            <p className="text-muted-foreground mt-2">
-              We were glad to serve homes and businesses across the country with trusted cleaning services.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full text-white font-bold text-2xl mb-4">
-                1
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-foreground">Find our agent</h4>
-              <p className="text-muted-foreground">
-                Locate our nearest specialist for on-site consultation
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full text-white font-bold text-2xl mb-4">
-                2
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-foreground">Estimate budget</h4>
-              <p className="text-muted-foreground">
-                Get a clear, customized quote that fits your space and service type.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full text-white font-bold text-2xl mb-4">
-                3
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-foreground">Hire our agent!</h4>
-              <p className="text-muted-foreground">
-                Confirm your booking and let Kleenology handle the rest.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button 
-              variant="whatsapp" 
-              size="lg"
-              onClick={handleWhatsAppClick}
-              className="text-lg px-8 py-6 h-auto"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Start Your Booking
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );
