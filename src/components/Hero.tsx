@@ -29,7 +29,7 @@ export const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 sm:px-0">
-        <div className="max-w-2xl w-full mx-auto px-4 sm:px-10 py-12 sm:py-20 rounded-3xl bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col items-center gap-6 sm:gap-8 animate-fade-in" style={{boxShadow: '0 8px 40px 0 rgba(0,0,0,0.18)'}}>
+        <div className="max-w-2xl w-full mx-auto px-4 sm:px-10 py-12 sm:py-20 rounded-3xl bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col items-center gap-6 sm:gap-8 mb-10 sm:mb-16 animate-fade-in" style={{boxShadow: '0 8px 40px 0 rgba(0,0,0,0.18)'}}>
           {/* Main Professional Headline */}
           <h1 className="font-sans text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-white drop-shadow-xl mb-3 sm:mb-4 leading-tight">
             Excellence in Every Inch

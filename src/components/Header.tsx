@@ -1,5 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, Menu } from "lucide-react";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerClose,
+  DrawerTitle,
+  DrawerDescription,
+} from "@/components/ui/drawer";
+import { useState } from "react";
 
 export const Header = () => {
   const handleWhatsAppClick = () => {
@@ -8,6 +17,17 @@ export const Header = () => {
 
   const handleCallClick = () => {
     window.location.href = 'tel:+966537519929';
+  };
+
+  // For accessibility, control Drawer open state
+  const [open, setOpen] = useState(false);
+
+  // Helper for smooth mobile nav
+  const handleMobileNav = (sectionId: string) => {
+    setOpen(false);
+    setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
   };
 
   return (
@@ -20,7 +40,7 @@ export const Header = () => {
             className="h-8 sm:h-10 w-auto"
           />
         </div>
-        
+        {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           <a 
             href="#home" 
@@ -63,13 +83,13 @@ export const Header = () => {
             Contact
           </a>
         </nav>
-
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex items-center gap-2 sm:gap-3">
           <Button 
             variant="ghost" 
             size="sm"
             onClick={handleCallClick}
-            className="hidden md:flex text-sm"
+            className="text-sm"
           >
             <Phone className="h-4 w-4 mr-2" />
             Call
@@ -82,6 +102,85 @@ export const Header = () => {
             <span className="hidden sm:inline">WhatsApp</span>
             <span className="sm:hidden">Chat</span>
           </Button>
+        </div>
+        {/* Mobile Hamburger */}
+        <div className="flex lg:hidden items-center">
+          <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <Button variant="ghost" size="icon" className="p-2" aria-label="Open menu">
+                <Menu className="h-7 w-7" />
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent className="pb-8 pt-4 px-4">
+              <DrawerTitle className="text-lg font-semibold mb-2">Menu</DrawerTitle>
+              <DrawerDescription className="sr-only">Main navigation for Kleenology website</DrawerDescription>
+              <nav className="flex flex-col gap-4 mt-4">
+                <a
+                  href="#home"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNav('home');
+                  }}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  Home
+                </a>
+                <a
+                  href="#about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNav('about');
+                  }}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  About
+                </a>
+                <a
+                  href="#services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNav('services');
+                  }}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  Services
+                </a>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNav('contact');
+                  }}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  Contact
+                </a>
+              </nav>
+              <div className="flex flex-col gap-3 mt-8">
+                <Button 
+                  variant="ghost" 
+                  size="lg"
+                  onClick={() => { setOpen(false); handleCallClick(); }}
+                  className="w-full justify-center text-base"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Call
+                </Button>
+                <Button 
+                  onClick={() => { setOpen(false); handleWhatsAppClick(); }}
+                  className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-base px-4 py-3 w-full justify-center"
+                >
+                  <MessageCircle className="h-5 w-5 mr-2" />
+                  WhatsApp
+                </Button>
+              </div>
+              <DrawerClose asChild>
+                <Button variant="ghost" className="w-full mt-6" onClick={() => setOpen(false)}>
+                  Close
+                </Button>
+              </DrawerClose>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
     </header>
