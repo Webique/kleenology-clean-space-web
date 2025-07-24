@@ -35,7 +35,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
+            src="/logo.png" 
             alt="Kleenology Logo" 
             className="h-8 sm:h-10 w-auto"
           />
