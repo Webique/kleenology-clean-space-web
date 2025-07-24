@@ -125,13 +125,13 @@ export const Services = () => {
               <div key={index} className="flex flex-col items-center group cursor-pointer">
                 <div className="relative mb-3">
                   {/* Hexagonal background */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm border-2 border-white/30 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300"></div>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/80 backdrop-blur-sm border-2 border-white transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg"></div>
                   {/* Icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white transform -rotate-45" />
+                    <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-800 transform -rotate-45" />
                   </div>
                 </div>
-                <h3 className="text-white text-xs sm:text-sm font-medium text-center group-hover:text-white/90 transition-colors max-w-20 sm:max-w-24">
+                <h3 className="text-white text-xs sm:text-sm font-bold text-center group-hover:text-white/90 transition-colors max-w-20 sm:max-w-24 drop-shadow-lg">
                   {service.title}
                 </h3>
               </div>
