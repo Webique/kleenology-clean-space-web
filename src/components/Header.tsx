@@ -37,7 +37,7 @@ export const Header = () => {
           <img 
             src="/logo.png" 
             alt="Kleenology Logo" 
-            className="h-9 sm:h-11 w-auto"
+            className="h-12 sm:h-16 w-auto"
           />
         </div>
         {/* Desktop Nav */}
