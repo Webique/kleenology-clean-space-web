@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Sparkles, Wind, Sofa, Home } from "lucide-react";
+import { MessageCircle, Sparkles, Wind, Sofa, Home, Building2, Square, Zap } from "lucide-react";
 import deepCleaningImg from "@/assets/deep-cleaning.jpg";
 import furnitureCleaningImg from "@/assets/furniture-cleaning.jpg";
 import acCleaningImg from "@/assets/ac-cleaning.jpg";
@@ -38,6 +38,15 @@ export const Services = () => {
       image: moveCleaningImg,
       icon: Home
     }
+  ];
+
+  const popularServices = [
+    { title: "Condo Cleaning", icon: Building2 },
+    { title: "House Cleaning", icon: Home },
+    { title: "Deep Cleaning", icon: Sparkles },
+    { title: "Carpet Cleaning", icon: Square },
+    { title: "Appliance Cleaning", icon: Zap },
+    { title: "Windows Cleaning", icon: Wind }
   ];
 
   return (
@@ -101,6 +110,34 @@ export const Services = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Most Popular Services Section */}
+        <div className="relative mt-16 sm:mt-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 rounded-3xl"></div>
+          <div className="relative z-10 py-12 sm:py-16 px-6 sm:px-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12 text-white">
+              Most Popular Services
+            </h2>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 max-w-4xl mx-auto">
+              {popularServices.map((service, index) => (
+                <div key={index} className="flex flex-col items-center group cursor-pointer">
+                  <div className="relative mb-4">
+                    {/* Hexagonal background */}
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 backdrop-blur-sm border-2 border-white/30 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300"></div>
+                    {/* Icon */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white transform -rotate-45" />
+                    </div>
+                  </div>
+                  <h3 className="text-white text-sm sm:text-base font-medium text-center group-hover:text-white/90 transition-colors">
+                    {service.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
