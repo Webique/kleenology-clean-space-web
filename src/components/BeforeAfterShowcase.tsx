@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const BeforeAfterShowcase = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
 
   const videos = [
     { id: "vid1", title: "Deep Cleaning Process" },
@@ -28,7 +29,7 @@ export const BeforeAfterShowcase = () => {
         <div className="mb-16">
           <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Before & After</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => setActiveImage("before.jpg")}> 
               <CardContent className="p-0 relative">
                 <img 
                   src="/lovable-uploads/before.jpg" 
@@ -41,7 +42,7 @@ export const BeforeAfterShowcase = () => {
               </CardContent>
             </Card>
             
-            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
+            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => setActiveImage("after.jpg")}> 
               <CardContent className="p-0 relative">
                 <img 
                   src="/lovable-uploads/after.jpg" 
@@ -72,7 +73,6 @@ export const BeforeAfterShowcase = () => {
                 <CardContent className="p-0 relative">
                   <video 
                     className="w-full h-48 object-cover"
-                    poster="/lovable-uploads/after.jpg"
                     preload="metadata"
                   >
                     <source src={`/lovable-uploads/${video.id}.mp4`} type="video/mp4" />
@@ -81,11 +81,6 @@ export const BeforeAfterShowcase = () => {
                     <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform">
                       <Play className="h-6 w-6 text-primary fill-current" />
                     </div>
-                  </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h4 className="text-white font-semibold text-sm bg-black/50 px-2 py-1 rounded">
-                      {video.title}
-                    </h4>
                   </div>
                 </CardContent>
               </Card>
@@ -110,6 +105,28 @@ export const BeforeAfterShowcase = () => {
               </video>
               <button 
                 onClick={() => setActiveVideo(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
+              >
+                ✕ Close
+              </button>
+            </div>
+          </div>
+        )}
+        {/* Image Modal */}
+        {activeImage && (
+          <div 
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            onClick={() => setActiveImage(null)}
+          >
+            <div className="relative max-w-3xl w-full flex items-center justify-center">
+              <img 
+                src={`/lovable-uploads/${activeImage}`} 
+                alt={activeImage.replace('.jpg', '')}
+                className="w-full h-auto max-h-[80vh] rounded-lg object-contain"
+                onClick={e => e.stopPropagation()}
+              />
+              <button 
+                onClick={() => setActiveImage(null)}
                 className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
               >
                 ✕ Close
