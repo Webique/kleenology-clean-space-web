@@ -32,12 +32,12 @@ export const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         <div className="flex items-center">
           <img 
             src="/logo.png" 
             alt="Kleenology Logo" 
-            className="h-10 sm:h-14 w-auto"
+            className="h-9 sm:h-11 w-auto"
           />
         </div>
         {/* Desktop Nav */}
