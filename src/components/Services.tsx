@@ -111,32 +111,31 @@ export const Services = () => {
             </Card>
           ))}
         </div>
+      </div>
 
-        {/* Most Popular Services Section */}
-        <div className="relative mt-16 sm:mt-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 rounded-3xl"></div>
-          <div className="relative z-10 py-12 sm:py-16 px-6 sm:px-8">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12 text-white">
-              Most Popular Services
-            </h2>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 max-w-4xl mx-auto">
-              {popularServices.map((service, index) => (
-                <div key={index} className="flex flex-col items-center group cursor-pointer">
-                  <div className="relative mb-4">
-                    {/* Hexagonal background */}
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 backdrop-blur-sm border-2 border-white/30 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300"></div>
-                    {/* Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white transform -rotate-45" />
-                    </div>
+      {/* Most Popular Services - Full Width Horizontal Bar */}
+      <div className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary py-8 sm:py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 text-white">
+            Most Popular Services
+          </h2>
+          
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12">
+            {popularServices.map((service, index) => (
+              <div key={index} className="flex flex-col items-center group cursor-pointer">
+                <div className="relative mb-3">
+                  {/* Hexagonal background */}
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm border-2 border-white/30 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300"></div>
+                  {/* Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white transform -rotate-45" />
                   </div>
-                  <h3 className="text-white text-sm sm:text-base font-medium text-center group-hover:text-white/90 transition-colors">
-                    {service.title}
-                  </h3>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-white text-xs sm:text-sm font-medium text-center group-hover:text-white/90 transition-colors max-w-20 sm:max-w-24">
+                  {service.title}
+                </h3>
+              </div>
+            ))}
           </div>
         </div>
       </div>
