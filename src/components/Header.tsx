@@ -31,13 +31,13 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/logo.png" 
+            src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
             alt="Kleenology Logo" 
-            className="h-12 sm:h-16 w-auto"
+            className="h-16 sm:h-20 w-auto"
           />
         </div>
         {/* Desktop Nav */}

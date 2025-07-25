@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles, Wind, Sofa, Home, Building2, Square, Zap } from "lucide-react";
@@ -48,6 +49,30 @@ export const Services = () => {
     { title: "Appliance Cleaning", icon: Zap },
     { title: "Windows Cleaning", icon: Wind }
   ];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll on mobile
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let animationFrame: number;
+    let scrollAmount = 0;
+    const scrollStep = 1.5; // px per frame
+    function autoScroll() {
+      if (window.innerWidth >= 640) return;
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+        el.scrollTo({ left: 0, behavior: 'auto' });
+        scrollAmount = 0;
+      } else {
+        scrollAmount = el.scrollLeft + scrollStep;
+        el.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      }
+      animationFrame = requestAnimationFrame(autoScroll);
+    }
+    animationFrame = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
 
   return (
     <>
@@ -117,21 +142,21 @@ export const Services = () => {
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 text-blue-900">
             Most Popular Services
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12">
+          <div
+            className="grid grid-cols-3 gap-6 items-center justify-center sm:flex sm:flex-wrap sm:gap-8 lg:gap-12"
+          >
             {popularServices.map((service, index) => (
-              <div key={index} className="flex flex-col items-center group cursor-pointer">
-                <div className="relative mb-3">
-                  {/* Hexagonal background */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white backdrop-blur-sm border-2 border-blue-300 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg"></div>
-                  {/* Icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-800 transform -rotate-45" />
-                  </div>
-                </div>
-                <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-20 sm:max-w-24">
-                  {service.title}
-                </h3>
-              </div>
+               <div key={index} className="flex flex-col items-center group cursor-pointer w-full sm:w-auto">
+                 <div className="mb-3 flex items-center justify-center">
+                   {/* Hexagonal background with perfectly centered icon */}
+                   <div className="w-16 h-16 sm:w-16 sm:h-16 bg-white backdrop-blur-sm border-2 border-blue-300 flex items-center justify-center transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                     <service.icon className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 transform -rotate-45" />
+                   </div>
+                 </div>
+                 <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-12 sm:max-w-20">
+                   {service.title}
+                 </h3>
+               </div>
             ))}
           </div>
         </div>
