@@ -1,15 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ArrowRight } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
+import vid1Thumbnail from "@/assets/vid1-thumbnail.jpg";
+import vid2Thumbnail from "@/assets/vid2-thumbnail.jpg";
+import vid3Thumbnail from "@/assets/vid3-thumbnail.jpg";
 
 export const BeforeAfterShowcase = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
   const videos = [
-    { id: "vid1", title: "Deep Cleaning Process" },
-    { id: "vid2", title: "Kitchen Transformation" },
-    { id: "vid3", title: "Office Sanitization" }
+    { id: "vid1", title: "Deep Cleaning Process", thumbnail: vid1Thumbnail },
+    { id: "vid2", title: "Kitchen Transformation", thumbnail: vid2Thumbnail },
+    { id: "vid3", title: "Office Sanitization", thumbnail: vid3Thumbnail }
   ];
 
   // Close modal on Esc key
@@ -88,16 +91,18 @@ export const BeforeAfterShowcase = () => {
                 onClick={() => setActiveVideo(video.id)}
               >
                 <CardContent className="p-0 relative">
-                  <div className="w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <div className="text-center">
-                      <Play className="h-12 w-12 text-gray-500 mx-auto mb-2" />
-                      <p className="text-gray-600 text-sm font-medium">{video.title}</p>
-                    </div>
-                  </div>
+                  <img 
+                    src={video.thumbnail} 
+                    alt={video.title} 
+                    className="w-full h-48 object-cover"
+                  />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                     <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform">
                       <Play className="h-6 w-6 text-primary fill-current" />
                     </div>
+                  </div>
+                  <div className="absolute bottom-3 left-3 bg-black/60 text-white px-2 py-1 rounded text-xs font-medium">
+                    {video.title}
                   </div>
                 </CardContent>
               </Card>
