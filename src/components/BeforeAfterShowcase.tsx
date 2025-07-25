@@ -101,9 +101,6 @@ export const BeforeAfterShowcase = () => {
                       <Play className="h-6 w-6 text-primary fill-current" />
                     </div>
                   </div>
-                  <div className="absolute bottom-3 left-3 bg-black/60 text-white px-2 py-1 rounded text-xs font-medium">
-                    {video.title}
-                  </div>
                 </CardContent>
               </Card>
             ))}
