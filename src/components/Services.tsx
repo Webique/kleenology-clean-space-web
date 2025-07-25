@@ -114,9 +114,9 @@ export const Services = () => {
       </div>
 
       {/* Most Popular Services - Full Width Horizontal Bar */}
-      <div className="w-full bg-blue-900 py-8 sm:py-12">
+      <div className="w-full bg-blue-100 py-8 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 text-white">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 text-blue-900">
             Most Popular Services
           </h2>
           
@@ -125,13 +125,13 @@ export const Services = () => {
               <div key={index} className="flex flex-col items-center group cursor-pointer">
                 <div className="relative mb-3">
                   {/* Hexagonal background */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/80 backdrop-blur-sm border-2 border-white transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg"></div>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white backdrop-blur-sm border-2 border-blue-300 transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg"></div>
                   {/* Icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-800 transform -rotate-45" />
                   </div>
                 </div>
-                <h3 className="text-white text-xs sm:text-sm font-bold text-center group-hover:text-white/90 transition-colors max-w-20 sm:max-w-24 drop-shadow-lg">
+                <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-20 sm:max-w-24">
                   {service.title}
                 </h3>
               </div>
