@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const BeforeAfterShowcase = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -11,6 +11,23 @@ export const BeforeAfterShowcase = () => {
     { id: "vid2", title: "Kitchen Transformation" },
     { id: "vid3", title: "Office Sanitization" }
   ];
+
+  // Close modal on Esc key
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setActiveVideo(null);
+      setActiveImage(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeVideo || activeImage) {
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeVideo, activeImage, handleKeyDown]);
 
   return (
     <section id="showcase" className="py-16 bg-secondary/20">
@@ -91,24 +108,25 @@ export const BeforeAfterShowcase = () => {
         {/* Video Modal */}
         {activeVideo && (
           <div 
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 cursor-pointer"
             onClick={() => setActiveVideo(null)}
           >
-            <div className="relative max-w-4xl w-full">
+            <div className="relative max-w-4xl w-full cursor-default" onClick={e => e.stopPropagation()}>
+              <button 
+                onClick={() => setActiveVideo(null)}
+                className="absolute top-2 right-2 text-white hover:text-gray-300 text-3xl z-10 bg-black/60 rounded-full px-3 py-1"
+                aria-label="Close video"
+              >
+                ✕
+              </button>
               <video 
                 className="w-full h-auto rounded-lg"
                 controls
                 autoPlay
-                onClick={(e) => e.stopPropagation()}
+                tabIndex={0}
               >
                 <source src={`/lovable-uploads/${activeVideo}.mp4`} type="video/mp4" />
               </video>
-              <button 
-                onClick={() => setActiveVideo(null)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
-              >
-                ✕ Close
-              </button>
             </div>
           </div>
         )}
@@ -137,4 +155,4 @@ export const BeforeAfterShowcase = () => {
       </div>
     </section>
   );
-};
+}
