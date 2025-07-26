@@ -40,13 +40,29 @@ export const BeforeAfterShowcase = () => {
     updateSliderPosition(e);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    updateSliderPositionTouch(e);
+  };
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (isDragging) {
       updateSliderPosition(e);
     }
   }, [isDragging]);
 
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    if (isDragging) {
+      e.preventDefault();
+      updateSliderPositionTouch(e);
+    }
+  }, [isDragging]);
+
   const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
   }, []);
 
@@ -59,16 +75,29 @@ export const BeforeAfterShowcase = () => {
     }
   };
 
+  const updateSliderPositionTouch = (e: TouchEvent | React.TouchEvent) => {
+    if (containerRef.current && e.touches[0]) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      setSliderPosition(percentage);
+    }
+  };
+
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.addEventListener('touchend', handleTouchEnd);
     }
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
     <section id="showcase" className="py-16 bg-secondary/20">
@@ -89,8 +118,9 @@ export const BeforeAfterShowcase = () => {
           <div className="max-w-2xl mx-auto">
             <div 
               ref={containerRef}
-              className="relative overflow-hidden rounded-lg cursor-grab active:cursor-grabbing group"
+              className="relative overflow-hidden rounded-lg cursor-grab active:cursor-grabbing group touch-none"
               onMouseDown={handleMouseDown}
+              onTouchStart={handleTouchStart}
             >
               {/* Before Image */}
               <div className="relative">
