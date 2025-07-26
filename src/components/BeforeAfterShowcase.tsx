@@ -173,21 +173,18 @@ export const BeforeAfterShowcase = () => {
         <div>
           <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Our Team in Action</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {videos.map((video) => (
+            {videos.map((video, index) => (
               <Card 
                 key={video.id} 
                 className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer"
                 onClick={() => setActiveVideo(video.id)}
               >
                 <CardContent className="p-0 relative">
-                  <video 
+                  <img 
+                    src={`/lovable-uploads/${index + 1}.jpg`}
+                    alt={video.title} 
                     className="w-full h-48 object-cover"
-                    preload="metadata"
-                    muted
-                    playsInline
-                  >
-                    <source src={`/lovable-uploads/${video.id}.mp4`} type="video/mp4" />
-                  </video>
+                  />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                     <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform">
                       <Play className="h-6 w-6 text-primary fill-current" />
