@@ -91,11 +91,14 @@ export const BeforeAfterShowcase = () => {
                 onClick={() => setActiveVideo(video.id)}
               >
                 <CardContent className="p-0 relative">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title} 
+                  <video 
                     className="w-full h-48 object-cover"
-                  />
+                    preload="metadata"
+                    muted
+                    playsInline
+                  >
+                    <source src={`/lovable-uploads/${video.id}.mp4`} type="video/mp4" />
+                  </video>
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                     <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform">
                       <Play className="h-6 w-6 text-primary fill-current" />
