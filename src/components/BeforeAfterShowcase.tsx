@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ArrowRight } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import vid1Thumbnail from "@/assets/vid1-thumbnail.jpg";
 import vid2Thumbnail from "@/assets/vid2-thumbnail.jpg";
 import vid3Thumbnail from "@/assets/vid3-thumbnail.jpg";
@@ -8,6 +8,9 @@ import vid3Thumbnail from "@/assets/vid3-thumbnail.jpg";
 export const BeforeAfterShowcase = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const videos = [
     { id: "vid1", title: "Deep Cleaning Process", thumbnail: vid1Thumbnail },
@@ -32,6 +35,41 @@ export const BeforeAfterShowcase = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeVideo, activeImage, handleKeyDown]);
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    updateSliderPosition(e);
+  };
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (isDragging) {
+      updateSliderPosition(e);
+    }
+  }, [isDragging]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const updateSliderPosition = (e: MouseEvent | React.MouseEvent) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      setSliderPosition(percentage);
+    }
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
   return (
     <section id="showcase" className="py-16 bg-secondary/20">
       <div className="container mx-auto px-4">
@@ -45,38 +83,60 @@ export const BeforeAfterShowcase = () => {
           </p>
         </div>
 
-        {/* Before/After Section */}
+        {/* Interactive Before/After Comparison */}
         <div className="mb-16">
           <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Before & After</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => setActiveImage("before.jpg")}> 
-              <CardContent className="p-0 relative">
+          <div className="max-w-2xl mx-auto">
+            <div 
+              ref={containerRef}
+              className="relative overflow-hidden rounded-lg cursor-grab active:cursor-grabbing group"
+              onMouseDown={handleMouseDown}
+            >
+              {/* Before Image */}
+              <div className="relative">
                 <img 
                   src="/lovable-uploads/before.jpg" 
                   alt="Before cleaning" 
-                  className="w-full h-64 object-cover"
+                  className="w-full h-96 object-cover select-none"
+                  draggable={false}
                 />
                 <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   Before
                 </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => setActiveImage("after.jpg")}> 
-              <CardContent className="p-0 relative">
+              </div>
+
+              {/* After Image Overlay */}
+              <div 
+                className="absolute top-0 left-0 h-full overflow-hidden"
+                style={{ width: `${sliderPosition}%` }}
+              >
                 <img 
                   src="/lovable-uploads/after.jpg" 
                   alt="After cleaning" 
-                  className="w-full h-64 object-cover"
+                  className="w-full h-96 object-cover select-none"
+                  style={{ width: `${containerRef.current?.offsetWidth || 800}px` }}
+                  draggable={false}
                 />
                 <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   After
                 </div>
-                <div className="absolute top-4 right-4 text-green-500">
-                  <ArrowRight className="h-6 w-6" />
+              </div>
+
+              {/* Slider Handle */}
+              <div 
+                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg flex items-center justify-center group-hover:w-2 transition-all duration-200"
+                style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+              >
+                <div className="absolute w-8 h-8 bg-white rounded-full shadow-lg border-2 border-primary flex items-center justify-center cursor-grab active:cursor-grabbing">
+                  <div className="w-1 h-4 bg-primary rounded-full"></div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              {/* Instructions */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm opacity-80 group-hover:opacity-100 transition-opacity">
+                Drag to compare
+              </div>
+            </div>
           </div>
         </div>
 
