@@ -107,14 +107,13 @@ export const BeforeAfterShowcase = () => {
 
               {/* After Image Overlay */}
               <div 
-                className="absolute top-0 left-0 h-full overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
+                className="absolute top-0 left-0 w-full h-full overflow-hidden"
+                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
               >
                 <img 
                   src="/lovable-uploads/after.jpg" 
                   alt="After cleaning" 
                   className="w-full h-96 object-cover select-none"
-                  style={{ width: `${containerRef.current?.offsetWidth || 800}px` }}
                   draggable={false}
                 />
                 <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
