@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ArrowRight } from "lucide-react";
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import vid1Thumbnail from "@/assets/vid1-thumbnail.jpg";
 import vid2Thumbnail from "@/assets/vid2-thumbnail.jpg";
 import vid3Thumbnail from "@/assets/vid3-thumbnail.jpg";
@@ -11,11 +12,12 @@ export const BeforeAfterShowcase = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const videos = [
-    { id: "vid1", title: "Deep Cleaning Process", thumbnail: vid1Thumbnail },
-    { id: "vid2", title: "Kitchen Transformation", thumbnail: vid2Thumbnail },
-    { id: "vid3", title: "Office Sanitization", thumbnail: vid3Thumbnail }
+    { id: "vid1", title: t('showcase.videos.0') },
+    { id: "vid2", title: t('showcase.videos.1') },
+    { id: "vid3", title: t('showcase.videos.2') }
   ];
 
   // Close modal on Esc key
@@ -105,16 +107,16 @@ export const BeforeAfterShowcase = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            See the Difference We Make
+            {t('showcase.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience the transformation through our before & after results and watch our professional team in action.
+            {t('showcase.subtitle')}
           </p>
         </div>
 
         {/* Interactive Before/After Comparison */}
         <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Before & After</h3>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">{t('showcase.beforeAfter')}</h3>
           <div className="max-w-2xl mx-auto">
             <div 
               ref={containerRef}
@@ -131,7 +133,7 @@ export const BeforeAfterShowcase = () => {
                   draggable={false}
                 />
                 <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Before
+                  {t('showcase.before')}
                 </div>
               </div>
 
@@ -147,7 +149,7 @@ export const BeforeAfterShowcase = () => {
                   draggable={false}
                 />
                 <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  After
+                  {t('showcase.after')}
                 </div>
               </div>
 
@@ -163,7 +165,7 @@ export const BeforeAfterShowcase = () => {
 
               {/* Instructions */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm opacity-80 group-hover:opacity-100 transition-opacity">
-                Drag to compare
+                {t('showcase.dragToCompare')}
               </div>
             </div>
           </div>
@@ -171,7 +173,7 @@ export const BeforeAfterShowcase = () => {
 
         {/* Video Gallery */}
         <div>
-          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Our Team in Action</h3>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">{t('showcase.ourTeam')}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {videos.map((video, index) => (
               <Card 

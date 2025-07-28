@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
 import cleanResultsBg from "@/assets/clean-results-bg.jpg";
+import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
+  const { t } = useTranslation();
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/966537519929', '_blank');
   };
@@ -33,103 +35,53 @@ export const Contact = () => {
         <div className="absolute top-2/3 right-1/3 w-16 h-16 bg-accent/10 rounded-full blur-md animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95 z-1"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
-            Want to Contact <span className="text-primary">with us?</span>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            {t('contact.title')}
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground">
-            Get in touch with our team for a free consultation
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {t('contact.subtitle')}
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {/* WhatsApp */}
-          <Card className="text-center border-primary/10 hover:shadow-clean transition-all duration-300 hover:border-primary/30">
-            <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#25D366]/10 rounded-full mb-4">
-                <MessageCircle className="h-8 w-8 text-[#25D366]" />
+          <Card className="bg-white/80 shadow-lg border-0">
+            <CardContent className="flex flex-col items-center p-8">
+              <div className="mb-4">
+                <MessageCircle className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">WhatsApp</h3>
-              <p className="text-muted-foreground mb-6">Quick response and instant booking</p>
-              <Button 
-                variant="whatsapp" 
-                onClick={handleWhatsAppClick}
-                className="w-full"
-              >
-                <MessageCircle className="h-4 w-4" />
+              <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{t('contact.whatsapp')}</h3>
+              <Button onClick={handleWhatsAppClick} className="mt-2 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-6 py-2 rounded-full">
                 +966-53-7519929
               </Button>
             </CardContent>
           </Card>
-
-          {/* Phone */}
-          <Card className="text-center border-primary/10 hover:shadow-clean transition-all duration-300 hover:border-primary/30">
-            <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                <Phone className="h-8 w-8 text-primary" />
+          {/* Call */}
+          <Card className="bg-white/80 shadow-lg border-0">
+            <CardContent className="flex flex-col items-center p-8">
+              <div className="mb-4">
+                <Phone className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">Call us</h3>
-              <p className="text-muted-foreground mb-6">Direct line for immediate assistance</p>
-              <Button 
-                variant="default" 
-                onClick={handleCallClick}
-                className="w-full"
-              >
-                <Phone className="h-4 w-4" />
+              <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{t('contact.call')}</h3>
+              <Button onClick={handleCallClick} className="mt-2 bg-primary hover:bg-primary/80 text-white font-bold px-6 py-2 rounded-full">
                 +966-53-7519929
               </Button>
             </CardContent>
           </Card>
-
           {/* Email */}
-          <Card className="text-center border-primary/10 hover:shadow-clean transition-all duration-300 hover:border-primary/30">
-            <CardContent className="p-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 rounded-full mb-4">
-                <Mail className="h-8 w-8 text-accent" />
+          <Card className="bg-white/80 shadow-lg border-0">
+            <CardContent className="flex flex-col items-center p-8">
+              <div className="mb-4">
+                <Mail className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">Mail us</h3>
-              <p className="text-muted-foreground mb-6">Send us your detailed requirements</p>
-              <Button 
-                variant="outline" 
-                onClick={handleEmailClick}
-                className="w-full"
-              >
-                <Mail className="h-4 w-4" />
-                Send Email
+              <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{t('contact.email')}</h3>
+              <Button onClick={handleEmailClick} className="mt-2 bg-accent hover:bg-accent/80 text-white font-bold px-6 py-2 rounded-full">
+                abdulhadi@kleenology.net
               </Button>
             </CardContent>
           </Card>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-16 bg-gradient-primary rounded-2xl p-8 md:p-12 text-white">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Ready to experience the Kleenology difference?
-          </h3>
-          <p className="text-lg mb-8 opacity-90">
-            Book your cleaning service today and join our satisfied customers
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="whatsapp" 
-              size="lg"
-              onClick={handleWhatsAppClick}
-              className="text-lg px-8 py-6 h-auto"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Book via WhatsApp
-            </Button>
-            <Button 
-              size="lg"
-              onClick={handleCallClick}
-              className="text-lg px-8 py-6 h-auto bg-white text-primary hover:bg-gray-100 font-semibold border-2 border-white hover:border-gray-200 transform hover:scale-105 transition-all duration-300 shadow-xl"
-            >
-              <Phone className="h-5 w-5 mr-3" />
-              Call Now
-            </Button>
-          </div>
         </div>
       </div>
     </section>

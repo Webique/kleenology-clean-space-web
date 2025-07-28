@@ -8,46 +8,48 @@ import acCleaningImg from "@/assets/ac-cleaning.jpg";
 import moveCleaningImg from "@/assets/move-cleaning.jpg";
 import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
+import { useTranslation } from "react-i18next";
 
 export const Services = () => {
+  const { t } = useTranslation();
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/966537519929', '_blank');
   };
 
   const services = [
     {
-      title: "Deep Cleaning",
-      description: "Comprehensive cleaning that reaches every corner and detail of your space.",
+      title: t('services.popular.2'),
+      description: t('services.description'),
       image: deepCleaningImg,
       icon: Sparkles
     },
     {
-      title: "Furniture Cleaning",
-      description: "Professional upholstery and furniture cleaning to restore freshness.",
+      title: t('services.popular.1'),
+      description: t('services.description'),
       image: furnitureCleaningImg,
       icon: Sofa
     },
     {
-      title: "Air Conditioner Cleaning",
-      description: "Expert AC cleaning for better air quality and efficiency.",
+      title: t('services.popular.4'),
+      description: t('services.description'),
       image: acCleaningImg,
       icon: Wind
     },
     {
-      title: "Move In / Move Out Service",
-      description: "Complete cleaning service for moving transitions.",
+      title: t('services.popular.3'),
+      description: t('services.description'),
       image: moveCleaningImg,
       icon: Home
     }
   ];
 
   const popularServices = [
-    { title: "Condo Cleaning", icon: Building2 },
-    { title: "House Cleaning", icon: Home },
-    { title: "Deep Cleaning", icon: Sparkles },
-    { title: "Carpet Cleaning", icon: Square },
-    { title: "Appliance Cleaning", icon: Zap },
-    { title: "Windows Cleaning", icon: Wind }
+    { title: t('services.popular.0'), icon: Building2 },
+    { title: t('services.popular.1'), icon: Home },
+    { title: t('services.popular.2'), icon: Sparkles },
+    { title: t('services.popular.3'), icon: Square },
+    { title: t('services.popular.4'), icon: Zap },
+    { title: t('services.popular.5'), icon: Wind }
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -79,6 +81,9 @@ export const Services = () => {
       <section id="services" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         {/* Enhanced Background Images and Elements */}
         <div className="absolute inset-0 z-0">
+          <div className="absolute top-10 right-10 w-80 h-80 opacity-8">
+            <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-full shadow-2xl" />
+          </div>
           <div className="absolute bottom-10 left-10 w-60 h-60 opacity-12">
             <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
           </div>
@@ -95,13 +100,13 @@ export const Services = () => {
           {/* Featured Service */}
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
-              Featured <span className="text-primary">Service</span>
+              {t('services.title')}
             </h2>
             <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 text-primary px-4">
-              Your comfort starts with clean — and we're here to make it effortless
+              {t('services.subtitle')}
             </h3>
             <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-              Our services are tailored to fit your lifestyle — whether you need precise home cleaning or professional care for offices and commercial spaces. In Kleenology, we deliver all-around cleaning solutions — accurate, dependable, and held to the highest standards.
+              {t('services.description')}
             </p>
           </div>
 
@@ -132,28 +137,27 @@ export const Services = () => {
             ))}
           </div>
         </div>
+
       </section>
       {/* Most Popular Services - Full Width Horizontal Bar */}
       <div className="w-full bg-[#1997d7] py-8 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-8 text-blue-900">
-            Most Popular Services
+            {t('services.mostPopular')}
           </h2>
-          <div
-            className="grid grid-cols-3 gap-6 items-center justify-center sm:flex sm:flex-wrap sm:gap-8 lg:gap-12"
-          >
+          <div className="grid grid-cols-3 gap-6 items-center justify-center sm:flex sm:flex-wrap sm:gap-8 lg:gap-12">
             {popularServices.map((service, index) => (
-               <div key={index} className="flex flex-col items-center group cursor-pointer w-full sm:w-auto">
-                 <div className="mb-3 flex items-center justify-center">
-                   {/* Hexagonal background with perfectly centered icon */}
-                   <div className="w-16 h-16 sm:w-16 sm:h-16 bg-white backdrop-blur-sm border-2 border-blue-300 flex items-center justify-center transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                     <service.icon className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 transform -rotate-45" />
-                   </div>
-                 </div>
-                 <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-12 sm:max-w-20">
-                   {service.title}
-                 </h3>
-               </div>
+              <div key={index} className="flex flex-col items-center group cursor-pointer w-full sm:w-auto">
+                <div className="mb-3 flex items-center justify-center">
+                  {/* Hexagonal background with perfectly centered icon */}
+                  <div className="w-16 h-16 sm:w-16 sm:h-16 bg-white backdrop-blur-sm border-2 border-blue-300 flex items-center justify-center transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <service.icon className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 transform -rotate-45" />
+                  </div>
+                </div>
+                <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-12 sm:max-w-20">
+                  {service.title}
+                </h3>
+              </div>
             ))}
           </div>
         </div>

@@ -1,6 +1,8 @@
 import { MessageCircle, Phone, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/966537519929', '_blank');
   };
@@ -12,7 +14,7 @@ export const Footer = () => {
   const handleEmailClick = () => {
     window.location.href = 'mailto:abdulhadi@kleenology.net';
   };
-//
+
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
@@ -25,13 +27,13 @@ export const Footer = () => {
               className="h-12 w-auto mb-4 brightness-0 invert"
             /> 
             <p className="text-sm text-background/80 leading-relaxed">
-              Specialized cleaning company committed to delivering spotless results using the latest technologies and eco-friendly products.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <div className="space-y-2">
               <a 
                 href="#home" 
@@ -41,7 +43,7 @@ export const Footer = () => {
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
-                Home
+                {t('footer.home')}
               </a>
               <a 
                 href="#about" 
@@ -51,7 +53,7 @@ export const Footer = () => {
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
-                About Us
+                {t('footer.about')}
               </a>
               <a 
                 href="#services" 
@@ -61,7 +63,7 @@ export const Footer = () => {
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
-                Services
+                {t('footer.services')}
               </a>
               <a 
                 href="#contact" 
@@ -71,14 +73,14 @@ export const Footer = () => {
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
-                Contact
+                {t('footer.contact')}
               </a>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.contactInfo')}</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <MessageCircle className="h-4 w-4 text-brand-yellow" />
@@ -114,7 +116,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-8 pt-8 text-center">
           <p className="text-sm text-background/60">
-            © 2024 Kleenology. All rights reserved. | Excellence in every inch.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

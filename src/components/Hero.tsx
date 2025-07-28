@@ -3,8 +3,11 @@ import heroBg from "@/assets/hero-background.jpg";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   const handleWhatsAppClick = useCallback(() => {
     window.open('https://wa.me/966537519929', '_blank');
   }, []);
@@ -32,11 +35,11 @@ export const Hero = () => {
         <div className="max-w-2xl w-full mx-auto px-4 sm:px-10 py-12 sm:py-20 rounded-3xl bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col items-center gap-6 sm:gap-8 mb-10 sm:mb-16 animate-fade-in" style={{boxShadow: '0 8px 40px 0 rgba(0,0,0,0.18)'}}>
           {/* Main Professional Headline */}
           <h1 className="font-sans text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-white drop-shadow-xl mb-3 sm:mb-4 leading-tight">
-            Excellence in Every Inch
+            {t('hero.headline')}
           </h1>
           {/* Elegant Tagline */}
           <p className="font-sans text-base sm:text-xl md:text-2xl text-center text-white/80 font-normal max-w-xl mx-auto mb-2 sm:mb-4 leading-relaxed">
-            Premium cleaning for modern spaces. Trusted by homes and businesses for quality, reliability, and care.
+            {t('hero.tagline')}
           </p>
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full mt-2">
@@ -47,7 +50,7 @@ export const Hero = () => {
               className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 h-auto font-bold shadow-float w-full sm:w-auto"
             >
               <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
-              Start Your Booking
+              {t('hero.startBooking')}
             </Button>
             <Button 
               onClick={handleLearnMore}
@@ -55,16 +58,16 @@ export const Hero = () => {
               size="lg"
               className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 h-auto font-semibold border-white/40 text-white/90 bg-white/10 hover:bg-white/20 hover:text-brand-blue w-full sm:w-auto"
             >
-              Learn More
+              {t('hero.learnMore')}
             </Button>
           </div>
         </div>
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-2xl sm:max-w-4xl w-full mx-auto mt-0 sm:mt-2 animate-fade-in px-2 sm:px-0">
           {[
-            { icon: Users, number: "1542+", label: "Happy Clients" },
-            { icon: Shield, number: "182+", label: "Expert Team" },
-            { icon: Sparkles, number: "100%", label: "Satisfaction" }
+            { icon: Users, number: "1542+", label: t('hero.stats.0') },
+            { icon: Shield, number: "182+", label: t('hero.stats.1') },
+            { icon: Sparkles, number: "100%", label: t('hero.stats.2') }
           ].map((stat, idx) => (
             <div
               key={idx}

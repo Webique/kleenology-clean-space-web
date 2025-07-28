@@ -9,8 +9,12 @@ import {
   DrawerDescription,
 } from "@/components/ui/drawer";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
+  const { i18n, t } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
+
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/966537519929', '_blank');
   };
@@ -21,6 +25,13 @@ export const Header = () => {
 
   // For accessibility, control Drawer open state
   const [open, setOpen] = useState(false);
+
+  // Language switcher
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+  };
 
   // Helper for smooth mobile nav
   const handleMobileNav = (sectionId: string) => {
@@ -41,7 +52,7 @@ export const Header = () => {
           />
         </div>
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <nav className={`hidden lg:flex items-center ${isRTL ? 'flex-row-reverse gap-x-6 xl:gap-x-8' : 'flex-row gap-x-6 xl:gap-x-8'}`}>
           <a 
             href="#home" 
             onClick={(e) => {
@@ -50,7 +61,7 @@ export const Header = () => {
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
-            Home
+            {t('nav.home')}
           </a>
           <a 
             href="#about" 
@@ -60,7 +71,7 @@ export const Header = () => {
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
-            About
+            {t('nav.about')}
           </a>
           <a 
             href="#services" 
@@ -70,7 +81,17 @@ export const Header = () => {
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
-            Services
+            {t('nav.services')}
+          </a>
+          <a 
+            href="#showcase" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
+          >
+            {t('nav.showcase')}
           </a>
           <a 
             href="#contact" 
@@ -80,7 +101,7 @@ export const Header = () => {
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
-            Contact
+            {t('nav.contact')}
           </a>
         </nav>
         {/* Desktop Buttons */}
@@ -92,15 +113,15 @@ export const Header = () => {
             className="text-sm"
           >
             <Phone className="h-4 w-4 mr-2" />
-            Call
+            {t('nav.call')}
           </Button>
           <Button 
             onClick={handleWhatsAppClick}
             className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-sm px-3 py-2 sm:px-4"
           >
             <MessageCircle className="h-4 w-4 mr-1 sm:mr-2" />
-            <span className="hidden sm:inline">WhatsApp</span>
-            <span className="sm:hidden">Chat</span>
+            <span className="hidden sm:inline">{t('nav.whatsapp')}</span>
+            <span className="sm:hidden">{t('nav.whatsapp')}</span>
           </Button>
         </div>
         {/* Mobile Hamburger */}
@@ -123,7 +144,7 @@ export const Header = () => {
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  Home
+                  {t('nav.home')}
                 </a>
                 <a
                   href="#about"
@@ -133,7 +154,7 @@ export const Header = () => {
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  About
+                  {t('nav.about')}
                 </a>
                 <a
                   href="#services"
@@ -143,7 +164,17 @@ export const Header = () => {
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  Services
+                  {t('nav.services')}
+                </a>
+                <a
+                  href="#showcase"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNav('showcase');
+                  }}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {t('nav.showcase')}
                 </a>
                 <a
                   href="#contact"
@@ -153,7 +184,7 @@ export const Header = () => {
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  Contact
+                  {t('nav.contact')}
                 </a>
               </nav>
               <div className="flex flex-col gap-3 mt-8">
@@ -182,6 +213,13 @@ export const Header = () => {
             </DrawerContent>
           </Drawer>
         </div>
+        {/* Language Switcher */}
+        <button
+          onClick={toggleLanguage}
+          className="ml-2 px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm font-semibold border border-gray-300"
+        >
+          {i18n.language === 'en' ? 'العربية' : 'English'}
+        </button>
       </div>
     </header>
   );
