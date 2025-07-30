@@ -40,7 +40,7 @@ const resources = {
       services: {
         title: 'Featured Service',
         subtitle: "Your comfort starts with clean — and we're here to make it effortless",
-        description: 'Our services are tailored to fit your lifestyle — whether you need precise home cleaning or professional care for offices and commercial spaces. In Kleenology, we deliver all-around cleaning solutions — accurate, dependable, and held to the highest standards.',
+        description: 'Choose from our comprehensive range of professional cleaning services, each designed to meet specific needs and deliver exceptional results.',
         mostPopular: 'Most Popular Services',
         popular: [
           'Condo Cleaning',
@@ -166,7 +166,7 @@ const resources = {
       services: {
         title: 'الخدمة المميزة',
         subtitle: 'راحتك تبدأ بالنظافة — ونحن هنا لجعلها سهلة',
-        description: 'خدماتنا مصممة لتناسب نمط حياتك — سواء كنت بحاجة لتنظيف منزلي دقيق أو رعاية احترافية للمكاتب والمساحات التجارية. في كلينولوجي، نقدم حلول تنظيف شاملة — دقيقة وموثوقة وبأعلى المعايير.',
+        description: 'اختر من مجموعتنا الشاملة من خدمات التنظيف الاحترافية، كل خدمة مصممة لتلبية احتياجات محددة وتحقق نتائج استثنائية.',
         mostPopular: 'الخدمات الأكثر شعبية',
         popular: [
           'تنظيف الشقق',
