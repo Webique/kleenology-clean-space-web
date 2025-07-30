@@ -5,7 +5,7 @@ import { MessageCircle, Sparkles, Wind, Sofa, Home, Building2, Square, Zap } fro
 import deepCleaningImg from "@/assets/deep-cleaning.jpg";
 import furnitureCleaningImg from "@/assets/furniture-cleaning.jpg";
 import acCleaningImg from "@/assets/ac-cleaning.jpg";
-import moveCleaningImg from "@/assets/move-cleaning.jpg";
+import carpetCleaningImg from "@/assets/carpet-cleaning.jpg";
 import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
 import { useTranslation } from "react-i18next";
@@ -38,7 +38,7 @@ export const Services = () => {
     {
       title: t('services.popular.3'),
       description: t('services.description'),
-      image: moveCleaningImg,
+      image: carpetCleaningImg,
       icon: Home
     }
   ];
