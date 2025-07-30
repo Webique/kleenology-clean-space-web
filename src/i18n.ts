@@ -50,6 +50,14 @@ const resources = {
           'Appliance Cleaning',
           'Windows Cleaning',
         ],
+        descriptions: {
+          'Deep Cleaning': 'Intensive, thorough cleaning that reaches every corner. Perfect for seasonal refresh or moving in/out.',
+          'House Cleaning': 'Regular maintenance cleaning for your home. Keeping your living space fresh and comfortable.',
+          'Appliance Cleaning': 'Professional cleaning of kitchen and household appliances. Making them shine like new.',
+          'Carpet Cleaning': 'Deep carpet and upholstery cleaning that removes stains, odors, and allergens effectively.',
+          'Condo Cleaning': 'Specialized cleaning for condominiums and apartments. Efficient service for modern living spaces.',
+          'Windows Cleaning': 'Crystal-clear window cleaning inside and out. Bringing natural light back to your space.',
+        },
       },
       showcase: {
         title: 'See the Difference We Make',
@@ -168,6 +176,14 @@ const resources = {
           'تنظيف الأجهزة',
           'تنظيف النوافذ',
         ],
+        descriptions: {
+          'تنظيف عميق': 'تنظيف مكثف وشامل يصل إلى كل زاوية. مثالي للتجديد الموسمي أو الانتقال.',
+          'تنظيف المنازل': 'تنظيف دوري للمنزل. للحفاظ على مساحة معيشتك منتعشة ومريحة.',
+          'تنظيف الأجهزة': 'تنظيف احترافي للمطبخ والأجهزة المنزلية. لجعلها تلمع كالجديدة.',
+          'تنظيف السجاد': 'تنظيف عميق للسجاد والمفروشات يزيل البقع والروائح والمواد المسببة للحساسية.',
+          'تنظيف الشقق': 'تنظيف متخصص للشقق السكنية. خدمة فعالة للمساحات العصرية.',
+          'تنظيف النوافذ': 'تنظيف النوافذ الصافي من الداخل والخارج. لإعادة الضوء الطبيعي لمساحتك.',
+        },
       },
       showcase: {
         title: 'شاهد الفرق الذي نصنعه',
