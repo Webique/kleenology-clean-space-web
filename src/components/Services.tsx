@@ -81,9 +81,6 @@ export const Services = () => {
       <section id="services" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         {/* Enhanced Background Images and Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-10 right-10 w-80 h-80 opacity-8">
-            <img src={officeCleaningBg} alt="" className="w-full h-full object-cover rounded-full shadow-2xl" />
-          </div>
           <div className="absolute bottom-10 left-10 w-60 h-60 opacity-12">
             <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
           </div>
