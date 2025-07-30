@@ -40,7 +40,7 @@ const resources = {
       services: {
         title: 'Featured Service',
         subtitle: "Your comfort starts with clean — and we're here to make it effortless",
-        description: 'Choose from our comprehensive range of professional cleaning services, each designed to meet specific needs and deliver exceptional results.',
+        description: '',
         mostPopular: 'Most Popular Services',
         popular: [
           'Condo Cleaning',
@@ -166,7 +166,7 @@ const resources = {
       services: {
         title: 'الخدمة المميزة',
         subtitle: 'راحتك تبدأ بالنظافة — ونحن هنا لجعلها سهلة',
-        description: 'اختر من مجموعتنا الشاملة من خدمات التنظيف الاحترافية، كل خدمة مصممة لتلبية احتياجات محددة وتحقق نتائج استثنائية.',
+        description: '',
         mostPopular: 'الخدمات الأكثر شعبية',
         popular: [
           'تنظيف الشقق',
