@@ -115,11 +115,9 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-8 pt-8 text-center">
-          <div className="inline-flex items-center justify-center bg-white/5 backdrop-blur-lg rounded-2xl px-6 py-4 shadow-lg border border-white/10">
-            <p className="text-sm font-medium text-white/90 bg-gradient-to-r from-brand-yellow/80 to-brand-blue/80 bg-clip-text text-transparent">
-              {t("footer.copyright")}
-            </p>
-          </div>
+          <p className="text-sm text-background/60">
+            {t('footer.copyright')}
+          </p>
         </div>
       </div>
     </footer>
