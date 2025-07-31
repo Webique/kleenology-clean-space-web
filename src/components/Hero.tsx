@@ -1,5 +1,6 @@
 
 import heroBg from "@/assets/hero-background-white.jpg";
+import heroBgMobile from "@/assets/hero-background-mobile.jpg";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { useCallback } from "react";
@@ -25,7 +26,7 @@ export const Hero = () => {
       <div
         className="absolute inset-0 w-full h-full z-0 bg-contain sm:bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(120deg, rgba(20,30,48,0.15) 30%, rgba(36,198,220,0.05)), url(${heroBg})`,
+          backgroundImage: `linear-gradient(120deg, rgba(20,30,48,0.15) 30%, rgba(36,198,220,0.05)), url(${window.innerWidth < 640 ? heroBgMobile : heroBg})`,
         }}
         aria-hidden="true"
       />
