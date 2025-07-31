@@ -1,5 +1,5 @@
 
-import heroBg from "@/assets/hero-background-cleaning.jpg";
+import heroBg from "@/assets/hero-background-couch.jpg";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { useCallback } from "react";
