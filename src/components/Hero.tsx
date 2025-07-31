@@ -23,7 +23,7 @@ export const Hero = () => {
     >
       {/* Professional Background with Gradient Overlay */}
       <div
-        className="absolute inset-0 w-full h-full z-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 w-full h-full z-0 bg-contain sm:bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(120deg, rgba(20,30,48,0.15) 30%, rgba(36,198,220,0.05)), url(${heroBg})`,
         }}
