@@ -8,14 +8,26 @@ import { useTranslation } from "react-i18next";
 export const Contact = () => {
   const { t } = useTranslation();
   const handleWhatsAppClick = () => {
+    // Track WhatsApp click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackWhatsAppClick();
+    }
     window.open('https://wa.me/966537519929', '_blank');
   };
 
   const handleCallClick = () => {
+    // Track phone call click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackButtonClick('phone_call');
+    }
     window.location.href = 'tel:+966537519929';
   };
 
   const handleEmailClick = () => {
+    // Track email click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackButtonClick('email_click');
+    }
     window.location.href = 'mailto:abdulhadi@kleenology.net';
   };
 

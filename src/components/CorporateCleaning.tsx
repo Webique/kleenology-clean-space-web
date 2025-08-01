@@ -8,6 +8,10 @@ import { useTranslation } from "react-i18next";
 export const CorporateCleaning = () => {
   const { t } = useTranslation();
   const handleWhatsAppClick = useCallback(() => {
+    // Track WhatsApp click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackWhatsAppClick();
+    }
     window.open('https://wa.me/966537519929', '_blank');
   }, []);
   const features = t('corporate.features', { returnObjects: true });

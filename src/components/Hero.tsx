@@ -10,10 +10,18 @@ export const Hero = () => {
   const { t } = useTranslation();
 
   const handleWhatsAppClick = useCallback(() => {
+    // Track WhatsApp click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackWhatsAppClick();
+    }
     window.open('https://wa.me/966537519929', '_blank');
   }, []);
 
   const handleLearnMore = useCallback(() => {
+    // Track learn more button click
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackButtonClick('learn_more');
+    }
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
