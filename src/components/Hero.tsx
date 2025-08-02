@@ -96,32 +96,6 @@ export const Hero = () => {
           ))}
         </div>
       </div>
-      
-      {/* Mobile Stats Section - Separate section with plain background */}
-      <div className="sm:hidden bg-background py-12">
-        <div className="grid grid-cols-1 gap-4 max-w-2xl w-full mx-auto px-4">
-          {[
-            { icon: Users, number: "1542+", label: t('hero.stats.0') },
-            { icon: Shield, number: "182+", label: t('hero.stats.1') },
-            { icon: Sparkles, number: "100%", label: t('hero.stats.2') }
-          ].map((stat, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20"
-            >
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-3 shadow-xl">
-                <stat.icon className="h-6 w-6 text-white drop-shadow-lg" />
-              </div>
-              <div className="text-2xl font-extrabold mb-1 text-foreground">
-                {stat.number}
-              </div>
-              <div className="text-sm font-medium text-muted-foreground">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
         <div className="w-7 h-12 sm:w-8 sm:h-14 border-2 border-white/60 rounded-full flex justify-center items-start bg-white/10 shadow-lg">

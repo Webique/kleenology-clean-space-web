@@ -6,10 +6,13 @@ import { BeforeAfterShowcase } from "@/components/BeforeAfterShowcase";
 import { CorporateCleaning } from "@/components/CorporateCleaning";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+  
   const handleWhatsAppClick = () => {
     // Track WhatsApp click with Meta pixel
     if ((window as any).pixelTracker) {
@@ -22,6 +25,33 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
+      
+      {/* Mobile Stats Section - Separate section with white background */}
+      <div className="sm:hidden bg-white py-12">
+        <div className="grid grid-cols-1 gap-4 max-w-2xl w-full mx-auto px-4">
+          {[
+            { icon: Users, number: "1542+", label: t('hero.stats.0') },
+            { icon: Shield, number: "182+", label: t('hero.stats.1') },
+            { icon: Sparkles, number: "100%", label: t('hero.stats.2') }
+          ].map((stat, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20"
+            >
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-3 shadow-xl">
+                <stat.icon className="h-6 w-6 text-white drop-shadow-lg" />
+              </div>
+              <div className="text-2xl font-extrabold mb-1 text-foreground">
+                {stat.number}
+              </div>
+              <div className="text-sm font-medium text-muted-foreground">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
       <About />
       <Services />
       <BeforeAfterShowcase />
