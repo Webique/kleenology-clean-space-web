@@ -41,7 +41,7 @@ export const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 sm:px-0">
-        <div className="max-w-2xl w-full mx-auto px-4 sm:px-10 py-12 sm:py-20 rounded-3xl bg-transparent sm:bg-white/5 backdrop-blur-none sm:backdrop-blur-xl shadow-none sm:shadow-2xl border-transparent sm:border-white/10 flex flex-col items-center gap-6 sm:gap-8 mb-10 sm:mb-16 animate-fade-in" style={{boxShadow: window.innerWidth >= 640 ? '0 8px 40px 0 rgba(0,0,0,0.18)' : 'none'}}>
+        <div className="max-w-2xl w-full mx-auto px-4 sm:px-10 py-12 sm:py-20 rounded-none sm:rounded-3xl bg-transparent sm:bg-white/5 backdrop-blur-none sm:backdrop-blur-xl shadow-none sm:shadow-2xl border-none sm:border sm:border-white/10 flex flex-col items-center gap-6 sm:gap-8 mb-10 sm:mb-16 animate-fade-in">
           {/* Main Professional Headline */}
           <h1 className="font-sans text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-white drop-shadow-xl mb-3 sm:mb-4 leading-tight">
             {t('hero.headline')}
@@ -65,7 +65,7 @@ export const Hero = () => {
               onClick={handleLearnMore}
               variant="outline"
               size="lg"
-              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 h-auto font-semibold border-white/40 text-white/90 bg-white/10 hover:bg-white/20 hover:text-brand-blue w-full sm:w-auto"
+              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 h-auto font-semibold border-white/40 text-white/90 bg-transparent sm:bg-white/10 hover:bg-white/20 hover:text-brand-blue w-full sm:w-auto"
             >
               {t('hero.learnMore')}
             </Button>
@@ -80,8 +80,7 @@ export const Hero = () => {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center bg-transparent sm:bg-white/10 backdrop-blur-none sm:backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-none sm:shadow-lg border-transparent sm:border-white/20 group mb-2 sm:mb-0"
-              style={{boxShadow: window.innerWidth >= 640 ? '0 4px 24px 0 rgba(0,0,0,0.15)' : 'none'}}
+              className="flex flex-col items-center justify-center bg-transparent sm:bg-white/10 backdrop-blur-none sm:backdrop-blur-lg rounded-none sm:rounded-2xl p-6 sm:p-8 shadow-none sm:shadow-lg border-none sm:border sm:border-white/20 group mb-2 sm:mb-0"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-3 sm:mb-4 shadow-xl">
                 <stat.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white drop-shadow-lg" />
