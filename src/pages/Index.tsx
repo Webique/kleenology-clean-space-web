@@ -26,8 +26,8 @@ const Index = () => {
       <Header />
       <Hero />
       
-      {/* Mobile Stats Section - Separate section with white background */}
-      <div className="sm:hidden bg-white py-12">
+      {/* Mobile Stats Section - Separate section with off-white background */}
+      <div className="sm:hidden bg-muted/30 py-12">
         <div className="grid grid-cols-1 gap-4 max-w-2xl w-full mx-auto px-4">
           {[
             { icon: Users, number: "1542+", label: t('hero.stats.0') },
