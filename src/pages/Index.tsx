@@ -26,13 +26,8 @@ const Index = () => {
       <Header />
       <Hero />
       
-      {/* Mobile Stats Section - Separate section with cute background */}
-      <div 
-        className="sm:hidden py-12 bg-cover bg-center bg-no-repeat relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3880&q=80)`
-        }}
-      >
+      {/* Mobile Stats Section - Separate section with white background */}
+      <div className="sm:hidden bg-white py-12">
         <div className="grid grid-cols-1 gap-4 max-w-2xl w-full mx-auto px-4">
           {[
             { icon: Users, number: "1542+", label: t('hero.stats.0') },
