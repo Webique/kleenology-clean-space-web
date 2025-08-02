@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const handleWhatsAppClick = () => {
+    // Track WhatsApp click with Meta pixel
+    if ((window as any).pixelTracker) {
+      (window as any).pixelTracker.trackWhatsAppClick();
+    }
     window.open('https://wa.me/966537519929', '_blank');
   };
 
@@ -28,10 +32,11 @@ const Index = () => {
       {/* Mobile-only floating WhatsApp button */}
       <Button
         onClick={handleWhatsAppClick}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg md:hidden"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20BA5A] shadow-float hover:shadow-lg transform hover:scale-110 transition-all duration-300 md:hidden"
         size="icon"
+        aria-label="Contact us on WhatsApp"
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <MessageCircle className="h-7 w-7 text-white" />
       </Button>
     </div>
   );
