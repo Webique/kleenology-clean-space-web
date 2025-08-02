@@ -71,8 +71,8 @@ export const Hero = () => {
             </Button>
           </div>
         </div>
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-2xl sm:max-w-4xl w-full mx-auto mt-0 sm:mt-2 animate-fade-in px-2 sm:px-0">
+        {/* Stats Grid - Desktop only */}
+        <div className="hidden sm:grid grid-cols-3 gap-8 max-w-4xl w-full mx-auto mt-2 animate-fade-in">
           {[
             { icon: Users, number: "1542+", label: t('hero.stats.0') },
             { icon: Shield, number: "182+", label: t('hero.stats.1') },
@@ -80,15 +80,42 @@ export const Hero = () => {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center bg-transparent sm:bg-white/10 backdrop-blur-none sm:backdrop-blur-lg rounded-none sm:rounded-2xl p-6 sm:p-8 shadow-none sm:shadow-lg border-none sm:border sm:border-white/20 group mb-2 sm:mb-0"
+              className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-white/20 group"
+              style={{boxShadow: '0 4px 24px 0 rgba(0,0,0,0.15)'}}
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-3 sm:mb-4 shadow-xl">
-                <stat.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white drop-shadow-lg" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-4 shadow-xl">
+                <stat.icon className="h-8 w-8 text-white drop-shadow-lg" />
               </div>
-              <div className="text-2xl sm:text-3xl font-extrabold mb-1 text-white">
+              <div className="text-3xl font-extrabold mb-1 text-white">
                 {stat.number}
               </div>
-              <div className="text-sm sm:text-base font-medium text-white/80">
+              <div className="text-base font-medium text-white/80">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Mobile Stats Section - Separate section with plain background */}
+      <div className="sm:hidden bg-background py-12">
+        <div className="grid grid-cols-1 gap-4 max-w-2xl w-full mx-auto px-4">
+          {[
+            { icon: Users, number: "1542+", label: t('hero.stats.0') },
+            { icon: Shield, number: "182+", label: t('hero.stats.1') },
+            { icon: Sparkles, number: "100%", label: t('hero.stats.2') }
+          ].map((stat, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-white/20"
+            >
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-yellow to-brand-blue rounded-full mb-3 shadow-xl">
+                <stat.icon className="h-6 w-6 text-white drop-shadow-lg" />
+              </div>
+              <div className="text-2xl font-extrabold mb-1 text-foreground">
+                {stat.number}
+              </div>
+              <div className="text-sm font-medium text-muted-foreground">
                 {stat.label}
               </div>
             </div>
