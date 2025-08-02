@@ -145,13 +145,13 @@ export const Services = () => {
           <div className="grid grid-cols-3 gap-6 items-center justify-center sm:flex sm:flex-wrap sm:gap-8 lg:gap-12">
             {popularServices.map((service, index) => (
               <div key={index} className="flex flex-col items-center group cursor-pointer w-full sm:w-auto">
-                <div className="mb-3 flex items-center justify-center">
+                <div className="mb-2 flex items-center justify-center">
                   {/* Hexagonal background with perfectly centered icon */}
-                  <div className="w-16 h-16 sm:w-16 sm:h-16 bg-white backdrop-blur-sm border-2 border-blue-300 flex items-center justify-center transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <service.icon className="w-5 h-5 sm:w-7 sm:h-7 text-blue-800 transform -rotate-45" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white backdrop-blur-sm border-2 border-blue-300 flex items-center justify-center transform rotate-45 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <service.icon className="w-4 h-4 sm:w-7 sm:h-7 text-blue-800 transform -rotate-45" />
                   </div>
                 </div>
-                <h3 className="text-blue-900 text-xs sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-12 sm:max-w-20">
+                <h3 className="text-blue-900 text-[10px] sm:text-sm font-bold text-center group-hover:text-blue-700 transition-colors max-w-10 sm:max-w-20">
                   {service.title}
                 </h3>
               </div>
