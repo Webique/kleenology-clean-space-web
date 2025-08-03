@@ -20,6 +20,18 @@ export const PixelTracker = () => {
     try {
       console.log('🔍 Tracking Page View...');
       
+      // Google Analytics 4
+      if ((window as any).gtag) {
+        (window as any).gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+          page_path: window.location.pathname
+        });
+        console.log('✅ Google Analytics: PageView tracked');
+      } else {
+        console.log('❌ Google Analytics: gtag not found');
+      }
+      
       // Meta Pixel
       if (window.fbq) {
         window.fbq('track', 'PageView');

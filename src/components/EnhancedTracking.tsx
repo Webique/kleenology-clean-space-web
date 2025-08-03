@@ -18,7 +18,7 @@ export const EnhancedTracking: React.FC = () => {
         timestamp: new Date().toISOString()
       };
 
-      // Send to Google Analytics
+      // Send to Google Analytics 4
       if ((window as any).gtag) {
         (window as any).gtag('event', 'page_view', {
           page_title: pageData.page_title,
@@ -26,6 +26,9 @@ export const EnhancedTracking: React.FC = () => {
           page_path: pageData.page_path,
           custom_parameters: pageData
         });
+        console.log('✅ Google Analytics: PageView tracked', pageData);
+      } else {
+        console.log('❌ Google Analytics: gtag not found');
       }
 
       // Send to Meta Pixel
@@ -34,6 +37,7 @@ export const EnhancedTracking: React.FC = () => {
           content_name: pageData.page_title,
           content_category: 'Cleaning Services'
         });
+        console.log('✅ Meta Pixel: PageView tracked');
       }
 
       // Send to TikTok Pixel
@@ -42,6 +46,7 @@ export const EnhancedTracking: React.FC = () => {
           content_name: pageData.page_title,
           content_category: 'Cleaning Services'
         });
+        console.log('✅ TikTok Pixel: PageView tracked');
       }
 
       console.log('Enhanced Page View Tracked:', pageData);
@@ -61,6 +66,7 @@ export const EnhancedTracking: React.FC = () => {
                 scroll_percentage: maxScroll,
                 page_path: location.pathname
               });
+              console.log(`✅ Google Analytics: Scroll depth ${maxScroll}% tracked`);
             }
           }
         }
@@ -75,6 +81,7 @@ export const EnhancedTracking: React.FC = () => {
             time_on_page: Math.round(timeOnPage / 1000),
             page_path: location.pathname
           });
+          console.log(`✅ Google Analytics: Time on page ${Math.round(timeOnPage / 1000)}s tracked`);
         }
       });
 
@@ -88,6 +95,7 @@ export const EnhancedTracking: React.FC = () => {
               button_text: buttonText,
               page_path: location.pathname
             });
+            console.log(`✅ Google Analytics: Button click "${buttonText}" tracked`);
           }
         }
       });
@@ -106,12 +114,25 @@ export const EnhancedTracking: React.FC = () => {
               currency: 'USD',
               transaction_id: Date.now().toString()
             });
+            console.log('✅ Google Analytics: WhatsApp conversion tracked');
           }
         });
       });
     };
 
+    // Force a page view event for Google Analytics
+    const forceGAPageView = () => {
+      if ((window as any).gtag) {
+        (window as any).gtag('config', 'G-1FHH5FNM55', {
+          page_path: location.pathname,
+          page_title: document.title
+        });
+        console.log('✅ Google Analytics: Config page view sent');
+      }
+    };
+
     trackPageView();
+    forceGAPageView(); // Force GA config
     trackUserInteractions();
     trackConversions();
 

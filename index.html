@@ -428,7 +428,20 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-1FHH5FNM55');
+      gtag('config', 'G-1FHH5FNM55', {
+        debug_mode: true,
+        send_page_view: true
+      });
+      
+      // Test event to verify tracking is working
+      setTimeout(() => {
+        gtag('event', 'test_event', {
+          event_category: 'test',
+          event_label: 'tracking_test',
+          value: 1
+        });
+        console.log('🔍 Google Analytics test event sent');
+      }, 2000);
     </script>
     <!-- End Google Analytics -->
 
