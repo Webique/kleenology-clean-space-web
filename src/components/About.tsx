@@ -13,10 +13,10 @@ export const About = () => {
       {/* Enhanced Background Images */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 right-0 w-full h-full opacity-8">
-          <img src={aboutBlurredBg} alt="" className="w-full h-full object-cover" />
+          <img src={aboutBlurredBg} alt="Professional cleaning background with blurred effect" className="w-full h-full object-cover" />
         </div>
         <div className="absolute bottom-0 left-0 w-full h-full opacity-15">
-          <img src={cleaningPattern} alt="" className="w-full h-full object-cover" />
+          <img src={cleaningPattern} alt="Cleaning pattern background texture" className="w-full h-full object-cover" />
         </div>
         {/* Moving decorative elements */}
         <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-primary/15 rounded-full animate-float"></div>

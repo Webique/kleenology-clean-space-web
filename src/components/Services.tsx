@@ -82,7 +82,7 @@ export const Services = () => {
         {/* Enhanced Background Images and Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute bottom-10 left-10 w-60 h-60 opacity-12">
-            <img src={cleaningPattern} alt="" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
+            <img src={cleaningPattern} alt="Cleaning services pattern background" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
           </div>
           {/* Enhanced floating decorative elements */}
           <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-brand-yellow/30 rounded-full animate-float shadow-lg"></div>
@@ -114,7 +114,7 @@ export const Services = () => {
                 <div className="relative">
                   <img 
                     src={service.image} 
-                    alt={service.title}
+                    alt={`${service.title} - Professional cleaning service`}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

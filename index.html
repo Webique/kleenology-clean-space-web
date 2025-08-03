@@ -21,6 +21,357 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <link rel="icon" type="image/png" href="/logobg.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#24C6DC" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Kleenology" />
+    <link rel="apple-touch-icon" href="/logobg.png" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" type="module">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/logobg.png" as="image">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="https://analytics.tiktok.com">
+    <link rel="dns-prefetch" href="https://sc-static.net">
+
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Kleenology",
+      "description": "Professional cleaning services with eco-friendly products and 100% satisfaction guarantee",
+      "url": "https://kleenology.com",
+      "logo": "https://kleenology.com/logobg.png",
+      "image": "https://kleenology.com/logobg.png",
+      "telephone": "+1-XXX-XXX-XXXX",
+      "email": "info@kleenology.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "YOUR_LATITUDE",
+        "longitude": "YOUR_LONGITUDE"
+      },
+      "openingHours": "Mo-Fr 08:00-18:00",
+      "priceRange": "$$",
+      "serviceType": "Professional Cleaning Services",
+      "areaServed": "Local Area",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Cleaning Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Home Cleaning",
+              "description": "Professional home cleaning services"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Office Cleaning",
+              "description": "Professional office cleaning services"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Deep Cleaning",
+              "description": "Deep cleaning and sanitization services"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://facebook.com/kleenology",
+        "https://instagram.com/kleenology"
+      ]
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kleenology",
+      "url": "https://kleenology.com",
+      "logo": "https://kleenology.com/logobg.png",
+      "description": "Professional cleaning services with eco-friendly products and 100% satisfaction guarantee",
+      "foundingDate": "2024",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-XXX-XXX-XXXX",
+        "contactType": "customer service",
+        "email": "info@kleenology.com"
+      },
+      "sameAs": [
+        "https://facebook.com/kleenology",
+        "https://instagram.com/kleenology"
+      ]
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What cleaning services does Kleenology offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kleenology offers professional home cleaning, office cleaning, deep cleaning, and sanitization services using eco-friendly products."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are Kleenology's cleaning products eco-friendly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Kleenology uses eco-friendly cleaning products that are safe for your family and pets while delivering excellent results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer satisfaction guarantee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Kleenology provides 100% satisfaction guarantee on all our cleaning services."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I book a cleaning service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book our cleaning services by contacting us through our website, phone, or WhatsApp for immediate assistance."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Review Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AggregateRating",
+      "itemReviewed": {
+        "@type": "LocalBusiness",
+        "name": "Kleenology"
+      },
+      "ratingValue": "4.8",
+      "reviewCount": "1542",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+    </script>
+
+    <!-- Service Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Professional Home Cleaning",
+      "description": "Comprehensive home cleaning service using eco-friendly products",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kleenology"
+      },
+      "areaServed": "Local Area",
+      "serviceType": "Home Cleaning",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "priceRange": "$$"
+      }
+    }
+    </script>
+
+    <!-- WhatsApp Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPoint",
+      "name": "Kleenology WhatsApp",
+      "telephone": "+966537519929",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Arabic"],
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "YOUR_LATITUDE",
+          "longitude": "YOUR_LONGITUDE"
+        },
+        "geoRadius": "50000"
+      },
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday", 
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+
+    <!-- Product Schema for Cleaning Packages -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Professional Home Cleaning Package",
+      "description": "Complete home cleaning service with eco-friendly products",
+      "brand": {
+        "@type": "Brand",
+        "name": "Kleenology"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "priceRange": "$$",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "LocalBusiness",
+          "name": "Kleenology"
+        }
+      },
+      "category": "Cleaning Services",
+      "serviceType": "Home Cleaning",
+      "areaServed": "Local Area"
+    }
+    </script>
+
+    <!-- Booking Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ReservationService",
+      "name": "Kleenology Cleaning Booking",
+      "description": "Book professional cleaning services online or via WhatsApp",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kleenology"
+      },
+      "serviceType": "Cleaning Services",
+      "areaServed": "Local Area",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://wa.me/966537519929",
+        "serviceType": "WhatsApp Booking"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "priceRange": "$$",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <!-- Payment Methods Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Kleenology",
+      "paymentAccepted": [
+        "Cash",
+        "Credit Card",
+        "Debit Card",
+        "Bank Transfer",
+        "Digital Payment"
+      ],
+      "currenciesAccepted": "USD, SAR",
+      "priceRange": "$$",
+      "paymentMethod": [
+        "Cash",
+        "Credit Card",
+        "Debit Card",
+        "Bank Transfer",
+        "Digital Payment"
+      ]
+    }
+    </script>
+
+    <!-- Social Media Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kleenology",
+      "url": "https://kleenology.com",
+      "logo": "https://kleenology.com/logobg.png",
+      "sameAs": [
+        "https://facebook.com/kleenology",
+        "https://instagram.com/kleenology",
+        "https://twitter.com/kleenology",
+        "https://linkedin.com/company/kleenology",
+        "https://youtube.com/@kleenology"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+966537519929",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Arabic"],
+        "areaServed": "Local Area"
+      }
+    }
+    </script>
+
+    <!-- Email Marketing Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Kleenology Contact",
+      "description": "Contact Kleenology for professional cleaning services",
+      "url": "https://kleenology.com/contact",
+      "mainEntity": {
+        "@type": "ContactPoint",
+        "name": "Kleenology Customer Service",
+        "telephone": "+966537519929",
+        "email": "info@kleenology.com",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Arabic"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      }
+    }
+    </script>
 
     <!-- Meta Pixel Code -->
     <script>
@@ -90,5 +441,20 @@
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

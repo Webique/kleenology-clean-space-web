@@ -5,7 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import HomeCleaning from "./pages/HomeCleaning";
+import OfficeCleaning from "./pages/OfficeCleaning";
 import { PixelTracker } from "@/components/PixelTracker";
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { SecurityHeaders } from "@/components/SecurityHeaders";
+import { EnhancedTracking } from "@/components/EnhancedTracking";
 
 const queryClient = new QueryClient();
 
@@ -15,9 +20,14 @@ const App = () => (
       <Toaster />
       <Sonner />
       <PixelTracker />
+      <PerformanceMonitor />
+      <SecurityHeaders />
+      <EnhancedTracking />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/home-cleaning" element={<HomeCleaning />} />
+          <Route path="/office-cleaning" element={<OfficeCleaning />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

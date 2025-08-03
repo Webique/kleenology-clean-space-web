@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { SEO } from "@/components/SEO";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -23,6 +24,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO 
+        title="Kleenology - Professional Cleaning Services | Excellence in Every Inch"
+        description="Kleenology delivers spotless cleaning results using eco-friendly products. Professional home and office cleaning services with satisfaction guarantee."
+        keywords="cleaning services, professional cleaning, house cleaning, office cleaning, eco-friendly cleaning, deep cleaning, sanitization"
+        url="https://kleenology.com"
+      />
       <Header />
       <Hero />
       

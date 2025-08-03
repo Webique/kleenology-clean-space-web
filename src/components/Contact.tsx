@@ -36,10 +36,10 @@ export const Contact = () => {
       {/* Enhanced Background Images */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-8">
-          <img src={officeCleaningBg} alt="" className="w-full h-full object-cover" />
+          <img src={officeCleaningBg} alt="Professional office cleaning background" className="w-full h-full object-cover" />
         </div>
         <div className="absolute bottom-0 right-0 w-full h-full opacity-12">
-          <img src={cleanResultsBg} alt="" className="w-full h-full object-cover" />
+          <img src={cleanResultsBg} alt="Clean results background showing spotless surfaces" className="w-full h-full object-cover" />
         </div>
         {/* Moving decorative elements */}
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-brand-yellow/10 rounded-full blur-xl animate-float"></div>
