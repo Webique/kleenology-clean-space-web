@@ -22,8 +22,8 @@ const App = () => (
       <PixelTracker />
       <PerformanceMonitor />
       <SecurityHeaders />
-      <EnhancedTracking />
       <BrowserRouter>
+        <EnhancedTracking />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home-cleaning" element={<HomeCleaning />} />
