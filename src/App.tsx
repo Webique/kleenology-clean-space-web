@@ -12,6 +12,7 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
 import { Component, ErrorInfo, ReactNode } from "react";
+import React from "react";
 
 const queryClient = new QueryClient();
 
@@ -75,7 +76,12 @@ class ErrorBoundary extends Component<
 }
 
 const App = () => {
-  console.log("App component is rendering - deployment fix");
+  console.log("App component is rendering - FRESH DEPLOYMENT FIX");
+  
+  // Add a simple test to ensure the app is loading
+  React.useEffect(() => {
+    console.log("App mounted successfully - kleenology.me should work now!");
+  }, []);
   
   return (
     <ErrorBoundary>

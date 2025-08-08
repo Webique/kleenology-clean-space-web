@@ -38,6 +38,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Test div to ensure something is visible */}
+      <div style={{ 
+        backgroundColor: '#10b981', 
+        color: 'white', 
+        padding: '10px', 
+        textAlign: 'center',
+        fontSize: '14px',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999
+      }}>
+        ✅ Kleenology Website Loading - If you see this, the app is working!
+      </div>
+      
       <SEO 
         title={showTerms ? "Terms and Conditions - Kleenology" : "Kleenology - Professional Cleaning Services | Excellence in Every Inch"}
         description={showTerms ? "Read our comprehensive terms and conditions for Kleenology cleaning services. Professional cleaning with clear policies." : "Kleenology delivers spotless cleaning results using eco-friendly products. Professional home and office cleaning services with satisfaction guarantee."}
