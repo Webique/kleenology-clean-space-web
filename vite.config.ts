@@ -26,5 +26,10 @@ export default defineConfig(({ mode }) => ({
         manualChunks: undefined,
       },
     },
+    sourcemap: false,
+    target: 'es2015',
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
   },
 }));
