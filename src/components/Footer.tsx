@@ -21,11 +21,13 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and Description */}
           <div>
-            <img 
-              src="/logo.png" 
-              alt="Kleenology Logo" 
-              className="h-12 w-auto mb-4 brightness-0 invert"
-            /> 
+            <a href="/" className="cursor-pointer inline-block">
+              <img 
+                src="/logo.png" 
+                alt="Kleenology Logo" 
+                className="h-12 w-auto mb-4 brightness-0 invert hover:opacity-80 transition-opacity"
+              />
+            </a> 
             <p className="text-sm text-background/80 leading-relaxed">
               {t('footer.description')}
             </p>
@@ -36,40 +38,56 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <div className="space-y-2">
               <a 
-                href="#home" 
+                href="/" 
                 onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                  // If we're on the homepage, scroll to home section
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                  // Otherwise, let the link navigate to homepage naturally
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
                 {t('footer.home')}
               </a>
               <a 
-                href="#about" 
+                href="/#about" 
                 onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  // If we're on the homepage, scroll to about section
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                  // Otherwise, let the link navigate to homepage with anchor
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
                 {t('footer.about')}
               </a>
               <a 
-                href="#services" 
+                href="/#services" 
                 onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  // If we're on the homepage, scroll to services section
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                  // Otherwise, let the link navigate to homepage with anchor
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
                 {t('footer.services')}
               </a>
               <a 
-                href="#contact" 
+                href="/#contact" 
                 onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  // If we're on the homepage, scroll to contact section
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                  // Otherwise, let the link navigate to homepage with anchor
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >

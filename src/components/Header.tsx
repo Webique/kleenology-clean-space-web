@@ -45,11 +45,13 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
         <div className="flex items-center">
-          <img 
-            src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
-            alt="Kleenology Logo" 
-            className="h-16 sm:h-20 w-auto"
-          />
+          <a href="/" className="cursor-pointer">
+            <img 
+              src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
+              alt="Kleenology Logo" 
+              className="h-16 sm:h-20 w-auto hover:opacity-80 transition-opacity"
+            />
+          </a>
         </div>
         {/* Desktop Nav */}
         <nav className={`hidden lg:flex items-center ${isRTL ? 'flex-row-reverse gap-x-6 xl:gap-x-8' : 'flex-row gap-x-6 xl:gap-x-8'}`}>
