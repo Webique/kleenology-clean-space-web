@@ -41,9 +41,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.introduction.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -56,9 +56,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.clientObligations.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -71,9 +71,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.itemSensitivity.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -86,9 +86,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.appointmentChanges.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -101,9 +101,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.serviceDuration.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -116,9 +116,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.liabilityDisclaimer.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -131,9 +131,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.offersDiscounts.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -146,9 +146,9 @@ const TermsAndConditions = () => {
                 </h2>
                 <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : 'list-none'}`}>
                   {(t('terms.loyaltyProgram.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className={isRTL ? 'text-right' : ''}>{point}</span>
+                    <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span className={`w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 ${isRTL ? 'ml-0 mr-3' : 'mr-0 ml-3'}`}></span>
+                      <span className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>{point}</span>
                     </li>
                   ))}
                 </ul>
