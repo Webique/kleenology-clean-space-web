@@ -12,43 +12,30 @@ import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  const { i18n } = useTranslation();
-
-  useEffect(() => {
-    // Set RTL/LTR direction based on language
-    const isRTL = i18n.language === 'ar';
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <PixelTracker />
-        <PerformanceMonitor />
-        <SecurityHeaders />
-        <BrowserRouter>
-          <EnhancedTracking />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/home-cleaning" element={<HomeCleaning />} />
-            <Route path="/office-cleaning" element={<OfficeCleaning />} />
-            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <PixelTracker />
+      <PerformanceMonitor />
+      <SecurityHeaders />
+      <BrowserRouter>
+        <EnhancedTracking />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/home-cleaning" element={<HomeCleaning />} />
+          <Route path="/office-cleaning" element={<OfficeCleaning />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
