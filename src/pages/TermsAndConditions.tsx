@@ -13,7 +13,7 @@ const TermsAndConditions = () => {
         title={t('terms.pageTitle')}
         description={t('terms.pageDescription')}
         keywords="terms and conditions, kleenology terms, cleaning service terms, شروط وأحكام, شروط الخدمة"
-        url="https://kleenology.com/terms-and-conditions"
+        url="https://kleenology.me/terms-and-conditions"
       />
       
       <Header />
@@ -236,8 +236,8 @@ const TermsAndConditions = () => {
                 </p>
                 <div className="space-y-2 text-muted-foreground">
                   <p><strong>{t('terms.contact.phone')}:</strong> <span dir="ltr">+966 53 751 9929</span></p>
-                  <p><strong>{t('terms.contact.email')}:</strong> <span dir="ltr">info@kleenology.com</span></p>
-                  <p><strong>{t('terms.contact.website')}:</strong> <span dir="ltr">www.kleenology.com</span></p>
+                  <p><strong>{t('terms.contact.email')}:</strong> <span dir="ltr">info@kleenology.me</span></p>
+                  <p><strong>{t('terms.contact.website')}:</strong> <span dir="ltr">www.kleenology.me</span></p>
                 </div>
               </section>
 
