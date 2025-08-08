@@ -11,7 +11,12 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export const Header = () => {
+interface HeaderProps {
+  onLogoClick?: () => void;
+  onNavClick?: () => void;
+}
+
+export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
   const { i18n, t } = useTranslation();
   const isRTL = i18n.dir() === 'rtl';
 
@@ -45,7 +50,16 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="cursor-pointer">
+          <a 
+            href="/" 
+            className="cursor-pointer"
+            onClick={(e) => {
+              if (onLogoClick) {
+                e.preventDefault();
+                onLogoClick();
+              }
+            }}
+          >
             <img 
               src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" 
               alt="Kleenology Logo" 
@@ -59,7 +73,12 @@ export const Header = () => {
             href="#home" 
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+              if (onNavClick) {
+                onNavClick();
+              }
+              setTimeout(() => {
+                document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
@@ -69,7 +88,12 @@ export const Header = () => {
             href="#about" 
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              if (onNavClick) {
+                onNavClick();
+              }
+              setTimeout(() => {
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
@@ -79,7 +103,12 @@ export const Header = () => {
             href="#services" 
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              if (onNavClick) {
+                onNavClick();
+              }
+              setTimeout(() => {
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
@@ -89,7 +118,12 @@ export const Header = () => {
             href="#showcase" 
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+              if (onNavClick) {
+                onNavClick();
+              }
+              setTimeout(() => {
+                document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
@@ -99,7 +133,12 @@ export const Header = () => {
             href="#contact" 
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              if (onNavClick) {
+                onNavClick();
+              }
+              setTimeout(() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
@@ -142,6 +181,9 @@ export const Header = () => {
                   href="#home"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (onNavClick) {
+                      onNavClick();
+                    }
                     handleMobileNav('home');
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
@@ -152,6 +194,9 @@ export const Header = () => {
                   href="#about"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (onNavClick) {
+                      onNavClick();
+                    }
                     handleMobileNav('about');
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
@@ -162,6 +207,9 @@ export const Header = () => {
                   href="#services"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (onNavClick) {
+                      onNavClick();
+                    }
                     handleMobileNav('services');
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
@@ -172,6 +220,9 @@ export const Header = () => {
                   href="#showcase"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (onNavClick) {
+                      onNavClick();
+                    }
                     handleMobileNav('showcase');
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
@@ -182,6 +233,9 @@ export const Header = () => {
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (onNavClick) {
+                      onNavClick();
+                    }
                     handleMobileNav('contact');
                   }}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"

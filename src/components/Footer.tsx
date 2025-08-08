@@ -1,7 +1,12 @@
 import { MessageCircle, Phone, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export const Footer = () => {
+interface FooterProps {
+  onTermsClick?: () => void;
+  onNavClick?: () => void;
+}
+
+export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
   const { t } = useTranslation();
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/966537519929', '_blank');
@@ -40,12 +45,13 @@ export const Footer = () => {
               <a 
                 href="/" 
                 onClick={(e) => {
-                  // If we're on the homepage, scroll to home section
-                  if (window.location.pathname === '/') {
-                    e.preventDefault();
-                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                  e.preventDefault();
+                  if (onNavClick) {
+                    onNavClick();
                   }
-                  // Otherwise, let the link navigate to homepage naturally
+                  setTimeout(() => {
+                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
@@ -54,12 +60,13 @@ export const Footer = () => {
               <a 
                 href="/#about" 
                 onClick={(e) => {
-                  // If we're on the homepage, scroll to about section
-                  if (window.location.pathname === '/') {
-                    e.preventDefault();
-                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  e.preventDefault();
+                  if (onNavClick) {
+                    onNavClick();
                   }
-                  // Otherwise, let the link navigate to homepage with anchor
+                  setTimeout(() => {
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
@@ -68,12 +75,13 @@ export const Footer = () => {
               <a 
                 href="/#services" 
                 onClick={(e) => {
-                  // If we're on the homepage, scroll to services section
-                  if (window.location.pathname === '/') {
-                    e.preventDefault();
-                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  e.preventDefault();
+                  if (onNavClick) {
+                    onNavClick();
                   }
-                  // Otherwise, let the link navigate to homepage with anchor
+                  setTimeout(() => {
+                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
@@ -82,19 +90,26 @@ export const Footer = () => {
               <a 
                 href="/#contact" 
                 onClick={(e) => {
-                  // If we're on the homepage, scroll to contact section
-                  if (window.location.pathname === '/') {
-                    e.preventDefault();
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  e.preventDefault();
+                  if (onNavClick) {
+                    onNavClick();
                   }
-                  // Otherwise, let the link navigate to homepage with anchor
+                  setTimeout(() => {
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
                 }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
                 {t('footer.contact')}
               </a>
               <a 
-                href="/terms-and-conditions"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onTermsClick) {
+                    onTermsClick();
+                  }
+                }}
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
                 {t('footer.terms')}
