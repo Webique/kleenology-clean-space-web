@@ -422,6 +422,8 @@ const resources = {
   },
 };
 
+console.log('Initializing i18n...');
+
 i18n
   .use(initReactI18next)
   .init({
@@ -431,6 +433,12 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+  })
+  .then(() => {
+    console.log('i18n initialized successfully');
+  })
+  .catch((error) => {
+    console.error('i18n initialization failed:', error);
   });
 
 export default i18n; 

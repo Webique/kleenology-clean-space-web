@@ -6,7 +6,7 @@ import { BeforeAfterShowcase } from "@/components/BeforeAfterShowcase";
 import { CorporateCleaning } from "@/components/CorporateCleaning";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
@@ -17,8 +17,9 @@ const Index = () => {
   const [showTerms, setShowTerms] = useState(false);
   const isRTL = i18n.dir() === 'rtl';
   
+  console.log('Index component rendering, i18n language:', i18n.language);
+  
   const handleWhatsAppClick = () => {
-    // Track WhatsApp click with Meta pixel
     if ((window as any).pixelTracker) {
       (window as any).pixelTracker.trackWhatsAppClick();
     }
@@ -27,13 +28,11 @@ const Index = () => {
 
   const handleShowTerms = () => {
     setShowTerms(true);
-    // Scroll to top when showing terms
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleHideTerms = () => {
     setShowTerms(false);
-    // Scroll to top when hiding terms
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -45,13 +44,12 @@ const Index = () => {
         keywords={showTerms ? "terms and conditions, kleenology terms, cleaning service terms, شروط وأحكام, شروط الخدمة" : "cleaning services, professional cleaning, house cleaning, office cleaning, eco-friendly cleaning, deep cleaning, sanitization"}
         url={showTerms ? "https://kleenology.com/terms-and-conditions" : "https://kleenology.com"}
       />
+      
       <Header onLogoClick={handleHideTerms} onNavClick={handleHideTerms} />
       
       {showTerms ? (
-        // Terms and Conditions Content
         <main className="pt-24 pb-16">
           <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-            {/* Header Section */}
             <div className="text-center mb-12">
               <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
                 {t('terms.title')}
@@ -60,12 +58,8 @@ const Index = () => {
                 {t('terms.subtitle')}
               </p>
             </div>
-
-            {/* Terms Content */}
             <div className="bg-white rounded-lg shadow-sm border border-border p-8 sm:p-12" dir={isRTL ? 'rtl' : 'ltr'}>
               <div className="prose prose-lg max-w-none">
-                
-                {/* Introduction */}
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.introduction.title')}
@@ -76,8 +70,7 @@ const Index = () => {
                     ))}
                   </ul>
                 </section>
-
-                {/* Client Obligations */}
+                
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.clientObligations.title')}
@@ -88,80 +81,7 @@ const Index = () => {
                     ))}
                   </ul>
                 </section>
-
-                {/* Item Sensitivity */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.itemSensitivity.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.itemSensitivity.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Appointment Changes */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.appointmentChanges.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.appointmentChanges.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Service Duration */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.serviceDuration.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.serviceDuration.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Liability Disclaimer */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.liabilityDisclaimer.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.liabilityDisclaimer.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Offers and Discounts */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.offersDiscounts.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.offersDiscounts.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Loyalty Program */}
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
-                    {t('terms.loyaltyProgram.title')}
-                  </h2>
-                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
-                    {(t('terms.loyaltyProgram.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Contact Information */}
+                
                 <section className="mt-12 p-6 bg-muted/50 rounded-lg border border-border">
                   <h3 className="text-xl font-bold text-foreground mb-4">
                     {t('terms.contact.title')}
@@ -175,8 +95,7 @@ const Index = () => {
                     <p><strong>{t('terms.contact.website')}:</strong> <span dir="ltr">www.kleenology.com</span></p>
                   </div>
                 </section>
-
-                {/* Last Updated */}
+                
                 <div className="text-center mt-8 pt-6 border-t border-border">
                   <p className="text-sm text-muted-foreground">
                     {t('terms.lastUpdated')}: {new Date().toLocaleDateString(i18n.language === 'ar' ? 'ar-SA' : 'en-US')}
@@ -187,7 +106,6 @@ const Index = () => {
           </div>
         </main>
       ) : (
-        // Normal Homepage Content
         <>
           <Hero />
           <About />
@@ -200,7 +118,6 @@ const Index = () => {
       
       <Footer onTermsClick={handleShowTerms} onNavClick={handleHideTerms} />
       
-      {/* Mobile-only floating WhatsApp button */}
       <Button
         onClick={handleWhatsAppClick}
         className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20BA5A] shadow-float hover:shadow-lg transform hover:scale-110 transition-all duration-300 md:hidden"

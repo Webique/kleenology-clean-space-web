@@ -14,26 +14,30 @@ import { EnhancedTracking } from "@/components/EnhancedTracking";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <PixelTracker />
-      <PerformanceMonitor />
-      <SecurityHeaders />
-      <BrowserRouter basename="/">
-        <EnhancedTracking />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/home-cleaning" element={<HomeCleaning />} />
-          <Route path="/office-cleaning" element={<OfficeCleaning />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  console.log("App component is rendering");
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <PixelTracker />
+        <PerformanceMonitor />
+        <SecurityHeaders />
+        <BrowserRouter basename="/">
+          <EnhancedTracking />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/home-cleaning" element={<HomeCleaning />} />
+            <Route path="/office-cleaning" element={<OfficeCleaning />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
