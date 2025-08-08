@@ -30,7 +30,9 @@ export const Header = () => {
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'ar' : 'en';
     i18n.changeLanguage(newLang);
-    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+    const isRTL = newLang === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.documentElement.lang = newLang;
   };
 
   // Helper for smooth mobile nav
@@ -52,7 +54,7 @@ export const Header = () => {
           />
         </div>
         {/* Desktop Nav */}
-        <nav className={`hidden lg:flex items-center ${isRTL ? 'flex-row-reverse gap-x-6 xl:gap-x-8' : 'flex-row gap-x-6 xl:gap-x-8'}`}>
+        <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse' : ''} gap-x-6 xl:gap-x-8`}>
           <a 
             href="#home" 
             onClick={(e) => {
@@ -105,27 +107,39 @@ export const Header = () => {
           </a>
         </nav>
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-2 sm:gap-3">
+        <div className={`hidden md:flex items-center gap-2 sm:gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <button
+            onClick={toggleLanguage}
+            className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm font-semibold border border-gray-300"
+          >
+            {i18n.language === 'en' ? 'العربية' : 'English'}
+          </button>
           <Button 
             variant="ghost" 
             size="sm"
             onClick={handleCallClick}
             className="text-sm"
           >
-            <Phone className="h-4 w-4 mr-2" />
+            <Phone className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
             {t('nav.call')}
           </Button>
           <Button 
             onClick={handleWhatsAppClick}
             className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-sm px-3 py-2 sm:px-4"
           >
-            <MessageCircle className="h-4 w-4 mr-1 sm:mr-2" />
+            <MessageCircle className={`h-4 w-4 ${isRTL ? 'ml-1 sm:ml-2' : 'mr-1 sm:mr-2'}`} />
             <span className="hidden sm:inline">{t('nav.whatsapp')}</span>
             <span className="sm:hidden">{t('nav.whatsapp')}</span>
           </Button>
         </div>
         {/* Mobile Hamburger */}
-        <div className="flex lg:hidden items-center">
+        <div className={`flex lg:hidden items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <button
+            onClick={toggleLanguage}
+            className={`px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm font-semibold border border-gray-300 ${isRTL ? 'ml-2' : 'mr-2'}`}
+          >
+            {i18n.language === 'en' ? 'العربية' : 'English'}
+          </button>
           <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
               <Button variant="ghost" size="icon" className="p-2" aria-label="Open menu">
@@ -194,14 +208,14 @@ export const Header = () => {
                   onClick={() => { setOpen(false); handleCallClick(); }}
                   className="w-full justify-center text-base"
                 >
-                  <Phone className="h-5 w-5 mr-2" />
+                  <Phone className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   Call
                 </Button>
                 <Button 
                   onClick={() => { setOpen(false); handleWhatsAppClick(); }}
                   className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-base px-4 py-3 w-full justify-center"
                 >
-                  <MessageCircle className="h-5 w-5 mr-2" />
+                  <MessageCircle className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   WhatsApp
                 </Button>
               </div>
@@ -213,13 +227,6 @@ export const Header = () => {
             </DrawerContent>
           </Drawer>
         </div>
-        {/* Language Switcher */}
-        <button
-          onClick={toggleLanguage}
-          className="ml-2 px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-sm font-semibold border border-gray-300"
-        >
-          {i18n.language === 'en' ? 'العربية' : 'English'}
-        </button>
       </div>
     </header>
   );
