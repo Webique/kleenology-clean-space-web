@@ -75,7 +75,7 @@ class ErrorBoundary extends Component<
 }
 
 const App = () => {
-  console.log("App component is rendering");
+  console.log("App component is rendering - deployment fix");
   
   return (
     <ErrorBoundary>
