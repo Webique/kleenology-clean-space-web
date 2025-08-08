@@ -424,21 +424,28 @@ const resources = {
 
 console.log('Initializing i18n...');
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'ar',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  })
-  .then(() => {
-    console.log('i18n initialized successfully');
-  })
-  .catch((error) => {
-    console.error('i18n initialization failed:', error);
-  });
+try {
+  i18n
+    .use(initReactI18next)
+    .init({
+      resources,
+      lng: 'ar',
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
+      },
+      react: {
+        useSuspense: false, // This prevents the white screen issue
+      },
+    })
+    .then(() => {
+      console.log('i18n initialized successfully');
+    })
+    .catch((error) => {
+      console.error('i18n initialization failed:', error);
+    });
+} catch (error) {
+  console.error('i18n setup error:', error);
+}
 
 export default i18n; 
