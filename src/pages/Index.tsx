@@ -62,20 +62,17 @@ const Index = () => {
             </div>
 
             {/* Terms Content */}
-            <div className={`bg-white rounded-lg shadow-sm border border-border p-8 sm:p-12 ${isRTL ? 'text-right' : 'text-left'}`}>
-              <div className={`prose prose-lg max-w-none ${isRTL ? 'prose-headings:text-right prose-p:text-right prose-ul:text-right' : ''}`}>
+            <div className="bg-white rounded-lg shadow-sm border border-border p-8 sm:p-12" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div className="prose prose-lg max-w-none">
                 
                 {/* Introduction */}
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.introduction.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.introduction.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -85,12 +82,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.clientObligations.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.clientObligations.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -100,12 +94,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.itemSensitivity.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.itemSensitivity.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -115,12 +106,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.appointmentChanges.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.appointmentChanges.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -130,12 +118,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.serviceDuration.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.serviceDuration.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -145,12 +130,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.liabilityDisclaimer.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.liabilityDisclaimer.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -160,12 +142,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.offersDiscounts.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.offersDiscounts.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
@@ -175,12 +154,9 @@ const Index = () => {
                   <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-primary pb-2">
                     {t('terms.loyaltyProgram.title')}
                   </h2>
-                  <ul className={`space-y-3 text-muted-foreground ${isRTL ? 'list-none' : ''}`}>
+                  <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                     {(t('terms.loyaltyProgram.points', { returnObjects: true }) as string[]).map((point: string, index: number) => (
-                      <li key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span className={`flex-1 ${isRTL ? 'text-right' : ''}`}>{point}</span>
-                      </li>
+                      <li key={index}>{point}</li>
                     ))}
                   </ul>
                 </section>
