@@ -75,6 +75,12 @@ export const Footer = () => {
               >
                 {t('footer.contact')}
               </a>
+              <a 
+                href="/terms-and-conditions"
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                {t('footer.terms')}
+              </a>
             </div>
           </div>
 
