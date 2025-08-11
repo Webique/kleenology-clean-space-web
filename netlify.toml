@@ -24,3 +24,18 @@
   for = "/*.css"
   [headers.values]
     Content-Type = "text/css" 
+
+# Security headers set via Netlify (do not inject via meta at runtime)
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # Content Security Policy tuned to allow analytics/pixels used on the site
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com https://sc-static.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com https://tr.snapchat.com https://sc-static.net; frame-src https://www.googletagmanager.com https://connect.facebook.net; frame-ancestors 'self';"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"

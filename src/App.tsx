@@ -9,7 +9,6 @@ import HomeCleaning from "./pages/HomeCleaning";
 import OfficeCleaning from "./pages/OfficeCleaning";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
-import { SecurityHeaders } from "@/components/SecurityHeaders";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
 import { Component, ErrorInfo, ReactNode } from "react";
 import React from "react";
@@ -91,7 +90,6 @@ const App = () => {
           <Sonner />
           <PixelTracker />
           <PerformanceMonitor />
-          <SecurityHeaders />
           <BrowserRouter basename="/">
             <EnhancedTracking />
             <Routes>

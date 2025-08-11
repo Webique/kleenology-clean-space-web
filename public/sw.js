@@ -1,10 +1,8 @@
-const CACHE_NAME = 'kleenology-v1';
+const CACHE_NAME = 'kleenology-v3';
+// Precache only shell and public static assets; do NOT cache source files
 const urlsToCache = [
   '/',
   '/index.html',
-  '/src/main.tsx',
-  '/src/App.tsx',
-  '/src/index.css',
   '/logobg.png',
   '/logo.png',
   '/favicon.ico'
@@ -23,13 +21,42 @@ self.addEventListener('install', event => {
 
 // Fetch event - serve from cache if available
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+  const request = event.request;
+  const url = new URL(request.url);
+
+  // Network-first for navigation requests (HTML) to avoid serving stale blank pages
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const cloned = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put('/', cloned));
+          return response;
+        })
+        .catch(() => caches.match('/index.html'))
+    );
+    return;
+  }
+
+  // Cache-first for same-origin static assets under /assets and images in /public
+  if (url.origin === self.location.origin && (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/public/') || url.pathname.endsWith('.png') || url.pathname.endsWith('.jpg') || url.pathname.endsWith('.svg') || url.pathname.endsWith('.ico') || url.pathname.endsWith('.css') || url.pathname.endsWith('.js'))) {
+    event.respondWith(
+      caches.match(request).then(cached => {
+        return (
+          cached ||
+          fetch(request).then(response => {
+            const cloned = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, cloned));
+            return response;
+          })
+        );
       })
-  );
+    );
+    return;
+  }
+
+  // Default: passthrough
+  event.respondWith(fetch(request).catch(() => caches.match(request)));
 });
 
 // Activate event - clean up old caches
