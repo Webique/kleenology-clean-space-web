@@ -154,11 +154,11 @@ export const PixelTracker = () => {
       
       // Meta Pixel
       if (window.fbq) {
-        window.fbq('track', 'CustomEvent', {
-          event_name: 'button_click',
+        // Use trackCustom for custom events
+        window.fbq('trackCustom', 'button_click', {
           button_name: buttonName
         });
-        console.log('✅ Meta Pixel: CustomEvent tracked');
+        console.log('✅ Meta Pixel: button_click tracked');
       }
 
       // TikTok Pixel
@@ -187,8 +187,7 @@ export const PixelTracker = () => {
       
       // Meta Pixel
       if (window.fbq) {
-        window.fbq('track', 'CustomEvent', {
-          event_name: 'scroll_depth',
+        window.fbq('trackCustom', 'scroll_depth', {
           scroll_depth: depth
         });
         console.log('✅ Meta Pixel: Scroll depth tracked');

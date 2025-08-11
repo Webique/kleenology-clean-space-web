@@ -24,6 +24,11 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
+  // Only handle http/https requests
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    return;
+  }
+
   // Network-first for navigation requests (HTML) to avoid serving stale blank pages
   if (request.mode === 'navigate') {
     event.respondWith(
@@ -33,7 +38,7 @@ self.addEventListener('fetch', event => {
           caches.open(CACHE_NAME).then(cache => cache.put('/', cloned));
           return response;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.match('/index.html').then(r => r || new Response('', { status: 504 })))
     );
     return;
   }
@@ -55,8 +60,12 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Default: passthrough
-  event.respondWith(fetch(request).catch(() => caches.match(request)));
+  // Default: passthrough with safe fallback
+  event.respondWith(
+    fetch(request).catch(() =>
+      caches.match(request).then(r => r || new Response('', { status: 504 }))
+    )
+  );
 });
 
 // Activate event - clean up old caches
