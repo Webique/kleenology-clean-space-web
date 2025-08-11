@@ -8,8 +8,9 @@ const urlsToCache = [
   '/favicon.ico'
 ];
 
-// Install event - cache resources
+// Install event - cache resources and activate immediately
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -24,8 +25,14 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // Only handle http/https requests
-  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+  // Ignore non-http(s) schemes and browser extensions
+  if (
+    url.protocol !== 'http:' &&
+    url.protocol !== 'https:' ||
+    url.href.startsWith('chrome-extension://') ||
+    url.href.startsWith('moz-extension://') ||
+    url.href.startsWith('safari-extension://')
+  ) {
     return;
   }
 
@@ -35,10 +42,10 @@ self.addEventListener('fetch', event => {
       fetch(request)
         .then(response => {
           const cloned = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put('/', cloned));
+          caches.open(CACHE_NAME).then(cache => cache.put(new Request('/'), cloned));
           return response;
         })
-        .catch(() => caches.match('/index.html').then(r => r || new Response('', { status: 504 })))
+        .catch(() => caches.match('/index.html').then(r => r || caches.match('/').then(r2 => r2 || new Response('', { status: 504 }))))
     );
     return;
   }
@@ -70,16 +77,22 @@ self.addEventListener('fetch', event => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-}); 
+  event.waitUntil((async () => {
+    // Enable navigation preload for faster navigations
+    if (self.registration.navigationPreload) {
+      try { await self.registration.navigationPreload.enable(); } catch (_) {}
+    }
+
+    const cacheNames = await caches.keys();
+    await Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheName !== CACHE_NAME) {
+          console.log('Deleting old cache:', cacheName);
+          return caches.delete(cacheName);
+        }
+      })
+    );
+
+    await self.clients.claim();
+  })());
+});
