@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kleenology-v3';
+const CACHE_NAME = 'kleenology-v5';
 // Precache only shell and public static assets; do NOT cache source files
 const urlsToCache = [
   '/',

@@ -103,10 +103,11 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
                 {t('footer.contact')}
               </a>
               <a 
-                href="#"
+                href="/terms-and-conditions"
                 onClick={(e) => {
-                  e.preventDefault();
+                  // Allow default link behavior to navigate to the terms page
                   if (onTermsClick) {
+                    e.preventDefault();
                     onTermsClick();
                   }
                 }}

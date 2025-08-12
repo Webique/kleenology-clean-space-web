@@ -149,7 +149,7 @@ const resources = {
           ]
         },
         itemSensitivity: {
-          title: '2. Item Sensitivity and Damage Risk',
+          title: '2. Item Cleaning Inability or Damage Risk',
           points: [
             'Client must inform the team in writing if there are items that cannot be cleaned or may be damaged; failure to notify makes the client responsible for any damage.',
             'When we are notified of sensitivity and damage occurs due to our negligence, compensation is capped at five times the service value for that item.'
@@ -172,7 +172,7 @@ const resources = {
           ]
         },
         liabilityDisclaimer: {
-          title: '8. Liability Disclaimer',
+          title: '5. Liability Disclaimer',
           points: [
             'Services include what was agreed upon and do not include cleaning ceilings, chandeliers, or polishing unless the contract specifies otherwise.',
             'Client is responsible for safeguarding valuable belongings, and the company is not responsible for their loss.',
@@ -180,7 +180,7 @@ const resources = {
           ]
         },
         offersDiscounts: {
-          title: '10. Offers and Discounts',
+          title: '6. Offers and Discounts',
           points: [
             'Offers are available only with online booking, and two offers cannot be combined in one order.',
             'Minimum invoice after discount is 400 SAR; each offer is for a limited time and on specific services.',
@@ -191,7 +191,7 @@ const resources = {
           ]
         },
         loyaltyProgram: {
-          title: '11. Loyalty Program',
+          title: '7. Loyalty Program',
           points: [
             'Membership is available to everyone and requires account activation.',
             'Customer receives cashback as a percentage of invoice value; balance is added to wallet and must be used within the specified period for each offer.',
@@ -381,7 +381,7 @@ const resources = {
           ]
         },
         liabilityDisclaimer: {
-          title: '8. إخلاء المسؤولية',
+          title: '5. إخلاء المسؤولية',
           points: [
             'الخدمات تشمل ما تم الاتفاق عليه ولا تشمل تنظيف الأسقف أو الثريات أو التلميع إلا إذا نص العقد على ذلك.',
             'العميل مسؤول عن حفظ مقتنياته الثمينة، ولا تتحمل الشركة مسؤولية فقدها.',
@@ -389,7 +389,7 @@ const resources = {
           ]
         },
         offersDiscounts: {
-          title: '10. العروض والخصومات',
+          title: '6. العروض والخصومات',
           points: [
             'العروض متاحة فقط عند الحجز الإلكتروني، ولا يمكن دمج عرضين في طلب واحد.',
             'الحد الأدنى للفاتورة بعد الخصم هو 400 ريال؛ كل عرض لفترة محدودة وعلى خدمات محددة.',
@@ -400,7 +400,7 @@ const resources = {
           ]
         },
         loyaltyProgram: {
-          title: '11. برنامج الولاء',
+          title: '7. برنامج الولاء',
           points: [
             'الاشتراك متاح للجميع ويتطلب تفعيل الحساب.',
             'يحصل العميل على كاش باك كنسبة من قيمة الفاتورة؛ يُضاف الرصيد للمحفظة ويجب استخدامه خلال المدة المحددة لكل عرض.',
