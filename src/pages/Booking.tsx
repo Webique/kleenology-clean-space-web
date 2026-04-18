@@ -20,7 +20,6 @@ const Booking = () => {
     phone: "",
     service: "",
     date: "",
-    time: "",
     address: "",
     notes: "",
   });
@@ -35,7 +34,6 @@ const Booking = () => {
     e.preventDefault();
 
     const serviceLabel = form.service || t("booking.form.servicePlaceholder");
-    const timeLabel = form.time || "-";
 
     const message = isRTL
       ? `مرحباً، أود حجز خدمة تنظيف 🧹\n\n` +
@@ -43,7 +41,6 @@ const Booking = () => {
         `رقم الجوال: ${form.phone}\n` +
         `نوع الخدمة: ${serviceLabel}\n` +
         `التاريخ المفضل: ${form.date}\n` +
-        `الوقت المفضل: ${timeLabel}\n` +
         `العنوان: ${form.address}\n` +
         (form.notes ? `ملاحظات: ${form.notes}` : "")
       : `Hello! I'd like to book a cleaning service 🧹\n\n` +
@@ -51,7 +48,6 @@ const Booking = () => {
         `Phone: ${form.phone}\n` +
         `Service: ${serviceLabel}\n` +
         `Preferred Date: ${form.date}\n` +
-        `Preferred Time: ${timeLabel}\n` +
         `Address: ${form.address}\n` +
         (form.notes ? `Notes: ${form.notes}` : "");
 
@@ -150,39 +146,23 @@ const Booking = () => {
                 </select>
               </div>
 
-              {/* Date & Time */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="date" className="flex items-center gap-2 font-semibold">
-                    <Calendar className="h-4 w-4 text-primary" />
-                    {t("booking.form.date")}
-                  </Label>
-                  <Input
-                    id="date"
-                    name="date"
-                    type="date"
-                    required
-                    value={form.date}
-                    onChange={handleChange}
-                    className="h-12"
-                    min={new Date().toISOString().split("T")[0]}
-                    dir="ltr"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="time" className="font-semibold">
-                    {t("booking.form.time")}
-                  </Label>
-                  <Input
-                    id="time"
-                    name="time"
-                    type="time"
-                    value={form.time}
-                    onChange={handleChange}
-                    className="h-12"
-                    dir="ltr"
-                  />
-                </div>
+              {/* Date */}
+              <div className="space-y-2">
+                <Label htmlFor="date" className="flex items-center gap-2 font-semibold">
+                  <Calendar className="h-4 w-4 text-primary" />
+                  {t("booking.form.date")}
+                </Label>
+                <Input
+                  id="date"
+                  name="date"
+                  type="date"
+                  required
+                  value={form.date}
+                  onChange={handleChange}
+                  className="h-12"
+                  min={new Date().toISOString().split("T")[0]}
+                  dir="ltr"
+                />
               </div>
 
               {/* Address */}
