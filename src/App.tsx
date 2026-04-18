@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import HomeCleaning from "./pages/HomeCleaning";
 import OfficeCleaning from "./pages/OfficeCleaning";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import Booking from "./pages/Booking";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
@@ -98,6 +99,7 @@ const App = () => {
               <Route path="/home-cleaning" element={<HomeCleaning />} />
               <Route path="/office-cleaning" element={<OfficeCleaning />} />
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/booking" element={<Booking />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
