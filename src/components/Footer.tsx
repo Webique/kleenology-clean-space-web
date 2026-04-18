@@ -17,7 +17,7 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:abdulhadi@kleenology.net';
+    window.location.href = 'mailto:Contract@kleenology.net';
   };
 
   return (
@@ -146,7 +146,7 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
                   onClick={handleEmailClick}
                   className="text-sm text-background/80 hover:text-brand-yellow transition-colors"
                 >
-                  abdulhadi@kleenology.net
+                  Contract@kleenology.net
                 </button>
               </div>
             </div>
