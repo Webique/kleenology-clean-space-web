@@ -38,6 +38,19 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
             </p>
           </div>
 
+          {/* Services Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.servicesTitle')}</h3>
+            <div className="space-y-2">
+              <a href="/home-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.homeCleaningLink')}</a>
+              <a href="/office-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.officeCleaningLink')}</a>
+              <a href="/deep-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.deepCleaningLink')}</a>
+              <a href="/carpet-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.carpetCleaningLink')}</a>
+              <a href="/post-construction-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.postConstructionLink')}</a>
+              <a href="/ac-cleaning" className="block text-sm text-background/80 hover:text-brand-yellow transition-colors">{t('footer.acCleaningLink')}</a>
+            </div>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
