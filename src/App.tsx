@@ -9,6 +9,10 @@ import HomeCleaning from "./pages/HomeCleaning";
 import OfficeCleaning from "./pages/OfficeCleaning";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Booking from "./pages/Booking";
+import DeepCleaning from "./pages/DeepCleaning";
+import CarpetCleaning from "./pages/CarpetCleaning";
+import PostConstructionCleaning from "./pages/PostConstructionCleaning";
+import AcCleaning from "./pages/AcCleaning";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
@@ -100,6 +104,10 @@ const App = () => {
               <Route path="/office-cleaning" element={<OfficeCleaning />} />
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/booking" element={<Booking />} />
+              <Route path="/deep-cleaning" element={<DeepCleaning />} />
+              <Route path="/carpet-cleaning" element={<CarpetCleaning />} />
+              <Route path="/post-construction-cleaning" element={<PostConstructionCleaning />} />
+              <Route path="/ac-cleaning" element={<AcCleaning />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
