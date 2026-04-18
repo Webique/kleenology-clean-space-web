@@ -28,7 +28,7 @@ export const Contact = () => {
     if ((window as any).pixelTracker) {
       (window as any).pixelTracker.trackButtonClick('email_click');
     }
-    window.location.href = 'mailto:abdulhadi@kleenology.net';
+    window.location.href = 'mailto:Contract@kleenology.net';
   };
 
   return (
@@ -90,7 +90,7 @@ export const Contact = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{t('contact.email')}</h3>
               <Button onClick={handleEmailClick} className="mt-2 bg-accent hover:bg-accent/80 text-white font-bold px-6 py-2 rounded-full">
-                abdulhadi@kleenology.net
+                Contract@kleenology.net
               </Button>
             </CardContent>
           </Card>

@@ -236,7 +236,7 @@ const TermsAndConditions = () => {
                 </p>
                 <div className="space-y-2 text-muted-foreground">
                   <p><strong>{t('terms.contact.phone')}:</strong> <span dir="ltr">+966 53 751 9929</span></p>
-                  <p><strong>{t('terms.contact.email')}:</strong> <span dir="ltr">info@kleenology.me</span></p>
+                  <p><strong>{t('terms.contact.email')}:</strong> <span dir="ltr">Contract@kleenology.net</span></p>
                   <p><strong>{t('terms.contact.website')}:</strong> <span dir="ltr">www.kleenology.me</span></p>
                 </div>
               </section>
