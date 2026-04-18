@@ -23,7 +23,7 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div>
             <a href="/" className="cursor-pointer inline-block">
