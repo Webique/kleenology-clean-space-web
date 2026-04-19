@@ -1,37 +1,38 @@
-import { useState } from "react";
-import { X, Tag } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Sparkles } from "lucide-react";
+
+const itemsAr = [
+  "✨ خدمة تنظيف احترافية في الرياض",
+  "🏅 فريق معتمد ذو خبرة +٣ سنوات",
+  "✅ ضمان الرضا أو نعود مجاناً",
+  "🌿 مواد تنظيف آمنة وصديقة للبيئة",
+  "📞 تواصل معنا الآن واحجز موعدك",
+];
+
+const itemsEn = [
+  "✨ Professional cleaning service in Riyadh",
+  "🏅 Certified team with 3+ years experience",
+  "✅ Satisfaction guarantee or we return free",
+  "🌿 Safe & eco-friendly cleaning products",
+  "📞 Contact us now and book your appointment",
+];
 
 export const PromoBanner = () => {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
-  const [visible, setVisible] = useState(true);
-
-  if (!visible) return null;
+  const items = isRTL ? itemsAr : itemsEn;
+  const repeated = [...items, ...items];
 
   return (
-    <div className="bg-primary text-white py-2.5 px-4 relative z-50" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="max-w-6xl mx-auto flex items-center justify-center gap-3 text-sm font-medium">
-        <Tag className="h-4 w-4 flex-shrink-0" />
-        <span>
-          {isRTL
-            ? "🎉 احجز الآن واحصل على استشارة مجانية + تقييم موقعك بدون أي التزام!"
-            : "🎉 Book now and get a free consultation + site assessment with no obligation!"}
-        </span>
-        <a
-          href="/booking"
-          className="underline font-bold hover:text-brand-yellow transition-colors whitespace-nowrap"
-        >
-          {isRTL ? "احجز الآن" : "Book Now"}
-        </a>
+    <div className="bg-foreground overflow-hidden py-2.5 border-b border-white/10">
+      <div className="flex animate-marquee-left whitespace-nowrap">
+        {repeated.map((item, i) => (
+          <span key={i} className="inline-flex items-center gap-2 mx-8 text-brand-yellow text-sm font-semibold">
+            <Sparkles className="h-3.5 w-3.5 flex-shrink-0" />
+            {item}
+          </span>
+        ))}
       </div>
-      <button
-        onClick={() => setVisible(false)}
-        className="absolute top-1/2 -translate-y-1/2 end-4 text-white/80 hover:text-white transition-colors"
-        aria-label="Close"
-      >
-        <X className="h-4 w-4" />
-      </button>
     </div>
   );
 };
