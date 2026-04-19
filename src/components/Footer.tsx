@@ -115,6 +115,12 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
                 {t('footer.contact')}
               </a>
               <a
+                href="/about"
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                {t('footer.aboutUs')}
+              </a>
+              <a
                 href="/booking"
                 className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
               >
