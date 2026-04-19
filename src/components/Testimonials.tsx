@@ -20,7 +20,28 @@ const reviews = [
     nameAr: "حسن العتيبي",
     nameEn: "Hassan Al-Otaibi",
     textAr: "شكراً كلينولوجي على الخدمة والتجربة الرائعة. والله دقة متناهية، اهتمام بأدق التفاصيل، واستعداد دائم لتقبل الملاحظات بصدر رحب والتأكد من رضا العميل. استخدموا مواد تنظيف متخصصة لإزالة أصعب البقايا والرواسب، وعملوا يومين متتاليين لتنظيف الفيلا. إدارة وإشراف سعودي لمتابعة كل التفاصيل. خدمة حقيقية تستحق التجربة وبقوة!",
-    textEn: "Thank you Kleenology for the amazing service and experience. Incredible precision, attention to the finest details, and always ready to receive feedback with an open heart. They used specialized cleaning products and worked two consecutive days cleaning the villa. Saudi management and supervision following every detail. A service that truly deserves a try!",
+    textEn: "Thank you Kleenology for the amazing service and experience. Incredible precision, attention to the finest details, and always ready to receive feedback. They used specialized cleaning products and worked two consecutive days on the villa. A service that truly deserves a try!",
+    rating: 5,
+  },
+  {
+    nameAr: "الزين",
+    nameEn: "AlZain",
+    textAr: "الله يعطيهم الف عافية، رائع شغلهم وإحترافي ماشاء الله، إن شاء الله مو آخر تعامل معاكم",
+    textEn: "May God bless them, their work is wonderful and professional mashallah. Definitely not our last deal with you!",
+    rating: 5,
+  },
+  {
+    nameAr: "ف",
+    nameEn: "F",
+    textAr: "من افضل شركات التنظيف في الرياض، تعاملت مع شركات كثيرة لكن للأسف بعد ما ينظفون ويمشون تلقى ملاحظات. لكن شركة كلينولوجي كسرت هذي القاعدة، مهتمين برضا العميل. أنصحكم بالتعامل معهم وبقوة عن تجربة!",
+    textEn: "One of the best cleaning companies in Riyadh. I've dealt with many companies but they always leave after cleaning without caring. Kleenology broke that pattern — they truly care about client satisfaction. Highly recommend from experience!",
+    rating: 5,
+  },
+  {
+    nameAr: "Om Faisal 20",
+    nameEn: "Om Faisal 20",
+    textAr: "ماشاء الله طلبتهم والحمدلله متوفرين في نفس اليوم، سعر منطقي، وأخذوا وقتهم وهم ينظفون. العمالة مع مشرف من الجنسية السودانية.",
+    textEn: "Mashallah, I called them and they were available the same day. Reasonable price, they took their time cleaning. The team came with a Sudanese supervisor.",
     rating: 5,
   },
 ];
@@ -49,7 +70,7 @@ export const Testimonials = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((r, i) => (
             <div
               key={i}
