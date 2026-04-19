@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
+import { SpinWheel } from "@/components/SpinWheel";
 import {
   MessageCircle,
   Phone,
@@ -11,6 +12,7 @@ import {
   Clock,
   MapPin,
   ChevronDown,
+  Gift,
 } from "lucide-react";
 
 const reviews = [
@@ -51,6 +53,15 @@ export default function AdsLanding() {
   }, []);
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showSpin, setShowSpin] = useState(false);
+
+  useEffect(() => {
+    const shown = sessionStorage.getItem("spinShown");
+    if (!shown) {
+      const t = setTimeout(() => { setShowSpin(true); sessionStorage.setItem("spinShown", "1"); }, 4000);
+      return () => clearTimeout(t);
+    }
+  }, []);
 
   const handleWhatsApp = () => {
     const msg = isRTL
@@ -254,6 +265,18 @@ export default function AdsLanding() {
           </Button>
         </div>
       </section>
+
+      {/* Spin Wheel Modal */}
+      {showSpin && <SpinWheel onClose={() => setShowSpin(false)} />}
+
+      {/* Gift button */}
+      <button
+        onClick={() => setShowSpin(true)}
+        className="fixed bottom-28 right-6 z-40 w-14 h-14 rounded-full bg-brand-yellow shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
+        aria-label="احصل على خصم"
+      >
+        <Gift className="h-6 w-6 text-foreground" />
+      </button>
 
       {/* Sticky WhatsApp */}
       <Button
