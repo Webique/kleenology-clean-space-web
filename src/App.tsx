@@ -13,6 +13,7 @@ import DeepCleaning from "./pages/DeepCleaning";
 import CarpetCleaning from "./pages/CarpetCleaning";
 import PostConstructionCleaning from "./pages/PostConstructionCleaning";
 import AboutUs from "./pages/AboutUs";
+import RiyadhCleaning from "./pages/RiyadhCleaning";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
@@ -108,6 +109,7 @@ const App = () => {
               <Route path="/carpet-cleaning" element={<CarpetCleaning />} />
               <Route path="/post-construction-cleaning" element={<PostConstructionCleaning />} />
               <Route path="/about" element={<AboutUs />} />
+              <Route path="/cleaning-riyadh" element={<RiyadhCleaning />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
