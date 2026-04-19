@@ -39,17 +39,15 @@ export default function AdsLanding() {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
 
-  // Slots countdown
+  // Slots based on day of week — busier on Sun-Wed
   const [slots, setSlots] = useState(3);
+  const [lastBooking, setLastBooking] = useState(14);
   useEffect(() => {
-    const stored = sessionStorage.getItem("slots");
-    if (stored) {
-      setSlots(Number(stored));
-    } else {
-      const n = Math.floor(Math.random() * 3) + 2;
-      sessionStorage.setItem("slots", String(n));
-      setSlots(n);
-    }
+    const day = new Date().getDay(); // 0=Sun
+    const slotsByDay = [3, 2, 2, 1, 3, 4, 4]; // Sun-Sat
+    setSlots(slotsByDay[day]);
+    // Random "last booking" between 8-40 min ago
+    setLastBooking(Math.floor(Math.random() * 32) + 8);
   }, []);
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -75,8 +73,16 @@ export default function AdsLanding() {
       />
 
       {/* Top Bar */}
-      <div className="bg-foreground text-white text-center py-2 text-sm font-medium">
-        🔥 موعد محدود — تبقى <span className="text-brand-yellow font-bold mx-1">{slots}</span> مواعيد هذا الأسبوع
+      <div className="bg-foreground text-white py-2 px-4">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4 text-sm">
+          <span className="flex items-center gap-1.5">
+            🔥 تبقى <span className="text-brand-yellow font-bold mx-1">{slots}</span> مواعيد فقط هذا الأسبوع
+          </span>
+          <span className="flex items-center gap-1.5 text-white/60 text-xs whitespace-nowrap">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            آخر حجز منذ {lastBooking} دقيقة
+          </span>
+        </div>
       </div>
 
       {/* Header - minimal */}
@@ -236,7 +242,7 @@ export default function AdsLanding() {
         <div className="max-w-xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-2">احجز الآن قبل امتلاء المواعيد</h2>
           <p className="text-white/60 text-sm mb-6">
-            تبقى <span className="text-brand-yellow font-bold">{slots} مواعيد</span> هذا الأسبوع
+            تبقى <span className="text-brand-yellow font-bold">{slots} مواعيد فقط</span> هذا الأسبوع — احجز قبل الامتلاء
           </p>
           <Button
             onClick={handleWhatsApp}
