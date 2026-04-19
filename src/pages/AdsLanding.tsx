@@ -1,71 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
-import { SpinWheel } from "@/components/SpinWheel";
 import {
   MessageCircle,
   Phone,
   CheckCircle2,
   Star,
-  Shield,
-  Clock,
-  MapPin,
   ChevronDown,
+  ArrowLeft,
 } from "lucide-react";
 
-const reviews = [
-  { name: "ياسر بن مضواح", text: "فريق عمل متميز وشغل مرتب ونظيف، الله يوفقكم", stars: 5 },
-  { name: "حسن العتيبي", text: "دقة متناهية واهتمام بأدق التفاصيل. خدمة تستحق التجربة!", stars: 5 },
-  { name: "الزين", text: "رائع شغلهم وإحترافي ماشاء الله، إن شاء الله مو آخر تعامل", stars: 5 },
+const SERVICES = [
+  { icon: "🏠", title: "تنظيف المنازل والفلل", href: "/home-cleaning" },
+  { icon: "🏢", title: "تنظيف المكاتب والشركات", href: "/office-cleaning" },
+  { icon: "✨", title: "التنظيف العميق الشامل", href: "/deep-cleaning" },
+  { icon: "🧽", title: "تنظيف السجاد بالبخار", href: "/carpet-cleaning" },
+  { icon: "🔨", title: "تنظيف ما بعد البناء", href: "/post-construction-cleaning" },
+  { icon: "🧴", title: "التعقيم والتطهير", href: "/deep-cleaning" },
 ];
 
-const includes = [
-  "تنظيف المنازل والفلل",
-  "تنظيف عميق شامل",
-  "تنظيف المكاتب والشركات",
-  "تنظيف السجاد بالبخار",
-  "تنظيف ما بعد البناء",
-  "تعقيم وتطهير كامل",
+const REVIEWS = [
+  { name: "ياسر بن مضواح", text: "الله يوفقكم، فريق عمل متميز وشغل مرتب ونظيف", stars: 5 },
+  { name: "حسن العتيبي", text: "دقة متناهية، اهتمام بأدق التفاصيل، واستعداد دائم لتقبل الملاحظات. خدمة حقيقية تستحق التجربة وبقوة!", stars: 5 },
+  { name: "الزين", text: "رائع شغلهم وإحترافي ماشاء الله، إن شاء الله مو آخر تعامل معاكم", stars: 5 },
 ];
 
-const faqs = [
-  { q: "كم تستغرق الخدمة؟", a: "عادةً يوم عمل واحد حسب حجم المكان." },
-  { q: "هل المواد آمنة للأطفال؟", a: "نعم، نستخدم مواد معتمدة وصديقة للبيئة آمنة تماماً." },
-  { q: "هل يوجد ضمان؟", a: "نعم، ضمان رضا ١٠٠٪ أو نعود مجاناً خلال ٢٤ ساعة." },
-  { q: "كيف أحجز؟", a: "اضغط زر واتساب أدناه وسنرد خلال دقائق." },
+const FAQS = [
+  { q: "كم تستغرق الخدمة؟", a: "الخدمة العادية تستغرق يوم عمل واحد. التنظيف العميق وما بعد البناء قد يمتد ليومين حسب المساحة." },
+  { q: "هل المواد المستخدمة آمنة للأطفال؟", a: "نعم. نستخدم مواد تنظيف معتمدة وصديقة للبيئة، آمنة تماماً للأطفال والحيوانات الأليفة." },
+  { q: "ماذا لو لم أكن راضياً عن النتيجة؟", a: "نضمن رضاك. إذا لم تكن راضياً نعود ونعيد العمل مجاناً خلال ٢٤ ساعة — بدون نقاش." },
+  { q: "هل أحتاج لتوفير أدوات التنظيف؟", a: "لا. الفريق يصل بكامل معداته ومواد التنظيف. تحتاج فقط لتوفير الماء والكهرباء." },
 ];
 
 export default function AdsLanding() {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
-
-  // Slots based on day of week — busier on Sun-Wed
-  const [slots, setSlots] = useState(3);
-  const [lastBooking, setLastBooking] = useState(14);
-  useEffect(() => {
-    const day = new Date().getDay(); // 0=Sun
-    const slotsByDay = [3, 2, 2, 1, 3, 4, 4]; // Sun-Sat
-    setSlots(slotsByDay[day]);
-    // Random "last booking" between 8-40 min ago
-    setLastBooking(Math.floor(Math.random() * 32) + 8);
-  }, []);
-
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [showSpin, setShowSpin] = useState(false);
-
-  useEffect(() => {
-    const shown = sessionStorage.getItem("spinShown");
-    if (!shown) {
-      const t = setTimeout(() => { setShowSpin(true); sessionStorage.setItem("spinShown", "1"); }, 4000);
-      return () => clearTimeout(t);
-    }
-  }, []);
 
   const handleWhatsApp = () => {
-    const msg = isRTL
-      ? "مرحباً، رأيت إعلانكم وأريد الاستفسار عن خدمة التنظيف"
-      : "Hello, I saw your ad and would like to inquire about cleaning service";
+    const msg = "مرحباً، أريد الاستفسار عن خدمات التنظيف";
     window.open(`https://wa.me/966537519929?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
@@ -76,148 +50,142 @@ export default function AdsLanding() {
   return (
     <div className="min-h-screen bg-white" dir="rtl">
       <SEO
-        title="احجز خدمة تنظيف الآن في الرياض | كلينولوجي"
-        description="كلينولوجي — أفضل شركة تنظيف في الرياض. فريق معتمد، مواد آمنة، ضمان الرضا ١٠٠٪. احجز الآن عبر واتساب!"
-        keywords="شركة تنظيف الرياض, احجز تنظيف, تنظيف منازل الرياض"
+        title="كلينولوجي — خدمات تنظيف احترافية في الرياض"
+        description="كلينولوجي شركة تنظيف تعمل في الرياض منذ ٣ سنوات. +٦٩٠ عميل، مواد آمنة، ضمان رضا ١٠٠٪. احجز الآن."
+        keywords="شركة تنظيف الرياض, تنظيف منازل الرياض, كلينولوجي"
         url="https://kleenology.me/book-now"
       />
 
-      {/* Top Bar */}
-      <div className="bg-foreground text-white py-2 px-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4 text-sm">
-          <span className="flex items-center gap-1.5">
-            🔥 تبقى <span className="text-brand-yellow font-bold mx-1">{slots}</span> مواعيد فقط هذا الأسبوع
-          </span>
-          <span className="flex items-center gap-1.5 text-white/60 text-xs whitespace-nowrap">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            آخر حجز منذ {lastBooking} دقيقة
-          </span>
-        </div>
-      </div>
-
-      {/* Header - minimal */}
-      <header className="border-b border-gray-100 px-4 py-3 flex items-center justify-between max-w-4xl mx-auto">
-        <img src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" alt="Kleenology" className="h-12 w-auto" />
+      {/* Header */}
+      <header className="border-b border-gray-100 px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
+        <a href="/">
+          <img
+            src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png"
+            alt="Kleenology"
+            className="h-12 w-auto"
+          />
+        </a>
         <button
           onClick={handleCall}
           className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
         >
           <Phone className="h-4 w-4" />
-          <span dir="ltr">0537 - 519 929</span>
+          <span dir="ltr">0537 519 929</span>
         </button>
       </header>
 
       {/* Hero */}
-      <section className="bg-gradient-to-bl from-primary/10 to-white px-4 py-14 text-center">
+      <section className="bg-foreground text-white px-6 py-20 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 border border-green-200 rounded-full px-4 py-1 text-sm font-semibold mb-5">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            متاح الآن للحجز في الرياض
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-            نظافة احترافية تصل إليك
-            <span className="text-primary block">في الرياض</span>
-          </h1>
-
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            فريق معتمد، مواد آمنة للأطفال، وضمان رضا ١٠٠٪
-            <br />
-            <span className="font-semibold text-foreground">+٦٩٠ عميل سعيد في الرياض</span>
+          <p className="text-white/50 text-sm tracking-widest uppercase mb-6 font-medium">
+            Kleenology — الرياض
           </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            نظافة تليق بمنزلك.
+            <br />
+            <span className="text-brand-yellow">لا وعود فارغة.</span>
+          </h1>
+          <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+            فريق معتمد يعمل في الرياض منذ ٣ سنوات. +٦٩٠ عميل وثقوا بنا،
+            ومواد تنظيف آمنة لعائلتك. ضمان الرضا أو نعود مجاناً.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               onClick={handleWhatsApp}
               size="lg"
-              className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg px-8 py-4 gap-2 h-auto shadow-lg"
+              className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-base px-8 gap-2 h-12"
             >
-              <MessageCircle className="h-6 w-6" />
-              احجز الآن عبر واتساب
+              <MessageCircle className="h-5 w-5" />
+              تواصل عبر واتساب
             </Button>
             <Button
               onClick={handleCall}
               variant="outline"
               size="lg"
-              className="text-base px-6 py-4 gap-2 h-auto border-2"
+              className="border-white/30 text-white hover:bg-white/10 text-base px-8 h-12"
             >
               <Phone className="h-5 w-5" />
-              اتصل بنا مباشرة
+              اتصل مباشرة
             </Button>
           </div>
-
-          <p className="text-xs text-gray-400">لا حاجة لبطاقة ائتمان — تواصل مجاني</p>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-foreground py-6 px-4">
-        <div className="max-w-3xl mx-auto grid grid-cols-4 gap-4 text-center">
+      {/* Stats — real numbers only */}
+      <section className="border-b border-gray-100">
+        <div className="max-w-4xl mx-auto grid grid-cols-3 divide-x divide-x-reverse divide-gray-100">
           {[
-            { v: "+690", l: "عميل" },
-            { v: "٣", l: "سنوات" },
-            { v: "٤.٩★", l: "تقييم" },
-            { v: "١٠٠٪", l: "ضمان" },
+            { value: "+٦٩٠", label: "عميل في الرياض" },
+            { value: "٣ سنوات", label: "خبرة في السوق" },
+            { value: "٤.٩ ★", label: "متوسط التقييم" },
           ].map((s, i) => (
-            <div key={i}>
-              <div className="text-xl md:text-2xl font-bold text-brand-yellow">{s.v}</div>
-              <div className="text-xs text-white/70">{s.l}</div>
+            <div key={i} className="py-8 text-center">
+              <div className="text-2xl font-bold text-foreground">{s.value}</div>
+              <div className="text-sm text-gray-500 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Services included */}
-      <section className="py-14 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-foreground mb-8">
-            ماذا نقدم لك؟
-          </h2>
+      {/* Services */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-foreground mb-2">خدماتنا</h2>
+          <p className="text-gray-500 mb-10 text-sm">نتخصص في التنظيف — لا أكثر، لا أقل.</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {SERVICES.map((s, i) => (
+              <a
+                key={i}
+                href={s.href}
+                className="group flex items-center gap-3 border border-gray-100 rounded-xl p-4 hover:border-primary hover:bg-primary/5 transition-all"
+              >
+                <span className="text-2xl">{s.icon}</span>
+                <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug">
+                  {s.title}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What's included */}
+      <section className="py-16 bg-gray-50 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-foreground mb-8">ماذا يشمل عملنا؟</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {includes.map((item, i) => (
-              <div key={i} className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3">
-                <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
-                <span className="text-sm font-medium text-foreground">{item}</span>
+            {[
+              "تنظيف كامل لجميع الغرف",
+              "تطهير وتعقيم الحمامات والمطبخ",
+              "إزالة الأتربة من جميع الأسطح",
+              "مسح وكنس الأرضيات",
+              "تنظيف النوافذ من الداخل",
+              "فريق يصل بكامل معداته ومواده",
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white rounded-lg px-4 py-3 border border-gray-100">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span className="text-sm text-foreground">{item}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Trust */}
-      <section className="py-10 bg-primary/5 px-4">
-        <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-          {[
-            { icon: <Shield className="h-7 w-7 text-primary mx-auto mb-2" />, title: "ضمان الرضا", desc: "نعود مجاناً خلال ٢٤ ساعة إذا لم تكن راضياً" },
-            { icon: <Clock className="h-7 w-7 text-primary mx-auto mb-2" />, title: "التزام بالمواعيد", desc: "نصل في الوقت المحدد بدون تأخير" },
-            { icon: <MapPin className="h-7 w-7 text-primary mx-auto mb-2" />, title: "جميع أحياء الرياض", desc: "نخدم كل أحياء ومناطق الرياض" },
-          ].map((item, i) => (
-            <div key={i} className="bg-white rounded-xl p-5 border border-gray-100">
-              {item.icon}
-              <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
-              <p className="text-xs text-gray-500">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Reviews */}
-      <section className="py-14 px-4">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-foreground mb-8">
-            ماذا قال عملاؤنا؟
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {reviews.map((r, i) => (
-              <div key={i} className="border border-gray-100 rounded-xl p-5 shadow-sm">
-                <div className="flex gap-0.5 mb-3">
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-foreground mb-2">ماذا قال عملاؤنا</h2>
+          <p className="text-gray-500 text-sm mb-10">تقييمات حقيقية من عملاء حقيقيين في الرياض</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="border border-gray-100 rounded-2xl p-6">
+                <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: r.stars }).map((_, j) => (
                     <Star key={j} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed mb-4">"{r.text}"</p>
-                <p className="text-sm font-bold text-foreground">{r.name}</p>
+                <p className="text-gray-700 text-sm leading-relaxed mb-5">"{r.text}"</p>
+                <p className="font-semibold text-foreground text-sm">{r.name}</p>
               </div>
             ))}
           </div>
@@ -225,21 +193,21 @@ export default function AdsLanding() {
       </section>
 
       {/* FAQ */}
-      <section className="py-10 bg-gray-50 px-4">
+      <section className="py-16 bg-gray-50 px-6">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-foreground mb-6">أسئلة شائعة</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-8">أسئلة شائعة</h2>
           <div className="space-y-2">
-            {faqs.map((faq, i) => (
+            {FAQS.map((faq, i) => (
               <div key={i} className="bg-white rounded-xl border border-gray-100 overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-5 py-4 text-right font-semibold text-foreground text-sm"
                 >
                   {faq.q}
-                  <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform flex-shrink-0 ${openFaq === i ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 text-gray-400 flex-shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
                 {openFaq === i && (
-                  <div className="px-5 pb-4 text-sm text-gray-600">{faq.a}</div>
+                  <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed">{faq.a}</div>
                 )}
               </div>
             ))}
@@ -248,30 +216,40 @@ export default function AdsLanding() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 bg-foreground text-center">
+      <section className="py-20 px-6 text-center">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-2">احجز الآن قبل امتلاء المواعيد</h2>
-          <p className="text-white/60 text-sm mb-6">
-            تبقى <span className="text-brand-yellow font-bold">{slots} مواعيد فقط</span> هذا الأسبوع — احجز قبل الامتلاء
+          <h2 className="text-3xl font-bold text-foreground mb-3">
+            جاهز للحجز؟
+          </h2>
+          <p className="text-gray-500 mb-8 leading-relaxed">
+            تواصل معنا على واتساب وسنرتب معك الموعد المناسب خلال دقائق.
           </p>
           <Button
             onClick={handleWhatsApp}
             size="lg"
-            className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg px-10 py-4 gap-2 h-auto w-full sm:w-auto"
+            className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-base px-10 gap-2 h-12"
           >
-            <MessageCircle className="h-6 w-6" />
-            احجز عبر واتساب الآن
+            <MessageCircle className="h-5 w-5" />
+            تواصل عبر واتساب
           </Button>
+          <p className="text-xs text-gray-400 mt-4">
+            أو اتصل مباشرة على{" "}
+            <button onClick={handleCall} className="underline hover:text-foreground transition-colors" dir="ltr">
+              0537 519 929
+            </button>
+          </p>
         </div>
       </section>
 
-      {/* Spin Wheel Modal */}
-      {showSpin && <SpinWheel onClose={() => setShowSpin(false)} />}
+      {/* Footer minimal */}
+      <div className="border-t border-gray-100 py-6 text-center text-xs text-gray-400">
+        © 2024 كلينولوجي — الرياض، المملكة العربية السعودية
+      </div>
 
       {/* Sticky WhatsApp */}
       <Button
         onClick={handleWhatsApp}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20BA5A] shadow-float hover:shadow-lg transform hover:scale-110 transition-all duration-300"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20BA5A] shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
         size="icon"
         aria-label="WhatsApp"
       >
