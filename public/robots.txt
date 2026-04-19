@@ -2,15 +2,8 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://kleenology.com/sitemap.xml
-Sitemap: https://kleenology.com/sitemap-images.xml
+Sitemap: https://kleenology.me/sitemap.xml
+Sitemap: https://kleenology.me/sitemap-images.xml
 
-# Disallow admin or private areas (if any)
 Disallow: /admin/
 Disallow: /private/
-
-# Allow all other content
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /assets/
