@@ -3,16 +3,14 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, X, Gift } from "lucide-react";
 
 const N = 6;
-const PRIZES = [
-  { label: "خصم ١٠٪", desc: "على أول طلب", bg: "#0ea5e9" },
-  { label: "خصم ١٥٪", desc: "على التنظيف العميق", bg: "#1e293b" },
-  { label: "خصم ٢٠٪", desc: "على أي خدمة", bg: "#0ea5e9" },
-  { label: "خصم ١٠٪", desc: "على السجاد", bg: "#1e293b" },
-  { label: "خصم ١٥٪", desc: "على أي خدمة", bg: "#0ea5e9" },
-  { label: "خصم ١٠٪", desc: "على التنظيف", bg: "#1e293b" },
-];
+const PRIZE = { label: "كاش باك ١٠٪", desc: "على أول طلب" };
+const PRIZES = Array.from({ length: N }, (_, i) => ({
+  label: "🎁",
+  desc: PRIZE.desc,
+  bg: i % 2 === 0 ? "#0ea5e9" : "#1e293b",
+}));
 
-const WINNER_POOL = [2, 1, 0, 4, 1, 3, 0, 2]; // always a discount, weighted toward 15-20%
+const WINNER_POOL = [0, 1, 2, 3, 4, 5];
 
 const toRad = (deg: number) => (deg * Math.PI) / 180;
 const CX = 150, CY = 150, R = 138, INNER_R = 22;
@@ -127,8 +125,7 @@ export function SpinWheel({ onClose }: SpinWheelProps) {
   };
 
   const handleWhatsApp = () => {
-    const prize = PRIZES[winner];
-    const msg = `مرحباً، اسمي ${name}. فزت بـ ${prize.label} (${prize.desc}) عبر عجلة الحظ في موقع كلينولوجي. أريد الاستفادة من العرض والحجز.`;
+    const msg = `مرحباً، اسمي ${name}. فزت بـ ${PRIZE.label} (${PRIZE.desc}) عبر عجلة الحظ في موقع كلينولوجي. أريد الاستفادة من العرض والحجز.`;
     window.open(`https://wa.me/966537519929?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
@@ -199,8 +196,8 @@ export function SpinWheel({ onClose }: SpinWheelProps) {
             <div className="w-full text-center space-y-3">
               <div className="bg-primary/10 border border-primary/20 rounded-xl p-4">
                 <p className="text-sm text-muted-foreground">لقد فزت بـ</p>
-                <p className="text-3xl font-bold text-primary mt-1">{PRIZES[winner].label}</p>
-                <p className="text-sm text-muted-foreground">{PRIZES[winner].desc}</p>
+                <p className="text-3xl font-bold text-primary mt-1">{PRIZE.label}</p>
+                <p className="text-sm text-muted-foreground">{PRIZE.desc}</p>
               </div>
               <Button
                 onClick={handleWhatsApp}
