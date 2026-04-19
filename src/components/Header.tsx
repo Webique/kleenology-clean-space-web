@@ -84,17 +84,8 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
           >
             {t('nav.home')}
           </a>
-          <a 
-            href="#about" 
-            onClick={(e) => {
-              e.preventDefault();
-              if (onNavClick) {
-                onNavClick();
-              }
-              setTimeout(() => {
-                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
+          <a
+            href="/about"
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
             {t('nav.about')}
@@ -191,14 +182,8 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
                   {t('nav.home')}
                 </a>
                 <a
-                  href="#about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavClick) {
-                      onNavClick();
-                    }
-                    handleMobileNav('about');
-                  }}
+                  href="/about"
+                  onClick={() => setOpen(false)}
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.about')}
