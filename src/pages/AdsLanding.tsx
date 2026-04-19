@@ -12,7 +12,6 @@ import {
   Clock,
   MapPin,
   ChevronDown,
-  Gift,
 } from "lucide-react";
 
 const reviews = [
@@ -268,15 +267,6 @@ export default function AdsLanding() {
 
       {/* Spin Wheel Modal */}
       {showSpin && <SpinWheel onClose={() => setShowSpin(false)} />}
-
-      {/* Gift button */}
-      <button
-        onClick={() => setShowSpin(true)}
-        className="fixed bottom-28 right-6 z-40 w-14 h-14 rounded-full bg-brand-yellow shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
-        aria-label="احصل على خصم"
-      >
-        <Gift className="h-6 w-6 text-foreground" />
-      </button>
 
       {/* Sticky WhatsApp */}
       <Button

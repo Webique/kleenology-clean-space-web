@@ -72,7 +72,7 @@ function WheelSVG({ rotation, spinning }: { rotation: number; spinning: boolean 
                 x={tx}
                 y={ty}
                 fill="white"
-                fontSize="14"
+                fontSize="30"
                 fontWeight="bold"
                 textAnchor="middle"
                 dominantBaseline="middle"
