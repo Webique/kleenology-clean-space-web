@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const reviews = [
   {
@@ -20,7 +21,7 @@ const reviews = [
     nameAr: "حسن العتيبي",
     nameEn: "Hassan Al-Otaibi",
     textAr: "شكراً كلينولوجي على الخدمة والتجربة الرائعة. والله دقة متناهية، اهتمام بأدق التفاصيل، واستعداد دائم لتقبل الملاحظات بصدر رحب والتأكد من رضا العميل. استخدموا مواد تنظيف متخصصة لإزالة أصعب البقايا والرواسب، وعملوا يومين متتاليين لتنظيف الفيلا. إدارة وإشراف سعودي لمتابعة كل التفاصيل. خدمة حقيقية تستحق التجربة وبقوة!",
-    textEn: "Thank you Kleenology for the amazing service and experience. Incredible precision, attention to the finest details, and always ready to receive feedback. They used specialized cleaning products and worked two consecutive days on the villa. A service that truly deserves a try!",
+    textEn: "Thank you Kleenology for the amazing experience. Incredible precision, attention to the finest details, and always ready to receive feedback. They worked two consecutive days on the villa. A service that truly deserves a try!",
     rating: 5,
   },
   {
@@ -46,41 +47,22 @@ const reviews = [
   },
 ];
 
-const ReviewCard = ({ review, isRTL }: { review: typeof reviews[0]; isRTL: boolean }) => (
-  <div className="w-80 flex-shrink-0 bg-white rounded-2xl p-6 border border-border shadow-sm flex flex-col mx-3">
-    <Quote className="h-7 w-7 text-primary/30 mb-3 flex-shrink-0" />
-    <div className="flex gap-1 mb-3">
-      {Array.from({ length: review.rating }).map((_, j) => (
-        <Star key={j} className="h-4 w-4 text-brand-yellow fill-brand-yellow" />
-      ))}
-    </div>
-    <p className="text-foreground/80 leading-relaxed text-sm flex-1 line-clamp-4">
-      {isRTL ? review.textAr : review.textEn}
-    </p>
-    <div className="mt-5 pt-4 border-t border-border flex items-center gap-3">
-      <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">
-        {(isRTL ? review.nameAr : review.nameEn).charAt(0)}
-      </div>
-      <div>
-        <p className="font-semibold text-foreground text-sm">
-          {isRTL ? review.nameAr : review.nameEn}
-        </p>
-        <p className="text-xs text-muted-foreground">
-          {isRTL ? "عميل موثق" : "Verified Client"}
-        </p>
-      </div>
-    </div>
-  </div>
-);
-
 export const Testimonials = () => {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c === 0 ? reviews.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === reviews.length - 1 ? 0 : c + 1));
+
+  const review = reviews[current];
 
   return (
-    <section className="py-20 bg-white overflow-hidden" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="max-w-6xl mx-auto px-4 mb-14">
-        <div className="text-center">
+    <section className="py-20 bg-muted/30" dir={isRTL ? "rtl" : "ltr"}>
+      <div className="max-w-4xl mx-auto px-4">
+
+        {/* Header */}
+        <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-brand-yellow/20 text-foreground px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
             <Star className="h-4 w-4 text-brand-yellow fill-brand-yellow" />
             {isRTL ? "آراء عملائنا" : "Client Reviews"}
@@ -89,29 +71,74 @@ export const Testimonials = () => {
             {isRTL ? "ماذا يقول عملاؤنا؟" : "What Our Clients Say"}
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            {isRTL
-              ? "تجارب حقيقية من عملاء وثقوا بكلينولوجي"
-              : "Real experiences from clients who trusted Kleenology"}
+            {isRTL ? "تجارب حقيقية من عملاء وثقوا بكلينولوجي" : "Real experiences from clients who trusted Kleenology"}
           </p>
         </div>
-      </div>
 
-      {/* Row 1 — scrolls left */}
-      <div className="relative mb-4">
-        <div className="flex animate-marquee-left">
-          {[...reviews, ...reviews].map((r, i) => (
-            <ReviewCard key={i} review={r} isRTL={isRTL} />
-          ))}
-        </div>
-      </div>
+        {/* Card */}
+        <div className="bg-white rounded-3xl shadow-clean border border-border p-8 md:p-12 relative">
 
-      {/* Row 2 — scrolls right */}
-      <div className="relative">
-        <div className="flex animate-marquee-right">
-          {[...reviews, ...reviews].map((r, i) => (
-            <ReviewCard key={i} review={r} isRTL={isRTL} />
-          ))}
+          {/* Quote */}
+          <Quote className="h-12 w-12 text-primary/10 mb-6" />
+
+          {/* Stars */}
+          <div className="flex gap-1 mb-6">
+            {Array.from({ length: review.rating }).map((_, i) => (
+              <Star key={i} className="h-5 w-5 text-brand-yellow fill-brand-yellow" />
+            ))}
+          </div>
+
+          {/* Text */}
+          <p className="text-foreground/80 text-lg leading-relaxed mb-10 min-h-[80px]">
+            {isRTL ? review.textAr : review.textEn}
+          </p>
+
+          {/* Author */}
+          <div className="flex items-center gap-4 border-t border-border pt-6">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg flex-shrink-0">
+              {(isRTL ? review.nameAr : review.nameEn).charAt(0)}
+            </div>
+            <div>
+              <p className="font-bold text-foreground">
+                {isRTL ? review.nameAr : review.nameEn}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {isRTL ? "عميل موثق" : "Verified Client"}
+              </p>
+            </div>
+          </div>
         </div>
+
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <button
+            onClick={prev}
+            className="w-11 h-11 rounded-full bg-white border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors shadow-sm"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          {/* Dots */}
+          <div className="flex gap-2">
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current ? "w-6 h-3 bg-primary" : "w-3 h-3 bg-border hover:bg-primary/40"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            className="w-11 h-11 rounded-full bg-white border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors shadow-sm"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
       </div>
     </section>
   );
