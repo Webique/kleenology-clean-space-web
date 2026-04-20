@@ -53,14 +53,14 @@ const STEPS = [
   {
     num: "1",
     title: "تواصل معنا",
-    desc: "واتساب أو اتصال، وشاركنا تفاصيل بسيطة (مثلاً: عدد الغرف أو نوع الخدمة)",
+    desc: "واتساب أو اتصال، وشاركنا تفاصيل بسيطة عن المكان والخدمة اللي تحتاجها.",
     visual: (
-      <div style={{ background: "white", borderRadius: 14, padding: "16px 14px", display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ background: "#25D366", borderRadius: 10, padding: "10px 14px", color: "white", fontSize: 13, fontWeight: 700, flex: 1 }}>
-          " عندي شقة ٤ غرف<br/>أحتاج تنظيف عميق "
+      <div style={{ background: "white", borderRadius: 14, padding: "18px 14px", display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ background: "#25D366", borderRadius: 12, padding: "12px 16px", color: "white", fontSize: 14, fontWeight: 700, flex: 1, lineHeight: 1.5 }}>
+          " عندي شقة ٤ غرف أحتاج تنظيف عميق "
         </div>
-        <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <MessageCircle size={20} color="white" />
+        <div style={{ width: 42, height: 42, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <MessageCircle size={22} color="white" />
         </div>
       </div>
     ),
@@ -70,12 +70,14 @@ const STEPS = [
     title: "نرسلك السعر ونحدد الموعد",
     desc: "نرسل لك سعراً واضحاً وموعداً يناسب جدولك بسهولة وراحة.",
     visual: (
-      <div style={{ background: "white", borderRadius: 14, padding: "16px 14px", display: "flex", gap: 12, justifyContent: "center" }}>
-        <div style={{ background: "#f0f0ee", borderRadius: 10, padding: "10px 16px", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 700, color: "#444" }}>
-          <span>⏰</span> الموعد
+      <div style={{ background: "white", borderRadius: 14, padding: "24px 14px", display: "flex", gap: 14, justifyContent: "center", alignItems: "center" }}>
+        <div style={{ background: "#f5f5f3", borderRadius: 12, padding: "14px 20px", textAlign: "center" }}>
+          <div style={{ fontSize: 28 }}>⏰</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginTop: 6 }}>الموعد</div>
         </div>
-        <div style={{ background: "#f0f0ee", borderRadius: 10, padding: "10px 16px", display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 700, color: "#444" }}>
-          <span>💵</span> السعر
+        <div style={{ background: "#f5f5f3", borderRadius: 12, padding: "14px 20px", textAlign: "center" }}>
+          <div style={{ fontSize: 28 }}>💵</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginTop: 6 }}>السعر</div>
         </div>
       </div>
     ),
@@ -85,9 +87,9 @@ const STEPS = [
     title: "فريقنا يجيك وينظف بكل عناية",
     desc: "نوصل لموقعك ونبدأ الشغل اللي يبيض الوجه — بضمان رضا كامل.",
     visual: (
-      <div style={{ background: "white", borderRadius: 14, padding: "20px 14px", textAlign: "center" }}>
-        <div style={{ fontSize: 13, fontWeight: 900, color: "#16a34a", marginBottom: 4 }}>تنظيف بكل عناية</div>
-        <div style={{ fontSize: 28, color: "#4ade80" }}>✦</div>
+      <div style={{ background: "white", borderRadius: 14, padding: "28px 14px", textAlign: "center" }}>
+        <div style={{ fontSize: 48 }}>🧹</div>
+        <div style={{ fontSize: 14, fontWeight: 900, color: "#16a34a", marginTop: 10 }}>تنظيف بكل عناية ✦</div>
       </div>
     ),
   },
@@ -160,10 +162,21 @@ export default function PremiumLanding() {
           <button style={BTN_DARK} onClick={wa}><MessageCircle size={18} /> احجز الآن واتساب</button>
           <button style={BTN_OUTLINE} onClick={call}><Phone size={17} /> اتصل مباشرة</button>
         </div>
-        <div style={{ borderRadius: "20px 20px 0 0", overflow: "hidden", background: "linear-gradient(135deg,#bfdbfe,#e0f2fe)", height: 200, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 56 }}>🧹</div>
-            <p style={{ fontSize: 13, marginTop: 6, color: "#60a5fa" }}>فريق كلينولوجي في العمل</p>
+        {/* Trust visual — brand stats card */}
+        <div style={{ borderRadius: "20px 20px 0 0", overflow: "hidden", background: "linear-gradient(135deg,#1e293b 0%,#2d2016 100%)", padding: "28px 20px 32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            {[
+              { value: "+٦٩٠", label: "عميل راضٍ", icon: "👥" },
+              { value: "٣ سنوات", label: "خبرة في الرياض", icon: "🏆" },
+              { value: "٤.٩ ★", label: "تقييم قوقل", icon: "⭐" },
+              { value: "١٠٠٪", label: "ضمان الرضا", icon: "✅" },
+            ].map((s, i) => (
+              <div key={i} style={{ background: "rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 12px", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</div>
+                <div style={{ fontSize: 22, fontWeight: 900, color: "white", letterSpacing: "-0.02em", lineHeight: 1 }}>{s.value}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", marginTop: 4, fontWeight: 600 }}>{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -217,17 +230,19 @@ export default function PremiumLanding() {
       {/* HOW IT WORKS */}
       <section style={{ padding: "0 20px 36px" }}>
         <h2 style={{ fontSize: 22, fontWeight: 900, color: "#1a1a1a", marginBottom: 28 }}>كيف نعمل؟</h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {STEPS.map((step, i) => (
-            <div key={i} style={{ position: "relative" }}>
-              <div style={{ background: "#f0eeeb", borderRadius: 20, padding: "20px 18px 60px" }}>
+            <div key={i} style={{ marginBottom: 48 }}>
+              {/* gray card */}
+              <div style={{ background: "#eeece8", borderRadius: 20, padding: "20px 18px 24px", position: "relative" }}>
                 {step.visual}
+                {/* number circle — centered at bottom edge */}
+                <div style={{ position: "absolute", bottom: -22, left: "50%", transform: "translateX(-50%)", width: 46, height: 46, borderRadius: "50%", background: "#2d2016", color: "white", fontWeight: 900, fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(0,0,0,0.25)", zIndex: 2 }}>
+                  {step.num}
+                </div>
               </div>
-              {/* number circle */}
-              <div style={{ position: "absolute", bottom: -18, left: "50%", transform: "translateX(-50%)", width: 44, height: 44, borderRadius: "50%", background: "#2d2016", color: "white", fontWeight: 900, fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(0,0,0,0.2)" }}>
-                {step.num}
-              </div>
-              <div style={{ textAlign: "center", marginTop: 28 }}>
+              {/* title + desc below */}
+              <div style={{ textAlign: "center", paddingTop: 36 }}>
                 <h3 style={{ fontSize: 20, fontWeight: 900, color: "#1a1a1a", marginBottom: 8 }}>{step.title}</h3>
                 <p style={{ color: "#555", fontSize: 14, lineHeight: 1.7, maxWidth: 300, margin: "0 auto" }}>{step.desc}</p>
               </div>
