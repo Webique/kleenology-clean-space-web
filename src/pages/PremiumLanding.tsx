@@ -110,8 +110,8 @@ export default function PremiumLanding() {
 
       {/* Nav */}
       <nav style={{ position: "fixed", top: 0, inset: "0 0 auto", zIndex: 100, background: "rgba(248,250,248,0.88)", backdropFilter: "blur(16px)", borderBottom: "1px solid #e2ece2" }}
-        className="flex items-center justify-between px-6 md:px-14 py-4">
-        <a href="/"><img src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" alt="Kleenology" className="h-11 w-auto" /></a>
+        className="flex items-center justify-between px-6 md:px-14 py-3">
+        <a href="/"><img src="/lovable-uploads/afda02d7-63e7-4998-92eb-dbe3d776cea3.png" alt="Kleenology" style={{ height: "clamp(56px, 8vw, 80px)", width: "auto" }} /></a>
         <button onClick={call} className="text-sm font-semibold text-gray-500 hover:text-green-700 transition-colors" dir="ltr">0537 519 929</button>
       </nav>
 
