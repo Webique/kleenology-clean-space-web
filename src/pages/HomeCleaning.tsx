@@ -6,7 +6,7 @@ const ar: ServiceContent = {
     title: "تنظيف منازل احترافي | كلينولوجي",
     description: "خدمة تنظيف منازل احترافية بأحدث المعدات ومواد آمنة وصديقة للبيئة. نظافة شاملة مع ضمان الرضا التام.",
     keywords: "تنظيف منازل, تنظيف شقق, تنظيف بيت, خدمة تنظيف, كلينولوجي, تنظيف الرياض",
-    url: "https://kleenology.com/home-cleaning",
+    url: "https://kleenology.me/home-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-400",
   hero: {
@@ -71,7 +71,7 @@ const en: ServiceContent = {
     title: "Professional Home Cleaning Services | Kleenology",
     description: "Expert home cleaning services with eco-friendly products. Deep cleaning, sanitization, and spotless results guaranteed. Book your home cleaning today!",
     keywords: "home cleaning, house cleaning, residential cleaning, deep cleaning, eco-friendly cleaning, sanitization",
-    url: "https://kleenology.com/home-cleaning",
+    url: "https://kleenology.me/home-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-400",
   hero: {

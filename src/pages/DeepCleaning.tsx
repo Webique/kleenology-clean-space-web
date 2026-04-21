@@ -6,7 +6,7 @@ const ar: ServiceContent = {
     title: "تنظيف عميق احترافي | كلينولوجي",
     description: "خدمة تنظيف عميق شاملة من الأعلى للأسفل. تنظيف الخزائن، الأجهزة، الأسقف، والمناطق صعبة الوصول بأحدث المعدات.",
     keywords: "تنظيف عميق, تنظيف شامل, تنظيف احترافي, كلينولوجي, deep cleaning الرياض",
-    url: "https://kleenology.com/deep-cleaning",
+    url: "https://kleenology.me/deep-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-primary via-primary/80 to-brand-blue",
   hero: {
@@ -71,7 +71,7 @@ const en: ServiceContent = {
     title: "Professional Deep Cleaning Services | Kleenology",
     description: "Comprehensive top-to-bottom deep cleaning. Cabinets, appliances, ceilings, and hard-to-reach areas using professional equipment.",
     keywords: "deep cleaning, thorough cleaning, professional cleaning, kleenology, deep cleaning Riyadh",
-    url: "https://kleenology.com/deep-cleaning",
+    url: "https://kleenology.me/deep-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-primary via-primary/80 to-brand-blue",
   hero: {

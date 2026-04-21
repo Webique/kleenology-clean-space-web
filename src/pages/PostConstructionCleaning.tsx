@@ -8,7 +8,7 @@ const ar: ServiceContent = {
     title: "تنظيف ما بعد البناء والتشطيب | كلينولوجي",
     description: "تنظيف متخصص بعد البناء والتجديد. إزالة الغبار والأتربة وبقايا الطلاء والإسمنت. نسلمك المكان جاهزاً للسكن.",
     keywords: "تنظيف بعد البناء, تنظيف تشطيبات, تنظيف ما بعد التجديد, تنظيف عمارات, كلينولوجي",
-    url: "https://kleenology.com/post-construction-cleaning",
+    url: "https://kleenology.me/post-construction-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500",
   hero: {
@@ -73,7 +73,7 @@ const en: ServiceContent = {
     title: "Post-Construction Cleaning Services | Kleenology",
     description: "Specialized cleaning after construction and renovation. Dust, paint, and cement removal. We hand over your space move-in ready.",
     keywords: "post construction cleaning, after renovation cleaning, construction cleanup, kleenology",
-    url: "https://kleenology.com/post-construction-cleaning",
+    url: "https://kleenology.me/post-construction-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500",
   hero: {

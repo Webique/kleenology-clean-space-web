@@ -63,7 +63,7 @@ const Booking = () => {
         title={t("booking.pageTitle")}
         description={t("booking.pageDescription")}
         keywords="حجز تنظيف, booking cleaning, kleenology"
-        url="https://kleenology.com/booking"
+        url="https://kleenology.me/booking"
       />
 
       <Header />

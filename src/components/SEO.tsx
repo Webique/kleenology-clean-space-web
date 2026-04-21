@@ -7,75 +7,68 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  jsonLd?: object;
+  hreflang?: boolean;
 }
 
 export const SEO: React.FC<SEOProps> = ({
   title = "Kleenology - Professional Cleaning Services | Excellence in Every Inch",
   description = "Kleenology delivers spotless cleaning results using eco-friendly products. Professional home and office cleaning services with satisfaction guarantee.",
   keywords = "cleaning services, professional cleaning, house cleaning, office cleaning, eco-friendly cleaning, deep cleaning, sanitization",
-  image = "https://kleenology.com/logobg.png",
-  url = "https://kleenology.com",
-  type = "website"
+  image = "https://kleenology.me/logobg.png",
+  url = "https://kleenology.me",
+  type = "website",
+  jsonLd,
+  hreflang = true,
 }) => {
   useEffect(() => {
-    // Update document title
     document.title = title;
 
-    // Update meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', description);
-
-    // Update meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute('content', keywords);
-
-    // Update Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: image },
-      { property: 'og:url', content: url },
-      { property: 'og:type', content: type }
-    ];
-
-    ogTags.forEach(({ property, content }) => {
-      let metaTag = document.querySelector(`meta[property="${property}"]`);
-      if (!metaTag) {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('property', property);
-        document.head.appendChild(metaTag);
+    const setMeta = (selector: string, attr: string, value: string, attrName = 'content') => {
+      let tag = document.querySelector(selector) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attr, selector.match(/["']([^"']+)["']/)?.[1] ?? '');
+        document.head.appendChild(tag);
       }
-      metaTag.setAttribute('content', content);
+      tag.setAttribute(attrName, value);
+    };
+
+    setMeta('meta[name="description"]', 'name', description);
+    setMeta('meta[name="keywords"]', 'name', keywords);
+
+    const ogTags: [string, string][] = [
+      ['og:title', title],
+      ['og:description', description],
+      ['og:image', image],
+      ['og:url', url],
+      ['og:type', type],
+    ];
+    ogTags.forEach(([property, content]) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
     });
 
-    // Update Twitter Card tags
-    const twitterTags = [
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: image }
+    const twitterTags: [string, string][] = [
+      ['twitter:title', title],
+      ['twitter:description', description],
+      ['twitter:image', image],
     ];
-
-    twitterTags.forEach(({ name, content }) => {
-      let metaTag = document.querySelector(`meta[name="${name}"]`);
-      if (!metaTag) {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', name);
-        document.head.appendChild(metaTag);
+    twitterTags.forEach(([name, content]) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
       }
-      metaTag.setAttribute('content', content);
+      tag.setAttribute('content', content);
     });
 
-    // Update canonical URL
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -84,7 +77,41 @@ export const SEO: React.FC<SEOProps> = ({
     }
     canonical.setAttribute('href', url);
 
-  }, [title, description, keywords, image, url, type]);
+    if (hreflang) {
+      const hreflangConfigs = [
+        { hreflang: 'ar', href: url },
+        { hreflang: 'en', href: url },
+        { hreflang: 'x-default', href: url },
+      ];
+      hreflangConfigs.forEach(({ hreflang: lang, href }) => {
+        let link = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`);
+        if (!link) {
+          link = document.createElement('link');
+          link.setAttribute('rel', 'alternate');
+          link.setAttribute('hreflang', lang);
+          document.head.appendChild(link);
+        }
+        link.setAttribute('href', href);
+      });
+    }
+
+    if (jsonLd) {
+      const scriptId = 'seo-page-jsonld';
+      let script = document.getElementById(scriptId);
+      if (!script) {
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script.id = scriptId;
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(jsonLd);
+    }
+
+    return () => {
+      const script = document.getElementById('seo-page-jsonld');
+      if (script) script.remove();
+    };
+  }, [title, description, keywords, image, url, type, jsonLd, hreflang]);
 
   return null;
-}; 
+};

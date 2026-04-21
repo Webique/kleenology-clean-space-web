@@ -37,6 +37,11 @@
     <meta name="twitter:description" content="تنظيف منازل، مكاتب، سجاد، وتنظيف عميق بمواد آمنة. ضمان الرضا ١٠٠٪." />
     <meta name="twitter:image" content="https://kleenology.me/logobg.png" />
 
+    <!-- hreflang - Bilingual Arabic/English -->
+    <link rel="alternate" hreflang="ar" href="https://kleenology.me" />
+    <link rel="alternate" hreflang="en" href="https://kleenology.me" />
+    <link rel="alternate" hreflang="x-default" href="https://kleenology.me" />
+
     <link rel="icon" type="image/png" href="/logobg.png" />
     <link rel="canonical" href="https://kleenology.me" />
     <link rel="manifest" href="/manifest.json" />
@@ -54,6 +59,44 @@
     <link rel="dns-prefetch" href="https://connect.facebook.net">
     <link rel="dns-prefetch" href="https://analytics.tiktok.com">
     <link rel="dns-prefetch" href="https://sc-static.net">
+
+    <!-- WebSite Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "كلينولوجي | Kleenology",
+      "url": "https://kleenology.me",
+      "inLanguage": ["ar", "en"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kleenology.me/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kleenology",
+      "alternateName": "كلينولوجي",
+      "url": "https://kleenology.me",
+      "logo": "https://kleenology.me/logobg.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+966537519929",
+        "contactType": "customer service",
+        "areaServed": "SA",
+        "availableLanguage": ["Arabic", "English"]
+      },
+      "sameAs": [
+        "https://www.tiktok.com/@kleenology"
+      ]
+    }
+    </script>
 
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -97,11 +140,14 @@
           "closes": "18:00"
         }
       ],
-      "areaServed": {
-        "@type": "City",
-        "name": "الرياض",
-        "sameAs": "https://www.wikidata.org/wiki/Q3692"
-      },
+      "areaServed": [
+        { "@type": "City", "name": "الرياض", "sameAs": "https://www.wikidata.org/wiki/Q3692" },
+        { "@type": "Neighborhood", "name": "العليا" },
+        { "@type": "Neighborhood", "name": "النزهة" },
+        { "@type": "Neighborhood", "name": "الملقا" },
+        { "@type": "Neighborhood", "name": "حي الروضة" },
+        { "@type": "Neighborhood", "name": "الياسمين" }
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
@@ -247,19 +293,8 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-1FHH5FNM55', {
-        debug_mode: true,
         send_page_view: true
       });
-      
-      // Test event to verify tracking is working
-      setTimeout(() => {
-        gtag('event', 'test_event', {
-          event_category: 'test',
-          event_label: 'tracking_test',
-          value: 1
-        });
-        console.log('🔍 Google Analytics test event sent');
-      }, 2000);
     </script>
     <!-- End Google Analytics -->
 

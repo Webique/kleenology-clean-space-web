@@ -6,7 +6,7 @@ const ar: ServiceContent = {
     title: "تنظيف مكاتب وشركات احترافي | كلينولوجي",
     description: "خدمات تنظيف مكاتب وشركات وبيئات عمل احترافية. جدولة مرنة وفريق موثوق مع ضمان النظافة المستمرة.",
     keywords: "تنظيف مكاتب, تنظيف شركات, تنظيف بيئة عمل, تنظيف تجاري, كلينولوجي",
-    url: "https://kleenology.com/office-cleaning",
+    url: "https://kleenology.me/office-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-500",
   hero: {
@@ -71,7 +71,7 @@ const en: ServiceContent = {
     title: "Professional Office & Commercial Cleaning | Kleenology",
     description: "Professional cleaning for offices, companies, and workplaces. Flexible scheduling and trusted team with consistent cleanliness guarantee.",
     keywords: "office cleaning, commercial cleaning, business cleaning, corporate cleaning, workplace cleaning, kleenology",
-    url: "https://kleenology.com/office-cleaning",
+    url: "https://kleenology.me/office-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-500",
   hero: {

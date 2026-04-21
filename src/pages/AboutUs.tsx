@@ -70,7 +70,7 @@ const AboutUs = () => {
         title={c.seoTitle}
         description={c.seoDesc}
         keywords="كلينولوجي, من نحن, شركة تنظيف الرياض, kleenology about"
-        url="https://kleenology.com/about"
+        url="https://kleenology.me/about"
       />
       <Header />
 

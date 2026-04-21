@@ -6,7 +6,7 @@ const ar: ServiceContent = {
     title: "تنظيف سجاد وموكيت احترافي | كلينولوجي",
     description: "تنظيف السجاد والموكيت بالبخار وإزالة البقع العنيدة. معدات احترافية ومواد آمنة. نتائج مضمونة.",
     keywords: "تنظيف سجاد, تنظيف موكيت, إزالة بقع السجاد, تنظيف بالبخار, كلينولوجي",
-    url: "https://kleenology.com/carpet-cleaning",
+    url: "https://kleenology.me/carpet-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-amber-600 via-amber-500 to-yellow-400",
   hero: {
@@ -71,7 +71,7 @@ const en: ServiceContent = {
     title: "Professional Carpet & Rug Cleaning | Kleenology",
     description: "Steam carpet cleaning and stubborn stain removal. Professional equipment and safe products. Guaranteed results with fast drying.",
     keywords: "carpet cleaning, rug cleaning, stain removal, steam cleaning, kleenology",
-    url: "https://kleenology.com/carpet-cleaning",
+    url: "https://kleenology.me/carpet-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-amber-600 via-amber-500 to-yellow-400",
   hero: {

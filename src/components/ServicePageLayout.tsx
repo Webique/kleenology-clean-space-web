@@ -44,9 +44,18 @@ export const ServicePageLayout = ({ ar, en }: ServicePageLayoutProps) => {
     window.location.href = "/booking";
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": isRTL ? "الرئيسية" : "Home", "item": "https://kleenology.me" },
+      { "@type": "ListItem", "position": 2, "name": c.breadcrumb, "item": c.seo.url },
+    ],
+  };
+
   return (
     <div className={`min-h-screen bg-background ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
-      <SEO {...c.seo} />
+      <SEO {...c.seo} jsonLd={breadcrumbJsonLd} />
       <Header />
 
       <main className="pt-20">
