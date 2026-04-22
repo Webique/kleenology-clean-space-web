@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle, Menu } from "lucide-react";
+import { Phone, MessageCircle, Menu, CalendarCheck } from "lucide-react";
 import {
   Drawer,
   DrawerTrigger,
@@ -120,8 +120,8 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
           >
             {t('nav.showcase')}
           </a>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             onClick={(e) => {
               e.preventDefault();
               if (onNavClick) {
@@ -134,6 +134,13 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
             className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
           >
             {t('nav.contact')}
+          </a>
+          <a
+            href="/booking"
+            className="flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors"
+          >
+            <CalendarCheck className="h-4 w-4" />
+            {t('nav.book')}
           </a>
         </nav>
         {/* Desktop Buttons */}
@@ -226,6 +233,14 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.contact')}
+                </a>
+                <a
+                  href="/booking"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 bg-primary text-white px-4 py-3 rounded-xl font-semibold text-lg hover:bg-primary/90 transition-colors"
+                >
+                  <CalendarCheck className="h-5 w-5" />
+                  {t('nav.book')}
                 </a>
               </nav>
               <div className="flex flex-col gap-3 mt-8">
