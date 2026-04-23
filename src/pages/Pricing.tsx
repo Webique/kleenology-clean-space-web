@@ -2,451 +2,335 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  CheckCircle2, MessageCircle, Home, Building, Castle,
-  Layers, Sparkles, Star, Shield, Sofa, Utensils,
-  Bath, Plus, ChevronDown, ChevronUp,
-} from "lucide-react";
 
 const WHATSAPP = "966537519929";
 
-// ─── Pricing Data ───────────────────────────────────────────────
-const PLACE_TYPES = {
+const wa = (msg: string) =>
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+
+// ── data ──────────────────────────────────────────────────────────
+
+const PLACES = {
+  ar: [
+    { label: "استوديو",       sub: "حتى 50 م²",       general: 500,  deep: 600  },
+    { label: "شقة صغيرة",    sub: "50 – 100 م²",      general: 600,  deep: 800  },
+    { label: "شقة وسط",       sub: "100 – 200 م²",     general: 800,  deep: 1200 },
+    { label: "شقة كبيرة",    sub: "200 – 300 م²",     general: 900,  deep: 1500 },
+    { label: "دور عادي",      sub: "150 – 250 م²",     general: 1300, deep: 2000 },
+    { label: "دور كبير",      sub: "250 – 400 م²",     general: 1800, deep: 2800 },
+    { label: "فيلا صغيرة",   sub: "300 – 400 م²",     general: 2000, deep: 3600 },
+    { label: "فيلا وسط",      sub: "400 – 600 م²",     general: 3500, deep: 4800 },
+    { label: "فيلا كبيرة",   sub: "أكثر من 600 م²",   general: null, deep: 5600 },
+  ],
+  en: [
+    { label: "Studio",          sub: "Up to 50 m²",    general: 500,  deep: 600  },
+    { label: "Small Apartment", sub: "50 – 100 m²",    general: 600,  deep: 800  },
+    { label: "Medium Apartment",sub: "100 – 200 m²",   general: 800,  deep: 1200 },
+    { label: "Large Apartment", sub: "200 – 300 m²",   general: 900,  deep: 1500 },
+    { label: "Regular Floor",   sub: "150 – 250 m²",   general: 1300, deep: 2000 },
+    { label: "Large Floor",     sub: "250 – 400 m²",   general: 1800, deep: 2800 },
+    { label: "Small Villa",     sub: "300 – 400 m²",   general: 2000, deep: 3600 },
+    { label: "Medium Villa",    sub: "400 – 600 m²",   general: 3500, deep: 4800 },
+    { label: "Large Villa",     sub: "600 m²+",        general: null, deep: 5600 },
+  ],
+};
+
+const ADDONS = {
   ar: [
     {
-      group: "شقق",
-      items: [
-        { key: "studio",     label: "استوديو",        sub: "حتى 50 م²",         icon: Home,    general: 500,  deep: 600  },
-        { key: "apt-small",  label: "شقة صغيرة",      sub: "50 – 100 م²",        icon: Home,    general: 600,  deep: 800  },
-        { key: "apt-medium", label: "شقة وسط",         sub: "100 – 200 م²",       icon: Home,    general: 800,  deep: 1200 },
-        { key: "apt-large",  label: "شقة كبيرة",      sub: "200 – 300 م²",       icon: Home,    general: 900,  deep: 1500 },
+      cat: "الأثاث",
+      rows: [
+        { name: "سجاد / موكيت",       price: "9 ر.س / م²"     },
+        { name: "مسند ظهر",           price: "25 ر.س / م²"    },
+        { name: "جلسة عربية",         price: "30 ر.س / م²"    },
+        { name: "كنب مقعد واحد",      price: "40 ر.س"         },
+        { name: "كنب مقعدين",         price: "80 ر.س"         },
+        { name: "كنب 3 مقاعد",        price: "120 ر.س"        },
+        { name: "كنب 4 مقاعد",        price: "160 ر.س"        },
+        { name: "كرسي طعام",          price: "15 ر.س"         },
+        { name: "كنب استرخاء",        price: "80 ر.س"         },
+        { name: "ستارة صغيرة",        price: "70 ر.س"         },
+        { name: "ستارة كبيرة",        price: "90 ر.س"         },
+        { name: "مرتبة مفردة",        price: "120 ر.س"        },
+        { name: "مرتبة مزدوجة",       price: "140 ر.س"        },
       ],
     },
     {
-      group: "أدوار",
-      items: [
-        { key: "floor-normal", label: "دور عادي",     sub: "150 – 250 م²",       icon: Layers,  general: 1300, deep: 2000 },
-        { key: "floor-large",  label: "دور كبير",     sub: "250 – 400 م²",       icon: Layers,  general: 1800, deep: 2800 },
+      cat: "المطابخ",
+      rows: [
+        { name: "مطبخ جديد صغير",     price: "500 ر.س"        },
+        { name: "مطبخ مستعمل صغير",   price: "600 ر.س"        },
+        { name: "مطبخ جديد وسط",      price: "700 ر.س"        },
+        { name: "مطبخ مستعمل وسط",    price: "800 ر.س"        },
+        { name: "مطبخ جديد كبير",     price: "900 ر.س"        },
+        { name: "مطبخ مستعمل كبير",   price: "1,000 ر.س"      },
       ],
     },
     {
-      group: "فلل",
-      items: [
-        { key: "villa-small",  label: "فيلا صغيرة",  sub: "300 – 400 م²",       icon: Castle,  general: 2000, deep: 3600 },
-        { key: "villa-medium", label: "فيلا وسط",     sub: "400 – 600 م²",       icon: Castle,  general: 3500, deep: 4800 },
-        { key: "villa-large",  label: "فيلا كبيرة",  sub: "أكثر من 600 م²",     icon: Castle,  general: null, deep: 5600 },
+      cat: "دورات المياه",
+      rows: [
+        { name: "دورة مياه صغيرة",    price: "100 ر.س"        },
+        { name: "دورة مياه كبيرة",    price: "130 ر.س"        },
+      ],
+    },
+    {
+      cat: "نوافذ وإضافات",
+      rows: [
+        { name: "نافذة صغيرة",        price: "50 ر.س"         },
+        { name: "نافذة وسط",          price: "70 ر.س"         },
+        { name: "نافذة كبيرة",        price: "100 ر.س"        },
+        { name: "تنظيف أرضيات",       price: "7 ر.س / م²"     },
+        { name: "تنظيف درج (دور واحد)", price: "150 ر.س"      },
       ],
     },
   ],
   en: [
     {
-      group: "Apartments",
-      items: [
-        { key: "studio",     label: "Studio",         sub: "Up to 50 m²",        icon: Home,    general: 500,  deep: 600  },
-        { key: "apt-small",  label: "Small Apartment",sub: "50 – 100 m²",        icon: Home,    general: 600,  deep: 800  },
-        { key: "apt-medium", label: "Medium Apartment",sub:"100 – 200 m²",       icon: Home,    general: 800,  deep: 1200 },
-        { key: "apt-large",  label: "Large Apartment",sub: "200 – 300 m²",       icon: Home,    general: 900,  deep: 1500 },
+      cat: "Furniture",
+      rows: [
+        { name: "Carpet / Rug",        price: "9 SAR / m²"    },
+        { name: "Backrest",            price: "25 SAR / m²"   },
+        { name: "Arabic Seating",      price: "30 SAR / m²"   },
+        { name: "Single Sofa",         price: "40 SAR"        },
+        { name: "2-Seat Sofa",         price: "80 SAR"        },
+        { name: "3-Seat Sofa",         price: "120 SAR"       },
+        { name: "4-Seat Sofa",         price: "160 SAR"       },
+        { name: "Dining Chair",        price: "15 SAR"        },
+        { name: "Recliner",            price: "80 SAR"        },
+        { name: "Small Curtain",       price: "70 SAR"        },
+        { name: "Large Curtain",       price: "90 SAR"        },
+        { name: "Single Mattress",     price: "120 SAR"       },
+        { name: "Double Mattress",     price: "140 SAR"       },
       ],
     },
     {
-      group: "Floors",
-      items: [
-        { key: "floor-normal", label: "Regular Floor",sub: "150 – 250 m²",      icon: Layers,  general: 1300, deep: 2000 },
-        { key: "floor-large",  label: "Large Floor",  sub: "250 – 400 m²",      icon: Layers,  general: 1800, deep: 2800 },
+      cat: "Kitchens",
+      rows: [
+        { name: "New Small Kitchen",   price: "500 SAR"       },
+        { name: "Used Small Kitchen",  price: "600 SAR"       },
+        { name: "New Medium Kitchen",  price: "700 SAR"       },
+        { name: "Used Medium Kitchen", price: "800 SAR"       },
+        { name: "New Large Kitchen",   price: "900 SAR"       },
+        { name: "Used Large Kitchen",  price: "1,000 SAR"     },
       ],
     },
     {
-      group: "Villas",
-      items: [
-        { key: "villa-small",  label: "Small Villa",  sub: "300 – 400 m²",      icon: Castle,  general: 2000, deep: 3600 },
-        { key: "villa-medium", label: "Medium Villa", sub: "400 – 600 m²",      icon: Castle,  general: 3500, deep: 4800 },
-        { key: "villa-large",  label: "Large Villa",  sub: "600 m²+",           icon: Castle,  general: null, deep: 5600 },
+      cat: "Bathrooms",
+      rows: [
+        { name: "Small Bathroom",      price: "100 SAR"       },
+        { name: "Large Bathroom",      price: "130 SAR"       },
+      ],
+    },
+    {
+      cat: "Windows & Extras",
+      rows: [
+        { name: "Small Window",        price: "50 SAR"        },
+        { name: "Medium Window",       price: "70 SAR"        },
+        { name: "Large Window",        price: "100 SAR"       },
+        { name: "Floor Cleaning",      price: "7 SAR / m²"    },
+        { name: "Staircase (1 floor)", price: "150 SAR"       },
       ],
     },
   ],
 };
 
-const ADDONS = {
-  ar: {
-    furniture: {
-      label: "الأثاث",
-      icon: Sofa,
-      items: [
-        { name: "سجاد / موكيت",      price: 9,   unit: "/ م²" },
-        { name: "مسند ظهر",          price: 25,  unit: "/ م²" },
-        { name: "جلسة عربية",        price: 30,  unit: "/ م²" },
-        { name: "كنب مقعد واحد",     price: 40,  unit: "/ قطعة" },
-        { name: "كنب مقعدين",        price: 80,  unit: "/ قطعة" },
-        { name: "كنب 3 مقاعد",       price: 120, unit: "/ قطعة" },
-        { name: "كنب 4 مقاعد",       price: 160, unit: "/ قطعة" },
-        { name: "كرسي طعام",         price: 15,  unit: "/ قطعة" },
-        { name: "كنب استرخاء",       price: 80,  unit: "/ قطعة" },
-        { name: "ستارة صغيرة",       price: 70,  unit: "/ قطعة" },
-        { name: "ستارة كبيرة",       price: 90,  unit: "/ قطعة" },
-        { name: "مرتبة مفردة",       price: 120, unit: "/ قطعة" },
-        { name: "مرتبة مزدوجة",      price: 140, unit: "/ قطعة" },
-      ],
-    },
-    kitchens: {
-      label: "المطابخ",
-      icon: Utensils,
-      items: [
-        { name: "مطبخ جديد صغير",    price: 500  },
-        { name: "مطبخ مستعمل صغير",  price: 600  },
-        { name: "مطبخ جديد وسط",     price: 700  },
-        { name: "مطبخ مستعمل وسط",   price: 800  },
-        { name: "مطبخ جديد كبير",    price: 900  },
-        { name: "مطبخ مستعمل كبير",  price: 1000 },
-      ],
-    },
-    bathrooms: {
-      label: "دورات المياه",
-      icon: Bath,
-      items: [
-        { name: "دورة مياه صغيرة",   price: 100 },
-        { name: "دورة مياه كبيرة",   price: 130 },
-      ],
-    },
-    extra: {
-      label: "إضافات أخرى",
-      icon: Plus,
-      items: [
-        { name: "نافذة صغيرة",       price: 50,  unit: "/ قطعة" },
-        { name: "نافذة وسط",         price: 70,  unit: "/ قطعة" },
-        { name: "نافذة كبيرة",       price: 100, unit: "/ قطعة" },
-        { name: "تنظيف أرضيات",      price: 7,   unit: "/ م²" },
-        { name: "تنظيف درج (دور واحد)", price: 150 },
-      ],
-    },
-  },
-  en: {
-    furniture: {
-      label: "Furniture",
-      icon: Sofa,
-      items: [
-        { name: "Carpet / Rug",       price: 9,   unit: "/ m²" },
-        { name: "Backrest",           price: 25,  unit: "/ m²" },
-        { name: "Arabic Seating",     price: 30,  unit: "/ m²" },
-        { name: "Single Sofa",        price: 40,  unit: "/ piece" },
-        { name: "2-Seat Sofa",        price: 80,  unit: "/ piece" },
-        { name: "3-Seat Sofa",        price: 120, unit: "/ piece" },
-        { name: "4-Seat Sofa",        price: 160, unit: "/ piece" },
-        { name: "Dining Chair",       price: 15,  unit: "/ piece" },
-        { name: "Recliner",           price: 80,  unit: "/ piece" },
-        { name: "Small Curtain",      price: 70,  unit: "/ piece" },
-        { name: "Large Curtain",      price: 90,  unit: "/ piece" },
-        { name: "Single Mattress",    price: 120, unit: "/ piece" },
-        { name: "Double Mattress",    price: 140, unit: "/ piece" },
-      ],
-    },
-    kitchens: {
-      label: "Kitchens",
-      icon: Utensils,
-      items: [
-        { name: "New Small Kitchen",  price: 500  },
-        { name: "Used Small Kitchen", price: 600  },
-        { name: "New Medium Kitchen", price: 700  },
-        { name: "Used Medium Kitchen",price: 800  },
-        { name: "New Large Kitchen",  price: 900  },
-        { name: "Used Large Kitchen", price: 1000 },
-      ],
-    },
-    bathrooms: {
-      label: "Bathrooms",
-      icon: Bath,
-      items: [
-        { name: "Small Bathroom",     price: 100 },
-        { name: "Large Bathroom",     price: 130 },
-      ],
-    },
-    extra: {
-      label: "Other Add-ons",
-      icon: Plus,
-      items: [
-        { name: "Small Window",       price: 50,  unit: "/ piece" },
-        { name: "Medium Window",      price: 70,  unit: "/ piece" },
-        { name: "Large Window",       price: 100, unit: "/ piece" },
-        { name: "Floor Cleaning",     price: 7,   unit: "/ m²" },
-        { name: "Staircase (1 floor)",price: 150 },
-      ],
-    },
-  },
-};
+// ── component ─────────────────────────────────────────────────────
 
-// ─── Component ──────────────────────────────────────────────────
 export default function Pricing() {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const lang = isRTL ? "ar" : "en";
 
-  const [serviceType, setServiceType] = useState<"general" | "deep">("general");
-  const [openAddon, setOpenAddon] = useState<string | null>("furniture");
+  const [mode, setMode] = useState<"general" | "deep">("general");
 
-  const groups = PLACE_TYPES[lang];
+  const places = PLACES[lang];
   const addons = ADDONS[lang];
 
-  const openWhatsApp = (msg: string) =>
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
-
-  const bookPlace = (label: string, price: number) => {
-    const msg = isRTL
-      ? `مرحباً، أريد حجز خدمة ${serviceType === "general" ? "تنظيف عام" : "تنظيف تأهيلي"} لـ ${label} بسعر ${price} ر.س`
-      : `Hello! I'd like to book ${serviceType === "general" ? "General Cleaning" : "Deep Cleaning"} for ${label} at ${price} SAR`;
-    openWhatsApp(msg);
-  };
+  const bookMsg = (label: string, sub: string, price: number | null) =>
+    isRTL
+      ? `مرحباً، أريد حجز خدمة ${mode === "general" ? "تنظيف عام" : "تنظيف تأهيلي"} لـ ${label} (${sub})${price ? ` — السعر ${price} ر.س` : ""}`
+      : `Hello! I'd like to book ${mode === "general" ? "General Cleaning" : "Deep Cleaning"} for ${label} (${sub})${price ? ` — ${price} SAR` : ""}`;
 
   return (
-    <div className={`min-h-screen bg-background ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen bg-white ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       <SEO
-        title={isRTL ? "أسعار خدمات التنظيف | كلينولوجي" : "Cleaning Service Prices | Kleenology"}
+        title={isRTL ? "الأسعار | كلينولوجي" : "Pricing | Kleenology"}
         description={isRTL
-          ? "أسعار شفافة وواضحة لخدمات التنظيف في الرياض. تنظيف عام وتأهيلي للشقق والأدوار والفلل مع إضافات متعددة."
-          : "Transparent pricing for cleaning services in Riyadh. General and deep cleaning for apartments, floors, and villas."}
-        keywords="أسعار تنظيف, تكلفة تنظيف, cleaning prices, kleenology pricing"
+          ? "أسعار خدمات التنظيف في الرياض — تنظيف عام وتنظيف تأهيلي للشقق والأدوار والفلل."
+          : "Cleaning service prices in Riyadh — general and deep cleaning for apartments, floors, and villas."}
+        keywords="أسعار تنظيف, cleaning prices, kleenology"
         url="https://kleenology.me/pricing"
       />
       <Header />
 
-      <main className="pt-24 pb-20">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-primary/10 to-brand-blue/5 py-12 px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              {isRTL ? "أسعار شفافة بلا مفاجآت" : "Transparent Prices, No Surprises"}
+      <main className="pt-24 pb-24">
+
+        {/* ── Title ── */}
+        <div className="border-b border-border">
+          <div className="max-w-5xl mx-auto px-5 py-10">
+            <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
+              {isRTL ? "الأسعار" : "Pricing"}
             </h1>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground mt-2 text-base">
               {isRTL
-                ? "اختر نوع الخدمة ونوع المكان واعرف السعر مباشرة"
-                : "Pick your service type and property — get the price instantly"}
+                ? "اختر نوع الخدمة، ثم اضغط على خدمتك لتحجز مباشرة عبر واتساب"
+                : "Choose a service type, then tap any row to book via WhatsApp"}
             </p>
           </div>
-        </section>
+        </div>
 
-        <div className="max-w-4xl mx-auto px-4 mt-10 space-y-10">
+        <div className="max-w-5xl mx-auto px-5">
 
-          {/* Special Offer */}
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <Star className="h-6 w-6 text-amber-500 mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="font-bold text-foreground text-lg">
-                  {isRTL ? "عرض المجلس" : "Majlis Package"}
-                </p>
-                <p className="text-muted-foreground text-sm mt-0.5">
-                  {isRTL
-                    ? "طقم كنب 9 مقاعد + سجادة 20 م² + ستارة"
-                    : "9-seat sofa set + 20 m² carpet + curtain"}
-                </p>
-              </div>
+          {/* ── Special offer strip ── */}
+          <div className="flex items-center justify-between py-4 border-b border-border gap-4 flex-wrap">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-600 block mb-0.5">
+                {isRTL ? "عرض خاص" : "Special Offer"}
+              </span>
+              <span className="font-semibold text-foreground">
+                {isRTL
+                  ? "عرض المجلس — كنب 9 مقاعد + سجادة 20 م² + ستارة"
+                  : "Majlis Package — 9-seat sofa + 20 m² carpet + curtain"}
+              </span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-2xl font-bold text-amber-600">299 {isRTL ? "ر.س" : "SAR"}</span>
-              <Button
-                size="sm"
-                className="bg-amber-500 hover:bg-amber-600 text-white"
-                onClick={() => openWhatsApp(isRTL
-                  ? "مرحباً، أريد الاستفسار عن عرض المجلس (299 ر.س)"
-                  : "Hello! I'd like to inquire about the Majlis Package (299 SAR)")}
-              >
-                {isRTL ? "احجز الآن" : "Book Now"}
-              </Button>
-            </div>
+            <button
+              onClick={() => wa(isRTL
+                ? "مرحباً، أريد الاستفسار عن عرض المجلس (299 ر.س)"
+                : "Hello! I'd like to inquire about the Majlis Package (299 SAR)")}
+              className="flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors whitespace-nowrap"
+            >
+              <span className="text-xl font-black">299</span>
+              <span className="font-normal text-xs">{isRTL ? "ر.س" : "SAR"}</span>
+              <span className="underline underline-offset-2">
+                {isRTL ? "احجز" : "Book"}
+              </span>
+            </button>
           </div>
 
-          {/* Service Type Toggle */}
-          <div>
-            <h2 className="text-xl font-bold mb-4 text-foreground">
-              {isRTL ? "نوع الخدمة" : "Service Type"}
-            </h2>
-            <div className="grid grid-cols-2 gap-3 max-w-md">
-              {[
-                {
-                  key: "general" as const,
-                  label: isRTL ? "تنظيف عام" : "General Cleaning",
-                  desc: isRTL ? "تنظيف دوري شامل" : "Regular thorough cleaning",
-                },
-                {
-                  key: "deep" as const,
-                  label: isRTL ? "تنظيف تأهيلي" : "Deep Cleaning",
-                  desc: isRTL ? "تنظيف عميق ومكثف" : "Intensive deep clean",
-                },
-              ].map(({ key, label, desc }) => (
+          {/* ── Mode toggle ── */}
+          <div className="flex items-center gap-1 mt-6 mb-2 bg-muted p-1 rounded-lg w-fit">
+            {(["general", "deep"] as const).map((m) => (
+              <button
+                key={m}
+                onClick={() => setMode(m)}
+                className={cn(
+                  "px-5 py-2 rounded-md text-sm font-semibold transition-all duration-150",
+                  mode === m
+                    ? "bg-white text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {m === "general"
+                  ? isRTL ? "تنظيف عام" : "General"
+                  : isRTL ? "تنظيف تأهيلي" : "Deep"}
+              </button>
+            ))}
+          </div>
+
+          {/* ── Price list ── */}
+          <div className="mt-2">
+            {/* Header row */}
+            <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-3 py-2 text-xs font-bold uppercase tracking-widest text-muted-foreground border-b border-border">
+              <span>{isRTL ? "نوع المكان" : "Property"}</span>
+              <span className="text-end w-20">{isRTL ? "المساحة" : "Area"}</span>
+              <span className="text-end w-24">{isRTL ? "السعر" : "Price"}</span>
+            </div>
+
+            {places.map(({ label, sub, general, deep }, i) => {
+              const price = mode === "general" ? general : deep;
+              return (
                 <button
-                  key={key}
-                  onClick={() => setServiceType(key)}
+                  key={label}
+                  onClick={() => wa(bookMsg(label, sub, price))}
                   className={cn(
-                    "p-4 rounded-xl border-2 text-start transition-all duration-200",
-                    serviceType === key
-                      ? "border-primary bg-primary/5 shadow-md"
-                      : "border-border hover:border-primary/40",
+                    "w-full grid grid-cols-[1fr_auto_auto] gap-4 px-3 py-4 text-start transition-colors duration-100 border-b border-border last:border-0 group",
+                    "hover:bg-primary/5 active:bg-primary/10",
+                    i % 2 === 0 ? "" : "bg-muted/30",
                   )}
                 >
-                  {serviceType === key && (
-                    <CheckCircle2 className="h-4 w-4 text-primary mb-1" />
-                  )}
-                  <p className="font-bold text-foreground">{label}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Price Cards by Group */}
-          {groups.map((group) => (
-            <div key={group.group}>
-              <h2 className="text-xl font-bold mb-4 text-foreground flex items-center gap-2">
-                <span className="w-1 h-6 bg-primary rounded-full inline-block" />
-                {group.group}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {group.items.map(({ key, label, sub, icon: Icon, general, deep }) => {
-                  const price = serviceType === "general" ? general : deep;
-                  const unavailable = price === null;
-                  return (
-                    <div
-                      key={key}
-                      className={cn(
-                        "bg-white rounded-2xl border border-border p-5 flex flex-col gap-4 transition-all duration-200",
-                        !unavailable && "hover:shadow-md hover:border-primary/30",
-                        unavailable && "opacity-50",
-                      )}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-foreground">{label}</p>
-                          <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-auto">
-                        {unavailable ? (
-                          <p className="text-sm text-muted-foreground font-medium">
-                            {isRTL ? "تواصل للسعر" : "Contact for price"}
-                          </p>
-                        ) : (
-                          <p className="text-2xl font-bold text-primary">
-                            {price?.toLocaleString("ar-SA")}
-                            <span className="text-sm font-medium text-muted-foreground ms-1">
-                              {isRTL ? "ر.س" : "SAR"}
-                            </span>
-                          </p>
-                        )}
-                        <Button
-                          size="sm"
-                          className="mt-3 w-full"
-                          onClick={() =>
-                            openWhatsApp(
-                              isRTL
-                                ? `مرحباً، أريد حجز خدمة ${serviceType === "general" ? "تنظيف عام" : "تنظيف تأهيلي"} لـ ${label} (${sub})${price ? ` بسعر ${price} ر.س` : ""}`
-                                : `Hello! I'd like to book ${serviceType === "general" ? "General Cleaning" : "Deep Cleaning"} for ${label} (${sub})${price ? ` at ${price} SAR` : ""}`,
-                            )
-                          }
-                        >
-                          <MessageCircle className="h-3.5 w-3.5 me-1.5" />
-                          {isRTL ? "احجز الآن" : "Book Now"}
-                        </Button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-
-          {/* Add-ons */}
-          <div>
-            <h2 className="text-xl font-bold mb-2 text-foreground">
-              {isRTL ? "إضافات وخدمات تكميلية" : "Add-ons & Extra Services"}
-            </h2>
-            <p className="text-muted-foreground text-sm mb-5">
-              {isRTL
-                ? "يمكن إضافتها لأي باقة بالأسعار أدناه"
-                : "Can be added to any package at the prices below"}
-            </p>
-            <div className="space-y-3">
-              {Object.entries(addons).map(([key, section]) => {
-                const Icon = section.icon;
-                const isOpen = openAddon === key;
-                return (
-                  <div key={key} className="bg-white rounded-2xl border border-border overflow-hidden">
-                    <button
-                      onClick={() => setOpenAddon(isOpen ? null : key)}
-                      className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors"
-                    >
-                      <span className="flex items-center gap-3 font-bold text-foreground">
-                        <Icon className="h-5 w-5 text-primary" />
-                        {section.label}
+                  <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {label}
+                    <span className="flex items-center gap-1.5 mt-0.5">
+                      <MessageCircle className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="text-xs text-muted-foreground font-normal opacity-0 group-hover:opacity-100 transition-opacity">
+                        {isRTL ? "اضغط للحجز" : "tap to book"}
                       </span>
-                      {isOpen ? (
-                        <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                      )}
-                    </button>
-                    {isOpen && (
-                      <div className="border-t border-border divide-y divide-border">
-                        {section.items.map((item) => (
-                          <div
-                            key={item.name}
-                            className="flex items-center justify-between px-5 py-3"
-                          >
-                            <span className="text-sm text-foreground">{item.name}</span>
-                            <span className="font-bold text-primary text-sm">
-                              {item.price} {isRTL ? "ر.س" : "SAR"}
-                              {"unit" in item && item.unit && (
-                                <span className="font-normal text-muted-foreground text-xs ms-1">
-                                  {item.unit}
-                                </span>
-                              )}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
+                    </span>
+                  </span>
+                  <span className="text-sm text-muted-foreground w-20 text-end self-start pt-0.5">
+                    {sub}
+                  </span>
+                  <span className={cn(
+                    "font-black text-lg w-24 text-end self-start",
+                    price ? "text-foreground" : "text-muted-foreground text-sm font-normal",
+                  )}>
+                    {price
+                      ? `${price.toLocaleString("ar-SA")}`
+                      : isRTL ? "تواصل معنا" : "On request"}
+                    {price && (
+                      <span className="text-xs font-normal text-muted-foreground me-0.5">
+                        {" "}{isRTL ? "ر.س" : "SAR"}
+                      </span>
                     )}
-                  </div>
-                );
-              })}
-            </div>
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Trust + CTA */}
-          <div className="bg-gradient-to-br from-primary/5 to-brand-blue/5 rounded-2xl p-6 text-center">
-            <div className="flex justify-center gap-6 mb-5">
-              {[
-                { Icon: Shield, text: isRTL ? "ضمان ١٠٠٪" : "100% Guarantee" },
-                { Icon: Star,   text: isRTL ? "تقييم ٤.٩" : "4.9 Rating" },
-                { Icon: Sparkles, text: isRTL ? "فريق محترف" : "Pro Team" },
-              ].map(({ Icon, text }) => (
-                <div key={text} className="flex flex-col items-center gap-1">
-                  <Icon className="h-5 w-5 text-primary" />
-                  <span className="text-xs font-semibold text-foreground">{text}</span>
+          {/* ── Add-ons ── */}
+          <div className="mt-14">
+            <h2 className="text-2xl font-black text-foreground mb-1">
+              {isRTL ? "الإضافات" : "Add-ons"}
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              {isRTL ? "تُضاف على أي خدمة حسب الطلب" : "Added to any service on request"}
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+              {addons.map((section) => (
+                <div key={section.cat}>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground pb-2 border-b border-border mb-1">
+                    {section.cat}
+                  </h3>
+                  {section.rows.map((row) => (
+                    <div
+                      key={row.name}
+                      className="flex items-center justify-between py-2.5 border-b border-border/50 last:border-0"
+                    >
+                      <span className="text-sm text-foreground">{row.name}</span>
+                      <span className="text-sm font-bold text-foreground tabular-nums">{row.price}</span>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">
-              {isRTL ? "مو متأكد من الخيار؟" : "Not sure which to pick?"}
-            </h3>
-            <p className="text-muted-foreground text-sm mb-5">
-              {isRTL
-                ? "تواصل معنا وسنساعدك تختار الباقة المناسبة لمكانك"
-                : "Contact us and we'll help you choose the right package"}
-            </p>
-            <Button
-              size="lg"
-              className="bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-8"
-              onClick={() => openWhatsApp(isRTL
+          </div>
+
+          {/* ── Bottom CTA ── */}
+          <div className="mt-14 pt-8 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <p className="font-bold text-foreground text-lg">
+                {isRTL ? "محتاج مساعدة في الاختيار؟" : "Need help choosing?"}
+              </p>
+              <p className="text-muted-foreground text-sm mt-0.5">
+                {isRTL
+                  ? "تواصل معنا وسنساعدك تختار المناسب لمكانك"
+                  : "We'll help you pick the right option"}
+              </p>
+            </div>
+            <button
+              onClick={() => wa(isRTL
                 ? "مرحباً، أريد الاستفسار عن أسعار خدمات التنظيف"
-                : "Hello! I'd like to inquire about cleaning service prices")}
+                : "Hello! I'd like to inquire about cleaning prices")}
+              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
             >
-              <MessageCircle className="h-5 w-5 me-2" />
-              {isRTL ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
-            </Button>
+              <MessageCircle className="h-4 w-4" />
+              {isRTL ? "واتساب" : "WhatsApp"}
+            </button>
           </div>
 
         </div>
