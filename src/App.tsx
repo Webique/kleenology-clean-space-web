@@ -16,7 +16,6 @@ import AboutUs from "./pages/AboutUs";
 import RiyadhCleaning from "./pages/RiyadhCleaning";
 import AdsLanding from "./pages/AdsLanding";
 import PremiumLanding from "./pages/PremiumLanding";
-import Pricing from "./pages/Pricing";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
@@ -115,8 +114,7 @@ const App = () => {
               <Route path="/cleaning-riyadh" element={<RiyadhCleaning />} />
               <Route path="/book-now" element={<AdsLanding />} />
               <Route path="/premium" element={<PremiumLanding />} />
-              <Route path="/pricing" element={<Pricing />} />
-{/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
