@@ -127,6 +127,12 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
                 {t('footer.booking')}
               </a>
               <a
+                href="/blog"
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors cursor-pointer"
+              >
+                المدونة
+              </a>
+              <a
                 href="/terms-and-conditions"
                 onClick={(e) => {
                   // Allow default link behavior to navigate to the terms page

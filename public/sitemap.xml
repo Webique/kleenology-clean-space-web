@@ -60,6 +60,61 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <!-- Blog -->
+  <url>
+    <loc>https://kleenology.me/blog</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-qabl-ramadan</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/alamat-tanzif-ameeq</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-sajjad-manzil</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/nazafa-maktab-intajiyya</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/adrar-mukayyifat-qadhira</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/dalil-tanzif-baad-binaa</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/mawad-tanzif-amina-atfal</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/kaifa-takhtar-sharika-tanzif</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Neighborhood pages -->
   <url>
     <loc>https://kleenology.me/cleaning-riyadh/malqa</loc>

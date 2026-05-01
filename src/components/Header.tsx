@@ -90,6 +90,12 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
           >
             {t('nav.about')}
           </a>
+          <a
+            href="/blog"
+            className="text-foreground hover:text-primary transition-colors cursor-pointer font-medium"
+          >
+            المدونة
+          </a>
           <a 
             href="#services" 
             onClick={(e) => {
@@ -194,6 +200,13 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.about')}
+                </a>
+                <a
+                  href="/blog"
+                  onClick={() => setOpen(false)}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  المدونة
                 </a>
                 <a
                   href="#services"
