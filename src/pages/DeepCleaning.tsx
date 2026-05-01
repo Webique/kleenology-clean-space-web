@@ -4,8 +4,8 @@ import { Sparkles, Shield, Clock, Star, Leaf, Users } from "lucide-react";
 const ar: ServiceContent = {
   seo: {
     title: "تنظيف عميق احترافي | كلينولوجي",
-    description: "خدمة تنظيف عميق شاملة من الأعلى للأسفل. تنظيف الخزائن، الأجهزة، الأسقف، والمناطق صعبة الوصول بأحدث المعدات.",
-    keywords: "تنظيف عميق, تنظيف شامل, تنظيف احترافي, كلينولوجي, deep cleaning الرياض",
+    description: "خدمة تنظيف عميق شاملة من الأعلى للأسفل في الرياض. تنظيف الخزائن، الأجهزة، الأسقف، والمناطق صعبة الوصول — كلينولوجي.",
+    keywords: "تنظيف عميق الرياض, تنظيف شامل الرياض, تنظيف احترافي, كلينولوجي, deep cleaning Riyadh",
     url: "https://kleenology.me/deep-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-primary via-primary/80 to-brand-blue",
@@ -69,8 +69,8 @@ const ar: ServiceContent = {
 const en: ServiceContent = {
   seo: {
     title: "Professional Deep Cleaning Services | Kleenology",
-    description: "Comprehensive top-to-bottom deep cleaning. Cabinets, appliances, ceilings, and hard-to-reach areas using professional equipment.",
-    keywords: "deep cleaning, thorough cleaning, professional cleaning, kleenology, deep cleaning Riyadh",
+    description: "Comprehensive top-to-bottom deep cleaning in Riyadh. Cabinets, appliances, ceilings, and hard-to-reach areas using professional equipment. Book now!",
+    keywords: "deep cleaning Riyadh, thorough cleaning Riyadh, professional cleaning, kleenology, تنظيف عميق",
     url: "https://kleenology.me/deep-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-primary via-primary/80 to-brand-blue",

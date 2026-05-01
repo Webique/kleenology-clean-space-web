@@ -54,6 +54,7 @@ export default function AdsLanding() {
         description="كلينولوجي شركة تنظيف تعمل في الرياض منذ ٣ سنوات. +٦٩٠ عميل، مواد آمنة، ضمان رضا ١٠٠٪. احجز الآن."
         keywords="شركة تنظيف الرياض, تنظيف منازل الرياض, كلينولوجي"
         url="https://kleenology.me/book-now"
+        noindex={true}
       />
 
       {/* Header */}

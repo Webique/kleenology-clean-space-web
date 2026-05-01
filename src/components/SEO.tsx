@@ -7,19 +7,21 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
-  jsonLd?: object;
+  jsonLd?: object | object[];
   hreflang?: boolean;
+  noindex?: boolean;
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "Kleenology - Professional Cleaning Services | Excellence in Every Inch",
-  description = "Kleenology delivers spotless cleaning results using eco-friendly products. Professional home and office cleaning services with satisfaction guarantee.",
-  keywords = "cleaning services, professional cleaning, house cleaning, office cleaning, eco-friendly cleaning, deep cleaning, sanitization",
+  title = "كلينولوجي - خدمات تنظيف احترافية في الرياض | Kleenology",
+  description = "كلينولوجي — شركة تنظيف احترافية في الرياض. تنظيف منازل، مكاتب، سجاد، وتنظيف عميق بمواد آمنة وضمان الرضا ١٠٠٪. احجز الآن!",
+  keywords = "تنظيف منازل الرياض, شركة تنظيف الرياض, تنظيف عميق, تنظيف سجاد, تنظيف مكاتب, كلينولوجي, cleaning company Riyadh",
   image = "https://kleenology.me/logobg.png",
   url = "https://kleenology.me",
   type = "website",
   jsonLd,
   hreflang = true,
+  noindex = false,
 }) => {
   useEffect(() => {
     document.title = title;
@@ -36,6 +38,7 @@ export const SEO: React.FC<SEOProps> = ({
 
     setMeta('meta[name="description"]', 'name', description);
     setMeta('meta[name="keywords"]', 'name', keywords);
+    setMeta('meta[name="robots"]', 'name', noindex ? 'noindex, nofollow' : 'index, follow');
 
     const ogTags: [string, string][] = [
       ['og:title', title],
@@ -95,23 +98,22 @@ export const SEO: React.FC<SEOProps> = ({
       });
     }
 
+    document.querySelectorAll('[data-seo-jsonld]').forEach(el => el.remove());
     if (jsonLd) {
-      const scriptId = 'seo-page-jsonld';
-      let script = document.getElementById(scriptId);
-      if (!script) {
-        script = document.createElement('script');
+      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      schemas.forEach((schema) => {
+        const script = document.createElement('script');
         script.setAttribute('type', 'application/ld+json');
-        script.id = scriptId;
+        script.setAttribute('data-seo-jsonld', 'true');
+        script.textContent = JSON.stringify(schema);
         document.head.appendChild(script);
-      }
-      script.textContent = JSON.stringify(jsonLd);
+      });
     }
 
     return () => {
-      const script = document.getElementById('seo-page-jsonld');
-      if (script) script.remove();
+      document.querySelectorAll('[data-seo-jsonld]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, image, url, type, jsonLd, hreflang]);
+  }, [title, description, keywords, image, url, type, jsonLd, hreflang, noindex]);
 
   return null;
 };

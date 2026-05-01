@@ -58,6 +58,47 @@ export default function RiyadhCleaning() {
     window.location.href = "tel:+966537519929";
   };
 
+  const riyadhJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://kleenology.me" },
+        { "@type": "ListItem", "position": 2, "name": "خدمات التنظيف في الرياض", "item": "https://kleenology.me/cleaning-riyadh" },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "خدمات التنظيف في الرياض — كلينولوجي",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "تنظيف المنازل بالرياض", "url": "https://kleenology.me/home-cleaning" } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "تنظيف المكاتب بالرياض", "url": "https://kleenology.me/office-cleaning" } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "التنظيف العميق بالرياض", "url": "https://kleenology.me/deep-cleaning" } },
+        { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "تنظيف السجاد بالرياض", "url": "https://kleenology.me/carpet-cleaning" } },
+        { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "تنظيف ما بعد البناء بالرياض", "url": "https://kleenology.me/post-construction-cleaning" } },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "كلينولوجي | Kleenology",
+      "url": "https://kleenology.me/cleaning-riyadh",
+      "telephone": "+966537519929",
+      "areaServed": [
+        { "@type": "City", "name": "الرياض", "sameAs": "https://www.wikidata.org/wiki/Q3692" },
+        ...neighborhoods.map(n => ({ "@type": "Neighborhood", "name": n })),
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "690",
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       <SEO
@@ -65,6 +106,7 @@ export default function RiyadhCleaning() {
         description="كلينولوجي أفضل شركة تنظيف في الرياض. تنظيف منازل، مكاتب، سجاد وتنظيف عميق بمواد آمنة وضمان الرضا ١٠٠٪. خدمة في جميع أحياء الرياض. احجز الآن!"
         keywords="شركة تنظيف الرياض, تنظيف منازل الرياض, تنظيف شقق الرياض, تنظيف فلل الرياض, شركة تنظيف بالرياض, تنظيف عميق الرياض, تنظيف سجاد الرياض, أفضل شركة تنظيف الرياض"
         url="https://kleenology.me/cleaning-riyadh"
+        jsonLd={riyadhJsonLd}
       />
       <Header />
 

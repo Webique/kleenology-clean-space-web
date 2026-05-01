@@ -6,8 +6,8 @@ const HardHatIcon = () => <HardHat className="h-10 w-10 text-white" />;
 const ar: ServiceContent = {
   seo: {
     title: "تنظيف ما بعد البناء والتشطيب | كلينولوجي",
-    description: "تنظيف متخصص بعد البناء والتجديد. إزالة الغبار والأتربة وبقايا الطلاء والإسمنت. نسلمك المكان جاهزاً للسكن.",
-    keywords: "تنظيف بعد البناء, تنظيف تشطيبات, تنظيف ما بعد التجديد, تنظيف عمارات, كلينولوجي",
+    description: "تنظيف متخصص بعد البناء والتجديد في الرياض. إزالة الغبار والأتربة وبقايا الطلاء والإسمنت — نسلمك المكان جاهزاً للسكن.",
+    keywords: "تنظيف بعد البناء الرياض, تنظيف تشطيبات الرياض, تنظيف ما بعد التجديد, تنظيف عمارات, كلينولوجي",
     url: "https://kleenology.me/post-construction-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500",
@@ -71,8 +71,8 @@ const ar: ServiceContent = {
 const en: ServiceContent = {
   seo: {
     title: "Post-Construction Cleaning Services | Kleenology",
-    description: "Specialized cleaning after construction and renovation. Dust, paint, and cement removal. We hand over your space move-in ready.",
-    keywords: "post construction cleaning, after renovation cleaning, construction cleanup, kleenology",
+    description: "Specialist post-construction and renovation cleaning in Riyadh. Dust, paint, and cement removal. We hand your space over move-in ready. Book now!",
+    keywords: "post construction cleaning Riyadh, renovation cleaning Riyadh, construction cleanup, kleenology",
     url: "https://kleenology.me/post-construction-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-500",

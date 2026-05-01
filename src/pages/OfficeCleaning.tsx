@@ -4,8 +4,8 @@ import { Building2, Shield, Clock, Zap, Users, Star } from "lucide-react";
 const ar: ServiceContent = {
   seo: {
     title: "تنظيف مكاتب وشركات احترافي | كلينولوجي",
-    description: "خدمات تنظيف مكاتب وشركات وبيئات عمل احترافية. جدولة مرنة وفريق موثوق مع ضمان النظافة المستمرة.",
-    keywords: "تنظيف مكاتب, تنظيف شركات, تنظيف بيئة عمل, تنظيف تجاري, كلينولوجي",
+    description: "خدمات تنظيف مكاتب وشركات احترافية في الرياض. جدولة مرنة وفريق موثوق مع ضمان النظافة المستمرة — كلينولوجي.",
+    keywords: "تنظيف مكاتب الرياض, تنظيف شركات الرياض, تنظيف بيئة عمل, تنظيف تجاري, كلينولوجي",
     url: "https://kleenology.me/office-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-500",
@@ -69,8 +69,8 @@ const ar: ServiceContent = {
 const en: ServiceContent = {
   seo: {
     title: "Professional Office & Commercial Cleaning | Kleenology",
-    description: "Professional cleaning for offices, companies, and workplaces. Flexible scheduling and trusted team with consistent cleanliness guarantee.",
-    keywords: "office cleaning, commercial cleaning, business cleaning, corporate cleaning, workplace cleaning, kleenology",
+    description: "Professional office and commercial cleaning in Riyadh. Flexible scheduling and trusted team with consistent cleanliness guarantee. Book now!",
+    keywords: "office cleaning Riyadh, commercial cleaning Riyadh, business cleaning, corporate cleaning, workplace cleaning, kleenology",
     url: "https://kleenology.me/office-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-500",

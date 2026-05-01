@@ -137,6 +137,7 @@ export default function PremiumLanding() {
         description="+٦٩٠ عميل في الرياض. مواد آمنة. ضمان الرضا ١٠٠٪. احجز الآن."
         keywords="شركة تنظيف الرياض, تنظيف منازل, كلينولوجي"
         url="https://kleenology.me/premium"
+        noindex={true}
       />
 
       {/* NAV */}

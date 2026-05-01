@@ -4,8 +4,8 @@ import { Shield, Zap, Star, Leaf, Droplets, Clock } from "lucide-react";
 const ar: ServiceContent = {
   seo: {
     title: "تنظيف سجاد وموكيت احترافي | كلينولوجي",
-    description: "تنظيف السجاد والموكيت بالبخار وإزالة البقع العنيدة. معدات احترافية ومواد آمنة. نتائج مضمونة.",
-    keywords: "تنظيف سجاد, تنظيف موكيت, إزالة بقع السجاد, تنظيف بالبخار, كلينولوجي",
+    description: "تنظيف السجاد والموكيت بالبخار وإزالة البقع العنيدة في الرياض. معدات احترافية ومواد آمنة ونتائج مضمونة — كلينولوجي.",
+    keywords: "تنظيف سجاد الرياض, تنظيف موكيت الرياض, إزالة بقع السجاد, تنظيف بالبخار, كلينولوجي",
     url: "https://kleenology.me/carpet-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-amber-600 via-amber-500 to-yellow-400",
@@ -69,8 +69,8 @@ const ar: ServiceContent = {
 const en: ServiceContent = {
   seo: {
     title: "Professional Carpet & Rug Cleaning | Kleenology",
-    description: "Steam carpet cleaning and stubborn stain removal. Professional equipment and safe products. Guaranteed results with fast drying.",
-    keywords: "carpet cleaning, rug cleaning, stain removal, steam cleaning, kleenology",
+    description: "Professional carpet and rug steam cleaning in Riyadh. Remove tough stains with eco-friendly products. Guaranteed results with fast drying. Book now!",
+    keywords: "carpet cleaning Riyadh, rug cleaning Riyadh, stain removal, steam cleaning, kleenology",
     url: "https://kleenology.me/carpet-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-amber-600 via-amber-500 to-yellow-400",

@@ -4,8 +4,8 @@ import { Home, Shield, Leaf, Clock, Star, Users } from "lucide-react";
 const ar: ServiceContent = {
   seo: {
     title: "تنظيف منازل احترافي | كلينولوجي",
-    description: "خدمة تنظيف منازل احترافية بأحدث المعدات ومواد آمنة وصديقة للبيئة. نظافة شاملة مع ضمان الرضا التام.",
-    keywords: "تنظيف منازل, تنظيف شقق, تنظيف بيت, خدمة تنظيف, كلينولوجي, تنظيف الرياض",
+    description: "خدمة تنظيف منازل احترافية في الرياض بأحدث المعدات ومواد آمنة وصديقة للبيئة. نظافة شاملة مع ضمان الرضا التام — كلينولوجي.",
+    keywords: "تنظيف منازل الرياض, تنظيف شقق الرياض, تنظيف بيت, خدمة تنظيف, كلينولوجي, تنظيف المنازل",
     url: "https://kleenology.me/home-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-400",
@@ -69,8 +69,8 @@ const ar: ServiceContent = {
 const en: ServiceContent = {
   seo: {
     title: "Professional Home Cleaning Services | Kleenology",
-    description: "Expert home cleaning services with eco-friendly products. Deep cleaning, sanitization, and spotless results guaranteed. Book your home cleaning today!",
-    keywords: "home cleaning, house cleaning, residential cleaning, deep cleaning, eco-friendly cleaning, sanitization",
+    description: "Expert home cleaning services in Riyadh with eco-friendly products. Deep cleaning, sanitization, and spotless results guaranteed. Book your home cleaning today!",
+    keywords: "home cleaning Riyadh, house cleaning Riyadh, residential cleaning, deep cleaning, eco-friendly cleaning, kleenology",
     url: "https://kleenology.me/home-cleaning",
   },
   heroGradient: "bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-400",
