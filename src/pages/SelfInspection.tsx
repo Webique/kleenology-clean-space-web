@@ -97,8 +97,8 @@ export default function SelfInspection() {
   const isRTL = i18n.dir() === "rtl";
   const lang = isRTL ? "ar" : "en";
 
-  const [step, setStep]           = useState<Step>(1);
-  const [shareError, setShareError] = useState(false);
+  const [step, setStep]       = useState<Step>(1);
+  const [showMediaModal, setShowMediaModal] = useState(false);
   const [data, setData] = useState<InspectionData>({
     propertyType: "",
     area: "",
@@ -189,30 +189,18 @@ export default function SelfInspection() {
     );
   };
 
-  const sendWhatsApp = async () => {
-    setShareError(false);
+  const openWhatsApp = () => {
     const msg = buildMessage();
-
-    // Try Web Share API with files (works on Android Chrome & iOS Safari)
-    if (data.media.length > 0 && navigator.canShare) {
-      try {
-        const shareData: ShareData = {
-          text: msg,
-          files: data.media.map(m => m.file),
-        };
-        if (navigator.canShare(shareData)) {
-          await navigator.share(shareData);
-          return;
-        }
-      } catch (err: unknown) {
-        // User cancelled share sheet — don't fallback automatically
-        if (err instanceof Error && err.name === "AbortError") return;
-        setShareError(true);
-      }
-    }
-
-    // Fallback: open WhatsApp with text only
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
+  const sendWhatsApp = () => {
+    if (data.media.length > 0) {
+      // Show modal first so user knows to attach files in the WhatsApp chat that opens
+      setShowMediaModal(true);
+    } else {
+      openWhatsApp();
+    }
   };
 
   const progressPct = ((step - 1) / 4) * 100;
@@ -439,8 +427,8 @@ export default function SelfInspection() {
                   <Info className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
                   <p className="text-xs text-blue-700 leading-relaxed">
                     {isRTL
-                      ? "عند الضغط على إرسال، ستُفتح قائمة المشاركة على جهازك — اختر واتساب لإرسال الرسالة مع الملفات مباشرة."
-                      : "When you press send, your device's share sheet will open — choose WhatsApp to send the message with files directly."}
+                      ? "عند الإرسال سيُفتح واتساب مباشرة على رقمنا — ستظهر لك الصور والفيديوهات لترسلها في نفس المحادثة."
+                      : "On send, WhatsApp will open directly on our number — your media will be shown so you can attach it in the same chat."}
                   </p>
                 </div>
 
@@ -677,18 +665,6 @@ export default function SelfInspection() {
                   ))}
                 </div>
 
-                {/* Share error warning */}
-                {shareError && (
-                  <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-3.5 mb-4">
-                    <AlertCircle className="h-4 w-4 text-red-600 mt-0.5 shrink-0" />
-                    <p className="text-xs text-red-700 leading-relaxed">
-                      {isRTL
-                        ? "تعذّر مشاركة الملفات تلقائياً — سيُفتح واتساب بالنص فقط، يرجى إرفاق الملفات يدوياً."
-                        : "Couldn't share files automatically — WhatsApp will open with text only, please attach files manually."}
-                    </p>
-                  </div>
-                )}
-
                 {/* Guarantee */}
                 <div className="flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl p-4 mb-5">
                   <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -749,6 +725,82 @@ export default function SelfInspection() {
       </main>
 
       <Footer />
+
+      {/* ── Media attach modal ── */}
+      {showMediaModal && (
+        <div
+          className="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-4"
+          onClick={e => { if (e.target === e.currentTarget) setShowMediaModal(false); }}
+        >
+          <div className={`bg-white w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 pt-5 pb-3">
+              <div>
+                <h3 className="font-bold text-base">
+                  {isRTL ? "أرفق الملفات في واتساب" : "Attach files in WhatsApp"}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {isRTL
+                    ? "سيُفتح واتساب على رقمنا مباشرة — أرسل هذه الملفات في نفس المحادثة"
+                    : "WhatsApp will open on our number — send these files in the same chat"}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowMediaModal(false)}
+                className="w-8 h-8 rounded-full bg-muted flex items-center justify-center ms-3 shrink-0"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Steps */}
+            <div className="px-5 pb-4 space-y-2">
+              {[
+                isRTL ? "اضغط «فتح واتساب» أدناه" : "Tap \"Open WhatsApp\" below",
+                isRTL ? "ستجد رسالة المعاينة جاهزة — أرسلها" : "Your inspection message is ready — send it",
+                isRTL ? "ثم أرفق الصور والفيديوهات التالية في نفس المحادثة" : "Then attach the photos/videos below in the same chat",
+              ].map((txt, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                    {i + 1}
+                  </div>
+                  <p className="text-sm text-foreground leading-snug">{txt}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Media preview strip */}
+            <div className="px-5 pb-4">
+              <div className="flex gap-2 overflow-x-auto pb-1">
+                {data.media.map((item, i) => (
+                  <div key={i} className="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border border-border bg-black">
+                    {item.isVideo
+                      ? <video src={item.preview} className="w-full h-full object-cover" muted />
+                      : <img src={item.preview} alt="" className="w-full h-full object-cover" />}
+                    {item.isVideo && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Video className="h-4 w-4 text-white drop-shadow" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="px-5 pb-5">
+              <Button
+                onClick={() => { openWhatsApp(); setShowMediaModal(false); }}
+                className="w-full h-12 text-base bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold rounded-xl"
+              >
+                <MessageCircle className="h-5 w-5 me-2" />
+                {isRTL ? "فتح واتساب الآن" : "Open WhatsApp Now"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
