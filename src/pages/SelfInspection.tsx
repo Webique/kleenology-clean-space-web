@@ -11,7 +11,7 @@ import {
   ChevronRight, ChevronLeft, CheckCircle2,
   Home, Building2, HardHat, LayoutGrid,
   Camera, X, Star, Shield, Clock, ClipboardList,
-  AlertCircle, Info,
+  AlertCircle, Info, Video,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
@@ -19,8 +19,13 @@ import { cn } from "@/lib/utils";
 const WHATSAPP_NUMBER = "966537519929";
 
 type Step = 1 | 2 | 3 | 4 | 5;
-
 type Condition = "clean" | "medium" | "deep";
+
+interface MediaItem {
+  file: File;
+  preview: string; // object URL
+  isVideo: boolean;
+}
 
 interface RoomEntry {
   key: string;
@@ -36,8 +41,7 @@ interface InspectionData {
   area: string;
   floors: string;
   rooms: RoomEntry[];
-  photos: string[]; // base64 previews
-  photoNames: string[];
+  media: MediaItem[];
   name: string;
   phone: string;
   neighborhood: string;
@@ -46,10 +50,10 @@ interface InspectionData {
 
 const PROPERTY_TYPES = {
   ar: [
-    { key: "apartment", label: "شقة",         Icon: Home,       color: "text-emerald-600", bg: "bg-emerald-50" },
-    { key: "villa",     label: "فيلا / دوبلكس", Icon: LayoutGrid, color: "text-primary",    bg: "bg-primary/10" },
-    { key: "office",   label: "مكتب / شركة",   Icon: Building2,  color: "text-blue-600",   bg: "bg-blue-50"    },
-    { key: "other",    label: "أخرى",           Icon: HardHat,    color: "text-slate-600",  bg: "bg-slate-50"   },
+    { key: "apartment", label: "شقة",          Icon: Home,       color: "text-emerald-600", bg: "bg-emerald-50" },
+    { key: "villa",     label: "فيلا / دوبلكس",  Icon: LayoutGrid, color: "text-primary",    bg: "bg-primary/10" },
+    { key: "office",   label: "مكتب / شركة",    Icon: Building2,  color: "text-blue-600",   bg: "bg-blue-50"    },
+    { key: "other",    label: "أخرى",            Icon: HardHat,    color: "text-slate-600",  bg: "bg-slate-50"   },
   ],
   en: [
     { key: "apartment", label: "Apartment",     Icon: Home,       color: "text-emerald-600", bg: "bg-emerald-50" },
@@ -60,32 +64,32 @@ const PROPERTY_TYPES = {
 };
 
 const DEFAULT_ROOMS: RoomEntry[] = [
-  { key: "livingroom", labelAr: "غرفة المعيشة",  labelEn: "Living Room",  selected: false, condition: "medium", qty: 1 },
-  { key: "bedroom",    labelAr: "غرفة نوم",       labelEn: "Bedroom",      selected: false, condition: "medium", qty: 1 },
-  { key: "kitchen",    labelAr: "مطبخ",           labelEn: "Kitchen",      selected: false, condition: "medium", qty: 1 },
-  { key: "bathroom",   labelAr: "حمام / دورة مياه", labelEn: "Bathroom",  selected: false, condition: "medium", qty: 1 },
-  { key: "majlis",     labelAr: "مجلس / صالة",    labelEn: "Majlis / Hall", selected: false, condition: "medium", qty: 1 },
-  { key: "dining",     labelAr: "غرفة طعام",       labelEn: "Dining Room", selected: false, condition: "medium", qty: 1 },
-  { key: "balcony",    labelAr: "شرفة / بلكون",    labelEn: "Balcony",     selected: false, condition: "medium", qty: 1 },
-  { key: "store",      labelAr: "مخزن / غرفة خادمة", labelEn: "Storage / Maid's Room", selected: false, condition: "medium", qty: 1 },
+  { key: "livingroom", labelAr: "غرفة المعيشة",      labelEn: "Living Room",           selected: false, condition: "medium", qty: 1 },
+  { key: "bedroom",    labelAr: "غرفة نوم",           labelEn: "Bedroom",               selected: false, condition: "medium", qty: 1 },
+  { key: "kitchen",    labelAr: "مطبخ",               labelEn: "Kitchen",               selected: false, condition: "medium", qty: 1 },
+  { key: "bathroom",   labelAr: "حمام / دورة مياه",   labelEn: "Bathroom",              selected: false, condition: "medium", qty: 1 },
+  { key: "majlis",     labelAr: "مجلس / صالة",        labelEn: "Majlis / Hall",         selected: false, condition: "medium", qty: 1 },
+  { key: "dining",     labelAr: "غرفة طعام",          labelEn: "Dining Room",           selected: false, condition: "medium", qty: 1 },
+  { key: "balcony",    labelAr: "شرفة / بلكون",       labelEn: "Balcony",               selected: false, condition: "medium", qty: 1 },
+  { key: "store",      labelAr: "مخزن / غرفة خادمة",  labelEn: "Storage / Maid's Room", selected: false, condition: "medium", qty: 1 },
 ];
 
 const CONDITIONS = {
   ar: [
-    { key: "clean",  label: "نظيف",             color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300" },
-    { key: "medium", label: "متوسط",             color: "text-amber-600",  bg: "bg-amber-50",   border: "border-amber-300"   },
-    { key: "deep",   label: "يحتاج تنظيف عميق",  color: "text-red-600",    bg: "bg-red-50",     border: "border-red-300"     },
+    { key: "clean",  label: "نظيف",            color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300" },
+    { key: "medium", label: "متوسط",            color: "text-amber-600",  bg: "bg-amber-50",   border: "border-amber-300"   },
+    { key: "deep",   label: "يحتاج تنظيف عميق", color: "text-red-600",    bg: "bg-red-50",     border: "border-red-300"     },
   ],
   en: [
-    { key: "clean",  label: "Clean",       color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300" },
-    { key: "medium", label: "Moderate",    color: "text-amber-600",  bg: "bg-amber-50",   border: "border-amber-300"   },
-    { key: "deep",   label: "Needs Deep",  color: "text-red-600",    bg: "bg-red-50",     border: "border-red-300"     },
+    { key: "clean",  label: "Clean",      color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-300" },
+    { key: "medium", label: "Moderate",   color: "text-amber-600",  bg: "bg-amber-50",   border: "border-amber-300"   },
+    { key: "deep",   label: "Needs Deep", color: "text-red-600",    bg: "bg-red-50",     border: "border-red-300"     },
   ],
 };
 
 const STEP_LABELS = {
-  ar: ["النوع", "الغرف", "الصور", "بياناتك", "إرسال"],
-  en: ["Type", "Rooms", "Photos", "Details", "Send"],
+  ar: ["النوع", "الغرف", "الوسائط", "بياناتك", "إرسال"],
+  en: ["Type", "Rooms", "Media",   "Details", "Send"],
 };
 
 export default function SelfInspection() {
@@ -93,14 +97,14 @@ export default function SelfInspection() {
   const isRTL = i18n.dir() === "rtl";
   const lang = isRTL ? "ar" : "en";
 
-  const [step, setStep] = useState<Step>(1);
+  const [step, setStep]           = useState<Step>(1);
+  const [shareError, setShareError] = useState(false);
   const [data, setData] = useState<InspectionData>({
     propertyType: "",
     area: "",
     floors: "1",
     rooms: DEFAULT_ROOMS.map(r => ({ ...r })),
-    photos: [],
-    photoNames: [],
+    media: [],
     name: "",
     phone: "",
     neighborhood: "",
@@ -112,7 +116,6 @@ export default function SelfInspection() {
   const propertyTypes = PROPERTY_TYPES[lang];
   const conditions    = CONDITIONS[lang];
   const stepLabels    = STEP_LABELS[lang];
-
   const selectedRooms = data.rooms.filter(r => r.selected);
 
   const canNext: Record<number, boolean> = {
@@ -125,58 +128,34 @@ export default function SelfInspection() {
   const next = () => setStep(s => Math.min(s + 1, 5) as Step);
   const back = () => setStep(s => Math.max(s - 1, 1) as Step);
 
-  const toggleRoom = (key: string) => {
-    setData(d => ({
-      ...d,
-      rooms: d.rooms.map(r => r.key === key ? { ...r, selected: !r.selected } : r),
-    }));
-  };
+  const toggleRoom = (key: string) =>
+    setData(d => ({ ...d, rooms: d.rooms.map(r => r.key === key ? { ...r, selected: !r.selected } : r) }));
 
-  const setRoomCondition = (key: string, condition: Condition) => {
-    setData(d => ({
-      ...d,
-      rooms: d.rooms.map(r => r.key === key ? { ...r, condition } : r),
-    }));
-  };
+  const setRoomCondition = (key: string, condition: Condition) =>
+    setData(d => ({ ...d, rooms: d.rooms.map(r => r.key === key ? { ...r, condition } : r) }));
 
-  const setRoomQty = (key: string, qty: number) => {
-    setData(d => ({
-      ...d,
-      rooms: d.rooms.map(r => r.key === key ? { ...r, qty: Math.max(1, qty) } : r),
-    }));
-  };
+  const setRoomQty = (key: string, qty: number) =>
+    setData(d => ({ ...d, rooms: d.rooms.map(r => r.key === key ? { ...r, qty: Math.max(1, qty) } : r) }));
 
-  const handlePhotoAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMediaAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
-    const maxPhotos = 8;
-    const remaining = maxPhotos - data.photos.length;
-    const toProcess = files.slice(0, remaining);
-
-    toProcess.forEach(file => {
-      const reader = new FileReader();
-      reader.onload = ev => {
-        const b64 = ev.target?.result as string;
-        setData(d => ({
-          ...d,
-          photos: [...d.photos, b64],
-          photoNames: [...d.photoNames, file.name],
-        }));
-      };
-      reader.readAsDataURL(file);
-    });
-
+    const newItems: MediaItem[] = files.map(file => ({
+      file,
+      preview: URL.createObjectURL(file),
+      isVideo: file.type.startsWith("video/"),
+    }));
+    setData(d => ({ ...d, media: [...d.media, ...newItems] }));
     if (fileRef.current) fileRef.current.value = "";
   };
 
-  const removePhoto = (idx: number) => {
-    setData(d => ({
-      ...d,
-      photos: d.photos.filter((_, i) => i !== idx),
-      photoNames: d.photoNames.filter((_, i) => i !== idx),
-    }));
+  const removeMedia = (idx: number) => {
+    setData(d => {
+      URL.revokeObjectURL(d.media[idx].preview);
+      return { ...d, media: d.media.filter((_, i) => i !== idx) };
+    });
   };
 
-  const buildWhatsAppMessage = () => {
+  const buildMessage = () => {
     const propLabel = propertyTypes.find(p => p.key === data.propertyType)?.label ?? "";
     const roomLines = selectedRooms.map(r => {
       const condLabel = conditions.find(c => c.key === r.condition)?.label ?? "";
@@ -192,9 +171,6 @@ export default function SelfInspection() {
         `المساحة: ${data.area} م²\n` +
         `عدد الطوابق: ${data.floors}\n\n` +
         `🛋️ *الغرف والحالة:*\n${roomLines}\n\n` +
-        (data.photos.length > 0
-          ? `📸 الصور: سأرفق ${data.photos.length} صورة في هذه المحادثة\n\n`
-          : "") +
         `👤 *بيانات التواصل:*\n` +
         `الاسم: ${data.name}\n` +
         `الجوال: ${data.phone}\n` +
@@ -202,33 +178,45 @@ export default function SelfInspection() {
         (data.notes ? `\nملاحظات: ${data.notes}` : "")
       );
     }
-
     return (
       `Hello! I'm sending a self-inspection for my property 🏠✨\n\n` +
       `📋 *Property Details:*\n` +
-      `Type: ${propLabel}\n` +
-      `Area: ${data.area} m²\n` +
-      `Floors: ${data.floors}\n\n` +
+      `Type: ${propLabel}\nArea: ${data.area} m²\nFloors: ${data.floors}\n\n` +
       `🛋️ *Rooms & Condition:*\n${roomLines}\n\n` +
-      (data.photos.length > 0
-        ? `📸 Photos: I'll attach ${data.photos.length} photo(s) to this chat\n\n`
-        : "") +
       `👤 *Contact Info:*\n` +
-      `Name: ${data.name}\n` +
-      `Phone: ${data.phone}\n` +
-      `Location: ${data.neighborhood}` +
+      `Name: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.neighborhood}` +
       (data.notes ? `\nNotes: ${data.notes}` : "")
     );
   };
 
-  const sendWhatsApp = () => {
-    const msg = buildWhatsAppMessage();
+  const sendWhatsApp = async () => {
+    setShareError(false);
+    const msg = buildMessage();
+
+    // Try Web Share API with files (works on Android Chrome & iOS Safari)
+    if (data.media.length > 0 && navigator.canShare) {
+      try {
+        const shareData: ShareData = {
+          text: msg,
+          files: data.media.map(m => m.file),
+        };
+        if (navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+          return;
+        }
+      } catch (err: unknown) {
+        // User cancelled share sheet — don't fallback automatically
+        if (err instanceof Error && err.name === "AbortError") return;
+        setShareError(true);
+      }
+    }
+
+    // Fallback: open WhatsApp with text only
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   const progressPct = ((step - 1) / 4) * 100;
-
-  const conditionOf = (key: string) => conditions.find(c => c.key === key)!;
+  const conditionOf  = (key: string) => conditions.find(c => c.key === key)!;
 
   return (
     <div className={`min-h-screen bg-background ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
@@ -255,8 +243,8 @@ export default function SelfInspection() {
             </h1>
             <p className="text-muted-foreground max-w-sm mx-auto">
               {isRTL
-                ? "قيّم مكانك بنفسك، أرسل لنا التفاصيل، وسنُرسل لك سعراً دقيقاً فوراً — بدون زيارة معاينة."
-                : "Evaluate your space yourself, send us the details, and we'll send an accurate quote instantly — no site visit needed."}
+                ? "قيّم مكانك بنفسك، أرسل لنا التفاصيل والصور، وسنُرسل لك سعراً دقيقاً فوراً."
+                : "Evaluate your space, send details & photos, and get an accurate quote instantly."}
             </p>
           </div>
         </section>
@@ -310,7 +298,6 @@ export default function SelfInspection() {
                 <p className="text-muted-foreground text-sm mb-5">
                   {isRTL ? "ما نوع المكان الذي تريد تنظيفه؟" : "What type of property needs cleaning?"}
                 </p>
-
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   {propertyTypes.map(({ key, label, Icon, color, bg }) => {
                     const selected = data.propertyType === key;
@@ -325,9 +312,7 @@ export default function SelfInspection() {
                           selected ? "border-primary bg-primary/5 shadow-md" : "border-border bg-white",
                         )}
                       >
-                        {selected && (
-                          <CheckCircle2 className="absolute top-2.5 end-2.5 h-4 w-4 text-primary" />
-                        )}
+                        {selected && <CheckCircle2 className="absolute top-2.5 end-2.5 h-4 w-4 text-primary" />}
                         <div className={cn("w-10 h-10 rounded-full flex items-center justify-center", bg)}>
                           <Icon className={cn("h-5 w-5", color)} />
                         </div>
@@ -336,20 +321,17 @@ export default function SelfInspection() {
                     );
                   })}
                 </div>
-
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label className="font-semibold mb-2 block">
                       {isRTL ? "المساحة (م²) *" : "Area (m²) *"}
                     </Label>
                     <Input
-                      type="number"
-                      min="10"
+                      type="number" min="10"
                       placeholder={isRTL ? "مثال: 150" : "e.g. 150"}
                       value={data.area}
                       onChange={e => setData(d => ({ ...d, area: e.target.value }))}
-                      className="h-12"
-                      dir="ltr"
+                      className="h-12" dir="ltr"
                     />
                   </div>
                   <div>
@@ -357,13 +339,10 @@ export default function SelfInspection() {
                       {isRTL ? "عدد الطوابق" : "No. of Floors"}
                     </Label>
                     <Input
-                      type="number"
-                      min="1"
-                      max="10"
+                      type="number" min="1" max="10"
                       value={data.floors}
                       onChange={e => setData(d => ({ ...d, floors: e.target.value }))}
-                      className="h-12"
-                      dir="ltr"
+                      className="h-12" dir="ltr"
                     />
                   </div>
                 </div>
@@ -377,22 +356,16 @@ export default function SelfInspection() {
                   {isRTL ? "الغرف والمناطق" : "Rooms & Areas"}
                 </h2>
                 <p className="text-muted-foreground text-sm mb-5">
-                  {isRTL
-                    ? "اختر الغرف الموجودة وحدد حالتها"
-                    : "Select the rooms and rate their condition"}
+                  {isRTL ? "اختر الغرف وحدد حالتها" : "Select rooms and rate their condition"}
                 </p>
                 <div className="space-y-3">
                   {data.rooms.map(room => {
                     const label = isRTL ? room.labelAr : room.labelEn;
-                    const cond  = conditionOf(room.condition);
                     return (
-                      <div key={room.key}
-                        className={cn(
-                          "rounded-xl border-2 transition-all duration-200",
-                          room.selected ? "border-primary bg-primary/5" : "border-border",
-                        )}
-                      >
-                        {/* Room header */}
+                      <div key={room.key} className={cn(
+                        "rounded-xl border-2 transition-all duration-200",
+                        room.selected ? "border-primary bg-primary/5" : "border-border",
+                      )}>
                         <button
                           type="button"
                           onClick={() => toggleRoom(room.key)}
@@ -406,39 +379,26 @@ export default function SelfInspection() {
                             {room.selected && <CheckCircle2 className="h-3.5 w-3.5 text-white" />}
                           </div>
                         </button>
-
-                        {/* Room details (only when selected) */}
                         {room.selected && (
                           <div className="px-4 pb-4 space-y-3">
-                            {/* Quantity */}
                             <div className="flex items-center gap-3">
                               <span className="text-xs text-muted-foreground font-medium w-12">
                                 {isRTL ? "العدد" : "Qty"}
                               </span>
                               <div className="flex items-center gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => setRoomQty(room.key, room.qty - 1)}
-                                  className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-sm font-bold hover:bg-muted"
-                                >−</button>
+                                <button type="button" onClick={() => setRoomQty(room.key, room.qty - 1)}
+                                  className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-sm font-bold hover:bg-muted">−</button>
                                 <span className="w-5 text-center font-semibold text-sm">{room.qty}</span>
-                                <button
-                                  type="button"
-                                  onClick={() => setRoomQty(room.key, room.qty + 1)}
-                                  className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-sm font-bold hover:bg-muted"
-                                >+</button>
+                                <button type="button" onClick={() => setRoomQty(room.key, room.qty + 1)}
+                                  className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-sm font-bold hover:bg-muted">+</button>
                               </div>
                             </div>
-
-                            {/* Condition */}
                             <div className="flex items-center gap-2 flex-wrap">
                               <span className="text-xs text-muted-foreground font-medium w-12 shrink-0">
                                 {isRTL ? "الحالة" : "State"}
                               </span>
                               {conditions.map(c => (
-                                <button
-                                  key={c.key}
-                                  type="button"
+                                <button key={c.key} type="button"
                                   onClick={() => setRoomCondition(room.key, c.key as Condition)}
                                   className={cn(
                                     "px-3 py-1 rounded-full text-xs font-semibold border-2 transition-all",
@@ -446,9 +406,7 @@ export default function SelfInspection() {
                                       ? `${c.bg} ${c.color} ${c.border}`
                                       : "border-border text-muted-foreground hover:border-muted-foreground/50",
                                   )}
-                                >
-                                  {c.label}
-                                </button>
+                                >{c.label}</button>
                               ))}
                             </div>
                           </div>
@@ -457,98 +415,112 @@ export default function SelfInspection() {
                     );
                   })}
                 </div>
-
                 {selectedRooms.length === 0 && (
                   <p className="text-center text-sm text-muted-foreground mt-4 flex items-center justify-center gap-1.5">
                     <AlertCircle className="h-4 w-4" />
-                    {isRTL ? "اختر غرفة واحدة على الأقل للمتابعة" : "Select at least one room to continue"}
+                    {isRTL ? "اختر غرفة واحدة على الأقل" : "Select at least one room to continue"}
                   </p>
                 )}
               </div>
             )}
 
-            {/* ── Step 3: Photos ── */}
+            {/* ── Step 3: Media (photos + videos) ── */}
             {step === 3 && (
               <div className="p-6 animate-in fade-in duration-300">
                 <h2 className="text-lg font-bold mb-0.5">
-                  {isRTL ? "صور المكان (اختياري)" : "Property Photos (Optional)"}
+                  {isRTL ? "صور وفيديوهات المكان" : "Photos & Videos"}
                 </h2>
-                <p className="text-muted-foreground text-sm mb-5">
-                  {isRTL
-                    ? "أضف صوراً للغرف لتساعدنا على تقديم أفضل عرض سعر"
-                    : "Add room photos to help us give you the best quote"}
+                <p className="text-muted-foreground text-sm mb-2">
+                  {isRTL ? "اختياري — تساعدنا على تقديم أفضل عرض سعر" : "Optional — helps us give a more accurate quote"}
                 </p>
 
-                {/* Info note */}
+                {/* How sharing works */}
                 <div className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl p-3.5 mb-5">
                   <Info className="h-4 w-4 text-blue-600 mt-0.5 shrink-0" />
                   <p className="text-xs text-blue-700 leading-relaxed">
                     {isRTL
-                      ? "ستُفتح واتساب عند الإرسال — أرفق الصور يدوياً في نفس المحادثة لنستلمها معاً."
-                      : "WhatsApp will open on send — manually attach photos in the same chat so we receive them together."}
+                      ? "عند الضغط على إرسال، ستُفتح قائمة المشاركة على جهازك — اختر واتساب لإرسال الرسالة مع الملفات مباشرة."
+                      : "When you press send, your device's share sheet will open — choose WhatsApp to send the message with files directly."}
                   </p>
                 </div>
 
                 {/* Upload button */}
-                {data.photos.length < 8 && (
-                  <button
-                    type="button"
-                    onClick={() => fileRef.current?.click()}
-                    className={cn(
-                      "w-full border-2 border-dashed border-primary/40 rounded-xl py-8 flex flex-col items-center gap-3",
-                      "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
-                    )}
-                  >
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Camera className="h-6 w-6 text-primary" />
+                <button
+                  type="button"
+                  onClick={() => fileRef.current?.click()}
+                  className={cn(
+                    "w-full border-2 border-dashed border-primary/40 rounded-xl py-8 flex flex-col items-center gap-3",
+                    "hover:border-primary hover:bg-primary/5 transition-all cursor-pointer",
+                  )}
+                >
+                  <div className="flex gap-3">
+                    <div className="w-11 h-11 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Camera className="h-5 w-5 text-primary" />
                     </div>
-                    <div className="text-center">
-                      <p className="font-semibold text-sm text-foreground">
-                        {isRTL ? "اضغط لإضافة صور" : "Tap to add photos"}
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {isRTL
-                          ? `${data.photos.length}/8 صور مضافة`
-                          : `${data.photos.length}/8 photos added`}
-                      </p>
+                    <div className="w-11 h-11 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Video className="h-5 w-5 text-primary" />
                     </div>
-                  </button>
-                )}
+                  </div>
+                  <div className="text-center">
+                    <p className="font-semibold text-sm text-foreground">
+                      {isRTL ? "اضغط لإضافة صور أو فيديوهات" : "Tap to add photos or videos"}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {isRTL
+                        ? `${data.media.length} ملف مضاف`
+                        : `${data.media.length} file(s) added`}
+                    </p>
+                  </div>
+                </button>
 
                 <input
                   ref={fileRef}
                   type="file"
-                  accept="image/*"
+                  accept="image/*,video/*"
                   multiple
-                  capture="environment"
                   className="hidden"
-                  onChange={handlePhotoAdd}
+                  onChange={handleMediaAdd}
                 />
 
-                {/* Photo grid */}
-                {data.photos.length > 0 && (
+                {/* Media grid */}
+                {data.media.length > 0 && (
                   <div className="grid grid-cols-3 gap-2 mt-4">
-                    {data.photos.map((src, idx) => (
-                      <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-border">
-                        <img src={src} alt="" className="w-full h-full object-cover" />
+                    {data.media.map((item, idx) => (
+                      <div key={idx} className="relative aspect-square rounded-xl overflow-hidden border border-border bg-black">
+                        {item.isVideo ? (
+                          <video
+                            src={item.preview}
+                            className="w-full h-full object-cover"
+                            muted
+                            playsInline
+                          />
+                        ) : (
+                          <img src={item.preview} alt="" className="w-full h-full object-cover" />
+                        )}
+                        {item.isVideo && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-8 h-8 bg-black/50 rounded-full flex items-center justify-center">
+                              <Video className="h-4 w-4 text-white" />
+                            </div>
+                          </div>
+                        )}
                         <button
                           type="button"
-                          onClick={() => removePhoto(idx)}
+                          onClick={() => removeMedia(idx)}
                           className="absolute top-1 end-1 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center"
                         >
                           <X className="h-3.5 w-3.5 text-white" />
                         </button>
                       </div>
                     ))}
-                    {data.photos.length < 8 && (
-                      <button
-                        type="button"
-                        onClick={() => fileRef.current?.click()}
-                        className="aspect-square rounded-xl border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all"
-                      >
-                        <span className="text-2xl text-primary/50">+</span>
-                      </button>
-                    )}
+                    {/* Add more button */}
+                    <button
+                      type="button"
+                      onClick={() => fileRef.current?.click()}
+                      className="aspect-square rounded-xl border-2 border-dashed border-primary/30 flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all"
+                    >
+                      <span className="text-2xl text-primary/50">+</span>
+                    </button>
                   </div>
                 )}
               </div>
@@ -586,8 +558,7 @@ export default function SelfInspection() {
                       placeholder={isRTL ? "05X XXX XXXX" : "+966 5X XXX XXXX"}
                       value={data.phone}
                       onChange={e => setData(d => ({ ...d, phone: e.target.value }))}
-                      className="h-12"
-                      dir="ltr"
+                      className="h-12" dir="ltr"
                     />
                   </div>
                   <div>
@@ -610,8 +581,7 @@ export default function SelfInspection() {
                       placeholder={isRTL ? "مثال: أحتاج اهتمام خاص بالمطبخ..." : "e.g. Need extra focus on kitchen..."}
                       value={data.notes}
                       onChange={e => setData(d => ({ ...d, notes: e.target.value }))}
-                      rows={3}
-                      className="resize-none"
+                      rows={3} className="resize-none"
                     />
                   </div>
                 </div>
@@ -628,18 +598,15 @@ export default function SelfInspection() {
                   {isRTL ? "راجع تفاصيل معاينتك قبل الإرسال" : "Review your inspection before sending"}
                 </p>
 
-                {/* Property block */}
+                {/* Property */}
                 <div className="bg-muted/40 rounded-xl p-4 mb-3 space-y-1.5">
                   <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">
                     {isRTL ? "المكان" : "Property"}
                   </p>
                   {[
-                    {
-                      label: isRTL ? "النوع" : "Type",
-                      value: propertyTypes.find(p => p.key === data.propertyType)?.label ?? "—",
-                    },
-                    { label: isRTL ? "المساحة" : "Area",   value: `${data.area} م²` },
-                    { label: isRTL ? "الطوابق" : "Floors", value: data.floors        },
+                    { label: isRTL ? "النوع"    : "Type",   value: propertyTypes.find(p => p.key === data.propertyType)?.label ?? "—" },
+                    { label: isRTL ? "المساحة"  : "Area",   value: `${data.area} م²` },
+                    { label: isRTL ? "الطوابق"  : "Floors", value: data.floors },
                   ].map(row => (
                     <div key={row.label} className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">{row.label}</span>
@@ -648,7 +615,7 @@ export default function SelfInspection() {
                   ))}
                 </div>
 
-                {/* Rooms block */}
+                {/* Rooms */}
                 <div className="bg-muted/40 rounded-xl p-4 mb-3">
                   <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">
                     {isRTL ? "الغرف" : "Rooms"}
@@ -659,41 +626,48 @@ export default function SelfInspection() {
                       const label = isRTL ? room.labelAr : room.labelEn;
                       return (
                         <div key={room.key} className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">
-                            {label}{room.qty > 1 ? ` ×${room.qty}` : ""}
-                          </span>
-                          <span className={cn("text-xs font-semibold px-2 py-0.5 rounded-full", cond.bg, cond.color)}>
-                            {cond.label}
-                          </span>
+                          <span className="text-muted-foreground">{label}{room.qty > 1 ? ` ×${room.qty}` : ""}</span>
+                          <span className={cn("text-xs font-semibold px-2 py-0.5 rounded-full", cond.bg, cond.color)}>{cond.label}</span>
                         </div>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Photos block */}
-                {data.photos.length > 0 && (
+                {/* Media thumbnails */}
+                {data.media.length > 0 && (
                   <div className="bg-muted/40 rounded-xl p-4 mb-3">
                     <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">
-                      {isRTL ? "الصور" : "Photos"}
+                      {isRTL
+                        ? `الوسائط (${data.media.length} ملف)`
+                        : `Media (${data.media.length} file${data.media.length > 1 ? "s" : ""})`}
                     </p>
                     <div className="flex gap-2 flex-wrap">
-                      {data.photos.map((src, i) => (
-                        <img key={i} src={src} alt="" className="w-14 h-14 rounded-lg object-cover border border-border" />
+                      {data.media.map((item, i) => (
+                        <div key={i} className="relative w-14 h-14 rounded-lg overflow-hidden border border-border bg-black">
+                          {item.isVideo
+                            ? <video src={item.preview} className="w-full h-full object-cover" muted />
+                            : <img src={item.preview} alt="" className="w-full h-full object-cover" />}
+                          {item.isVideo && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Video className="h-3.5 w-3.5 text-white" />
+                            </div>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Contact block */}
+                {/* Contact */}
                 <div className="bg-muted/40 rounded-xl p-4 mb-4 space-y-1.5">
                   <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">
                     {isRTL ? "التواصل" : "Contact"}
                   </p>
                   {[
-                    { label: isRTL ? "الاسم"    : "Name",     value: data.name         },
-                    { label: isRTL ? "الجوال"   : "Phone",    value: data.phone        },
-                    { label: isRTL ? "الموقع"   : "Location", value: data.neighborhood },
+                    { label: isRTL ? "الاسم"  : "Name",     value: data.name         },
+                    { label: isRTL ? "الجوال" : "Phone",    value: data.phone        },
+                    { label: isRTL ? "الموقع" : "Location", value: data.neighborhood },
                     ...(data.notes ? [{ label: isRTL ? "ملاحظات" : "Notes", value: data.notes }] : []),
                   ].map(row => (
                     <div key={row.label} className="flex items-center justify-between text-sm">
@@ -703,14 +677,14 @@ export default function SelfInspection() {
                   ))}
                 </div>
 
-                {/* Photo reminder if any */}
-                {data.photos.length > 0 && (
-                  <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-4">
-                    <Info className="h-4 w-4 text-amber-600 mt-0.5 shrink-0" />
-                    <p className="text-xs text-amber-700 leading-relaxed">
+                {/* Share error warning */}
+                {shareError && (
+                  <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-3.5 mb-4">
+                    <AlertCircle className="h-4 w-4 text-red-600 mt-0.5 shrink-0" />
+                    <p className="text-xs text-red-700 leading-relaxed">
                       {isRTL
-                        ? `عند فتح واتساب، أرفق الـ ${data.photos.length} صورة في نفس المحادثة.`
-                        : `When WhatsApp opens, attach the ${data.photos.length} photo(s) in the same chat.`}
+                        ? "تعذّر مشاركة الملفات تلقائياً — سيُفتح واتساب بالنص فقط، يرجى إرفاق الملفات يدوياً."
+                        : "Couldn't share files automatically — WhatsApp will open with text only, please attach files manually."}
                     </p>
                   </div>
                 )}
@@ -741,23 +715,14 @@ export default function SelfInspection() {
               step > 1 ? "justify-between" : "justify-end",
             )}>
               {step > 1 && (
-                <Button
-                  variant="ghost"
-                  onClick={back}
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Button variant="ghost" onClick={back} className="text-muted-foreground hover:text-foreground">
                   {isRTL
                     ? <><ChevronRight className="h-4 w-4 me-1" /> رجوع</>
                     : <><ChevronLeft  className="h-4 w-4 me-1" /> Back</>}
                 </Button>
               )}
-
               {step < 5 && (
-                <Button
-                  onClick={next}
-                  disabled={!canNext[step]}
-                  className="px-8 h-11 rounded-xl"
-                >
+                <Button onClick={next} disabled={!canNext[step]} className="px-8 h-11 rounded-xl">
                   {isRTL
                     ? <>التالي <ChevronLeft  className="h-4 w-4 ms-1" /></>
                     : <>Next   <ChevronRight className="h-4 w-4 ms-1" /></>}
@@ -769,14 +734,11 @@ export default function SelfInspection() {
           {/* Trust badges */}
           <div className="mt-5 grid grid-cols-3 gap-3">
             {[
-              { Icon: Star,   text: isRTL ? "٤.٩ تقييم"         : "4.9 Rating"         },
-              { Icon: Shield, text: isRTL ? "ضمان ١٠٠٪"         : "100% Guarantee"     },
-              { Icon: Clock,  text: isRTL ? "رد خلال ساعة"      : "Reply within 1hr"   },
+              { Icon: Star,   text: isRTL ? "٤.٩ تقييم"    : "4.9 Rating"      },
+              { Icon: Shield, text: isRTL ? "ضمان ١٠٠٪"    : "100% Guarantee"  },
+              { Icon: Clock,  text: isRTL ? "رد خلال ساعة" : "Reply within 1hr" },
             ].map(({ Icon, text }) => (
-              <div
-                key={text}
-                className="flex flex-col items-center gap-1.5 bg-white rounded-xl p-3 border border-border text-center"
-              >
+              <div key={text} className="flex flex-col items-center gap-1.5 bg-white rounded-xl p-3 border border-border text-center">
                 <Icon className="h-5 w-5 text-primary" />
                 <span className="text-xs font-semibold text-foreground">{text}</span>
               </div>
