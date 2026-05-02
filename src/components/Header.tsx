@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle, Menu, CalendarCheck } from "lucide-react";
+import { Phone, MessageCircle, Menu, CalendarCheck, ClipboardList } from "lucide-react";
 import {
   Drawer,
   DrawerTrigger,
@@ -142,6 +142,13 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
             {t('nav.contact')}
           </a>
           <a
+            href="/self-inspection"
+            className="flex items-center gap-1.5 border border-primary text-primary px-4 py-2 rounded-lg font-semibold text-sm hover:bg-primary/5 transition-colors"
+          >
+            <ClipboardList className="h-4 w-4" />
+            {isRTL ? "معاينة ذاتية" : "Self Inspect"}
+          </a>
+          <a
             href="/booking"
             className="flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors"
           >
@@ -246,6 +253,14 @@ export const Header = ({ onLogoClick, onNavClick }: HeaderProps) => {
                   className="text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.contact')}
+                </a>
+                <a
+                  href="/self-inspection"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 border border-primary text-primary px-4 py-3 rounded-xl font-semibold text-lg hover:bg-primary/5 transition-colors"
+                >
+                  <ClipboardList className="h-5 w-5" />
+                  {isRTL ? "معاينة ذاتية" : "Self Inspect"}
                 </a>
                 <a
                   href="/booking"
