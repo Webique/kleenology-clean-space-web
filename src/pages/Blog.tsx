@@ -15,25 +15,39 @@ const categoryColors: Record<string, string> = {
 
 const allCategories = ["الكل", ...Array.from(new Set(blogPosts.map(p => p.category)))];
 
-const blogJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "مدونة كلينولوجي",
-  "description": "نصائح وأدلة تنظيف من خبراء كلينولوجي في الرياض",
-  "url": "https://kleenology.me/blog",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Kleenology",
-    "url": "https://kleenology.me",
+const blogJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://kleenology.me" },
+      { "@type": "ListItem", "position": 2, "name": "المدونة",  "item": "https://kleenology.me/blog" },
+    ],
   },
-  "blogPost": blogPosts.map(p => ({
-    "@type": "BlogPosting",
-    "headline": p.title,
-    "description": p.excerpt,
-    "url": `https://kleenology.me/blog/${p.slug}`,
-    "datePublished": p.date,
-  })),
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "مدونة كلينولوجي",
+    "description": "نصائح وأدلة تنظيف من خبراء كلينولوجي في الرياض",
+    "url": "https://kleenology.me/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Kleenology",
+      "url": "https://kleenology.me",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://kleenology.me/logobg.png",
+      },
+    },
+    "blogPost": blogPosts.map(p => ({
+      "@type": "BlogPosting",
+      "headline": p.title,
+      "description": p.excerpt,
+      "url": `https://kleenology.me/blog/${p.slug}`,
+      "datePublished": p.date,
+    })),
+  },
+];
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("الكل");

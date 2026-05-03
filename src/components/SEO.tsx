@@ -10,6 +10,10 @@ interface SEOProps {
   jsonLd?: object | object[];
   hreflang?: boolean;
   noindex?: boolean;
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleSection?: string;
+  articleTag?: string;
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -22,6 +26,10 @@ export const SEO: React.FC<SEOProps> = ({
   jsonLd,
   hreflang = true,
   noindex = false,
+  articlePublishedTime,
+  articleModifiedTime,
+  articleSection,
+  articleTag,
 }) => {
   useEffect(() => {
     document.title = title;
@@ -55,6 +63,26 @@ export const SEO: React.FC<SEOProps> = ({
         document.head.appendChild(tag);
       }
       tag.setAttribute('content', content);
+    });
+
+    const articleOgTags: [string, string | undefined][] = [
+      ['article:published_time', articlePublishedTime],
+      ['article:modified_time', articleModifiedTime ?? articlePublishedTime],
+      ['article:section', articleSection],
+      ['article:tag', articleTag],
+    ];
+    articleOgTags.forEach(([property, content]) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (content) {
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('property', property);
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', content);
+      } else if (tag) {
+        tag.remove();
+      }
     });
 
     const twitterTags: [string, string][] = [
@@ -113,7 +141,7 @@ export const SEO: React.FC<SEOProps> = ({
     return () => {
       document.querySelectorAll('[data-seo-jsonld]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, image, url, type, jsonLd, hreflang, noindex]);
+  }, [title, description, keywords, image, url, type, jsonLd, hreflang, noindex, articlePublishedTime, articleModifiedTime, articleSection, articleTag]);
 
   return null;
 };

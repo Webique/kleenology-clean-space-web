@@ -66,6 +66,14 @@ export const ServicePageLayout = ({ ar, en }: ServicePageLayoutProps) => {
       "alternateName": "كلينولوجي",
       "url": "https://kleenology.me",
       "telephone": "+966537519929",
+      "image": "https://kleenology.me/logobg.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "690",
+        "bestRating": "5",
+        "worstRating": "1",
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "الرياض",
@@ -77,6 +85,15 @@ export const ServicePageLayout = ({ ar, en }: ServicePageLayoutProps) => {
       "@type": "City",
       "name": "الرياض",
       "sameAs": "https://www.wikidata.org/wiki/Q3692",
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "areaServed": {
+        "@type": "City",
+        "name": "الرياض",
+      },
+      "priceCurrency": "SAR",
     },
   };
 

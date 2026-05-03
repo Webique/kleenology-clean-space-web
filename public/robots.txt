@@ -1,9 +1,13 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://kleenology.me/sitemap.xml
-Sitemap: https://kleenology.me/sitemap-images.xml
+# Ad landing pages — noindex + disallow to protect crawl budget
+Disallow: /book-now
+Disallow: /premium
 
 Disallow: /admin/
 Disallow: /private/
+
+# Sitemaps
+Sitemap: https://kleenology.me/sitemap.xml
+Sitemap: https://kleenology.me/sitemap-images.xml

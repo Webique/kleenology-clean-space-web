@@ -71,21 +71,47 @@ export default function BlogPost() {
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
+      "@id": pageUrl,
       "headline": post.title,
       "description": post.metaDescription,
       "url": pageUrl,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": pageUrl,
+      },
       "datePublished": post.date,
+      "dateModified": post.date,
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://kleenology.me/logobg.png",
+        "width": 1200,
+        "height": 630,
+      },
       "author": {
         "@type": "Organization",
         "name": "Kleenology",
         "url": "https://kleenology.me",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kleenology.me/logobg.png",
+        },
       },
       "publisher": {
         "@type": "Organization",
         "name": "Kleenology",
         "url": "https://kleenology.me",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kleenology.me/logobg.png",
+        },
       },
+      "keywords": post.keywords,
       "inLanguage": "ar",
+      "isPartOf": {
+        "@type": "Blog",
+        "name": "مدونة كلينولوجي",
+        "url": "https://kleenology.me/blog",
+      },
     },
   ];
 
@@ -98,6 +124,10 @@ export default function BlogPost() {
         url={pageUrl}
         type="article"
         jsonLd={jsonLd}
+        articlePublishedTime={post.date}
+        articleModifiedTime={post.date}
+        articleSection={post.category}
+        articleTag={post.category}
       />
       <Header />
 
