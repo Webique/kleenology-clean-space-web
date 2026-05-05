@@ -23,6 +23,7 @@ import BlogPost from "./pages/BlogPost";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
+import { WhatsAppChatWidget } from "@/components/WhatsAppChatWidget";
 import { Component, ErrorInfo, ReactNode } from "react";
 import React from "react";
 
@@ -103,6 +104,7 @@ const App = () => {
           <Sonner />
           <PixelTracker />
           <PerformanceMonitor />
+          <WhatsAppChatWidget />
           <BrowserRouter basename="/">
             <EnhancedTracking />
             <Routes>
