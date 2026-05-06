@@ -59,6 +59,55 @@ const content = {
   },
 };
 
+const aboutJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://kleenology.me" },
+      { "@type": "ListItem", "position": 2, "name": "من نحن",   "item": "https://kleenology.me/about" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "من نحن | كلينولوجي",
+    "url": "https://kleenology.me/about",
+    "description": "تعرف على كلينولوجي، شركة التنظيف الاحترافية في الرياض. قصتنا، رؤيتنا، وفريقنا المتخصص.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Kleenology",
+      "alternateName": "كلينولوجي",
+      "url": "https://kleenology.me",
+      "logo": "https://kleenology.me/logobg.png",
+      "image": "https://kleenology.me/logobg.png",
+      "foundingDate": "2022",
+      "description": "شركة تنظيف احترافية في الرياض تقدم خدمات تنظيف منازل، مكاتب، سجاد، وتنظيف عميق بمواد آمنة وضمان الرضا ١٠٠٪",
+      "telephone": "+966537519929",
+      "email": "Contract@kleenology.net",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "الرياض",
+        "addressRegion": "الرياض",
+        "addressCountry": "SA",
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "الرياض",
+        "sameAs": "https://www.wikidata.org/wiki/Q3692",
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "690",
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+      "sameAs": ["https://www.tiktok.com/@kleenology"],
+    },
+  },
+];
+
 const AboutUs = () => {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
@@ -71,6 +120,7 @@ const AboutUs = () => {
         description={c.seoDesc}
         keywords="كلينولوجي, من نحن, شركة تنظيف الرياض, kleenology about"
         url="https://kleenology.me/about"
+        jsonLd={aboutJsonLd}
       />
       <Header />
 

@@ -66,6 +66,60 @@ const STEP_LABELS = {
   en: ["Service", "Schedule", "Details", "Confirm"],
 };
 
+const bookingJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://kleenology.me" },
+      { "@type": "ListItem", "position": 2, "name": "احجز الآن", "item": "https://kleenology.me/booking" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "حجز خدمة تنظيف — كلينولوجي",
+    "description": "احجز خدمة التنظيف الاحترافية مع كلينولوجي في خطوات بسيطة. تنظيف منازل، مكاتب، سجاد، وتنظيف عميق في الرياض.",
+    "url": "https://kleenology.me/booking",
+    "serviceType": "Cleaning Service",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Kleenology",
+      "alternateName": "كلينولوجي",
+      "url": "https://kleenology.me",
+      "telephone": "+966537519929",
+      "image": "https://kleenology.me/logobg.png",
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "الرياض",
+      "sameAs": "https://www.wikidata.org/wiki/Q3692",
+    },
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://kleenology.me/booking",
+        "inLanguage": "ar",
+        "actionPlatform": [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform",
+        ],
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": "حجز خدمة تنظيف",
+      },
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "areaServed": { "@type": "City", "name": "الرياض" },
+      "priceCurrency": "SAR",
+    },
+  },
+];
+
 export default function Booking() {
   const { i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
@@ -111,6 +165,7 @@ export default function Booking() {
         description={isRTL ? "احجز خدمة التنظيف الاحترافية مع كلينولوجي في خطوات بسيطة." : "Book your professional cleaning service with Kleenology in simple steps."}
         keywords="حجز تنظيف, booking cleaning, kleenology"
         url="https://kleenology.me/booking"
+        jsonLd={bookingJsonLd}
       />
       <Header />
 
