@@ -89,12 +89,7 @@ class ErrorBoundary extends Component<
 }
 
 const App = () => {
-  console.log("App component is rendering - FRESH DEPLOYMENT FIX");
-  
-  // Add a simple test to ensure the app is loading
-  React.useEffect(() => {
-    console.log("App mounted successfully - kleenology.me should work now!");
-  }, []);
+  React.useEffect(() => {}, []);
   
   return (
     <ErrorBoundary>
