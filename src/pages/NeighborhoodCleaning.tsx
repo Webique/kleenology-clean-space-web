@@ -105,8 +105,7 @@ export default function NeighborhoodCleaning() {
             <span className="text-primary">{n.fullNameAr}</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-            كلينولوجي — شركة تنظيف احترافية تخدم {n.fullNameAr} بالرياض.
-            فريق معتمد، مواد آمنة، وضمان رضا كامل أو نعود مجاناً.
+            {n.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button

@@ -121,6 +121,36 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-fill-riyadh</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/asaar-tanzif-riyadh</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-kanab-majalis-riyadh</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-makatib-sharikaat-riyadh</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kleenology.me/blog/tanzif-shaqaq-riyadh</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Neighborhood pages -->
   <url>
     <loc>https://kleenology.me/cleaning-riyadh/malqa</loc>
