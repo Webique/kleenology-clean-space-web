@@ -113,7 +113,7 @@ export default function BlogPost() {
             <span className="text-foreground truncate max-w-[200px]">{post.title}</span>
           </nav>
 
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[post.categoryColor] ?? "bg-gray-100 text-gray-700"}`}>
               {post.category}
             </span>
@@ -124,6 +124,7 @@ export default function BlogPost() {
             <span className="text-xs text-muted-foreground">
               {new Date(post.date).toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" })}
             </span>
+            <span className="text-xs text-muted-foreground">· بقلم {post.author}</span>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">

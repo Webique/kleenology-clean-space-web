@@ -213,8 +213,8 @@ export default function SelfInspection() {
         description={isRTL
           ? "قيّم مكانك بنفسك وأرسل لنا التفاصيل لتحصل على عرض سعر دقيق بدون انتظار."
           : "Inspect your space yourself and send us the details for an accurate quote without waiting."}
-        keywords="معاينة ذاتية, self inspection, تنظيف, kleenology"
         url="https://kleenology.me/self-inspection"
+        noindex={true}
       />
       <Header />
 

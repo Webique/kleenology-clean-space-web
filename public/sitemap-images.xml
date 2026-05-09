@@ -2,39 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://kleenology.com/</loc>
+    <loc>https://kleenology.me/</loc>
     <image:image>
-      <image:loc>https://kleenology.com/logobg.png</image:loc>
-      <image:title>Kleenology Professional Cleaning Services</image:title>
-      <image:caption>Professional cleaning services with eco-friendly products</image:caption>
+      <image:loc>https://kleenology.me/logobg.png</image:loc>
+      <image:title>كلينولوجي - شركة تنظيف احترافية في الرياض</image:title>
+      <image:caption>Kleenology — Professional cleaning services in Riyadh, Saudi Arabia</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://kleenology.com/logo.png</image:loc>
-      <image:title>Kleenology Logo</image:title>
-      <image:caption>Kleenology cleaning company logo</image:caption>
+      <image:loc>https://kleenology.me/professional-cleaning.jpg</image:loc>
+      <image:title>خدمات التنظيف الاحترافية من كلينولوجي</image:title>
+      <image:caption>Professional cleaning team from Kleenology serving Riyadh</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://kleenology.com/services</loc>
+    <loc>https://kleenology.me/home-cleaning</loc>
     <image:image>
-      <image:loc>https://kleenology.com/src/assets/deep-cleaning.jpg</image:loc>
-      <image:title>Deep Cleaning Service</image:title>
-      <image:caption>Professional deep cleaning and sanitization services</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://kleenology.com/src/assets/furniture-cleaning.jpg</image:loc>
-      <image:title>Furniture Cleaning Service</image:title>
-      <image:caption>Expert furniture cleaning and maintenance</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://kleenology.com/src/assets/ac-cleaning.jpg</image:loc>
-      <image:title>AC Cleaning Service</image:title>
-      <image:caption>Professional air conditioning cleaning and maintenance</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://kleenology.com/src/assets/carpet-cleaning.jpg</image:loc>
-      <image:title>Carpet Cleaning Service</image:title>
-      <image:caption>Deep carpet cleaning and stain removal</image:caption>
+      <image:loc>https://kleenology.me/home-cleaning.jpg</image:loc>
+      <image:title>تنظيف المنازل الاحترافي في الرياض</image:title>
+      <image:caption>Professional home cleaning service by Kleenology in Riyadh</image:caption>
     </image:image>
   </url>
-</urlset> 
+  <url>
+    <loc>https://kleenology.me/deep-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/deep-cleaning.jpg</image:loc>
+      <image:title>التنظيف العميق الشامل في الرياض</image:title>
+      <image:caption>Deep cleaning and sanitization service by Kleenology</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/office-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/office-cleaning.jpg</image:loc>
+      <image:title>تنظيف المكاتب والشركات في الرياض</image:title>
+      <image:caption>Professional office cleaning service by Kleenology in Riyadh</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/carpet-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/carpet-cleaning.jpg</image:loc>
+      <image:title>تنظيف السجاد بالبخار في الرياض</image:title>
+      <image:caption>Steam carpet cleaning and stain removal by Kleenology</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/post-construction-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/professional-cleaning.jpg</image:loc>
+      <image:title>تنظيف ما بعد البناء في الرياض</image:title>
+      <image:caption>Post-construction cleaning for move-in ready handover by Kleenology</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/cleaning-riyadh</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/professional-cleaning.jpg</image:loc>
+      <image:title>شركة تنظيف في الرياض - كلينولوجي</image:title>
+      <image:caption>Kleenology cleaning company serving all Riyadh neighborhoods</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/about</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/logobg.png</image:loc>
+      <image:title>كلينولوجي - من نحن</image:title>
+      <image:caption>About Kleenology — Professional cleaning company in Riyadh since 2022</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/furniture-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/furniture-cleaning.jpg</image:loc>
+      <image:title>تنظيف الأثاث والمفروشات في الرياض</image:title>
+      <image:caption>Professional furniture and upholstery cleaning by Kleenology</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://kleenology.me/ac-cleaning</loc>
+    <image:image>
+      <image:loc>https://kleenology.me/ac-cleaning.jpg</image:loc>
+      <image:title>تنظيف وصيانة المكيفات في الرياض</image:title>
+      <image:caption>Professional AC cleaning and maintenance by Kleenology in Riyadh</image:caption>
+    </image:image>
+  </url>
+</urlset>

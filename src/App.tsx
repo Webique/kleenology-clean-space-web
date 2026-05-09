@@ -18,6 +18,7 @@ import NeighborhoodCleaning from "./pages/NeighborhoodCleaning";
 import AdsLanding from "./pages/AdsLanding";
 import PremiumLanding from "./pages/PremiumLanding";
 import SelfInspection from "./pages/SelfInspection";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import { PixelTracker } from "@/components/PixelTracker";
@@ -119,6 +120,7 @@ const App = () => {
               <Route path="/book-now" element={<AdsLanding />} />
               <Route path="/premium" element={<PremiumLanding />} />
               <Route path="/self-inspection" element={<SelfInspection />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

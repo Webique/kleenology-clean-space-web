@@ -5,5 +5,3 @@ Allow: /
 Sitemap: https://kleenology.me/sitemap.xml
 Sitemap: https://kleenology.me/sitemap-images.xml
 
-Disallow: /admin/
-Disallow: /private/
