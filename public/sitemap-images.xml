@@ -70,20 +70,4 @@
       <image:caption>About Kleenology — Professional cleaning company in Riyadh since 2022</image:caption>
     </image:image>
   </url>
-  <url>
-    <loc>https://kleenology.me/furniture-cleaning</loc>
-    <image:image>
-      <image:loc>https://kleenology.me/furniture-cleaning.jpg</image:loc>
-      <image:title>تنظيف الأثاث والمفروشات في الرياض</image:title>
-      <image:caption>Professional furniture and upholstery cleaning by Kleenology</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://kleenology.me/ac-cleaning</loc>
-    <image:image>
-      <image:loc>https://kleenology.me/ac-cleaning.jpg</image:loc>
-      <image:title>تنظيف وصيانة المكيفات في الرياض</image:title>
-      <image:caption>Professional AC cleaning and maintenance by Kleenology in Riyadh</image:caption>
-    </image:image>
-  </url>
 </urlset>
