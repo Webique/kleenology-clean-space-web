@@ -145,6 +145,12 @@ export const Footer = ({ onTermsClick, onNavClick }: FooterProps) => {
               >
                 {t('footer.terms')}
               </a>
+              <a
+                href="/privacy-policy"
+                className="block text-sm text-background/80 hover:text-brand-yellow transition-colors"
+              >
+                {t('footer.privacy', 'سياسة الخصوصية')}
+              </a>
             </div>
           </div>
 

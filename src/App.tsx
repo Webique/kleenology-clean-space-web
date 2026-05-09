@@ -18,6 +18,7 @@ import NeighborhoodCleaning from "./pages/NeighborhoodCleaning";
 import AdsLanding from "./pages/AdsLanding";
 import PremiumLanding from "./pages/PremiumLanding";
 import SelfInspection from "./pages/SelfInspection";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import { PixelTracker } from "@/components/PixelTracker";
@@ -89,12 +90,7 @@ class ErrorBoundary extends Component<
 }
 
 const App = () => {
-  console.log("App component is rendering - FRESH DEPLOYMENT FIX");
-  
-  // Add a simple test to ensure the app is loading
-  React.useEffect(() => {
-    console.log("App mounted successfully - kleenology.me should work now!");
-  }, []);
+  React.useEffect(() => {}, []);
   
   return (
     <ErrorBoundary>
@@ -124,6 +120,7 @@ const App = () => {
               <Route path="/book-now" element={<AdsLanding />} />
               <Route path="/premium" element={<PremiumLanding />} />
               <Route path="/self-inspection" element={<SelfInspection />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

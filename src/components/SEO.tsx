@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 interface SEOProps {
   title?: string;
   description?: string;
-  keywords?: string;
+  keywords?: string; // kept for API compatibility but no longer emitted
   image?: string;
   url?: string;
   type?: string;
@@ -15,7 +15,6 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({
   title = "كلينولوجي - خدمات تنظيف احترافية في الرياض | Kleenology",
   description = "كلينولوجي — شركة تنظيف احترافية في الرياض. تنظيف منازل، مكاتب، سجاد، وتنظيف عميق بمواد آمنة وضمان الرضا ١٠٠٪. احجز الآن!",
-  keywords = "تنظيف منازل الرياض, شركة تنظيف الرياض, تنظيف عميق, تنظيف سجاد, تنظيف مكاتب, كلينولوجي, cleaning company Riyadh",
   image = "https://kleenology.me/logobg.png",
   url = "https://kleenology.me",
   type = "website",
@@ -37,7 +36,6 @@ export const SEO: React.FC<SEOProps> = ({
     };
 
     setMeta('meta[name="description"]', 'name', description);
-    setMeta('meta[name="keywords"]', 'name', keywords);
     setMeta('meta[name="robots"]', 'name', noindex ? 'noindex, nofollow' : 'index, follow');
 
     const ogTags: [string, string][] = [
@@ -113,7 +111,7 @@ export const SEO: React.FC<SEOProps> = ({
     return () => {
       document.querySelectorAll('[data-seo-jsonld]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, image, url, type, jsonLd, hreflang, noindex]);
+  }, [title, description, image, url, type, jsonLd, hreflang, noindex]);
 
   return null;
 };
