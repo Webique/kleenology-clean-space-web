@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Star, MessageSquare, ExternalLink, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const GOOGLE_REVIEW_URL = "https://g.page/r/CXX_REPLACE_WITH_REAL_LINK/review";
+const GOOGLE_REVIEW_URL = "https://maps.app.goo.gl/FCfsn9M5jWmNaoBs6";
 const WHATSAPP = "966537519929";
 
 export default function ReviewGate() {
