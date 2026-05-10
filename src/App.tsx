@@ -21,6 +21,7 @@ import SelfInspection from "./pages/SelfInspection";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import ReviewGate from "./pages/ReviewGate";
 import { PixelTracker } from "@/components/PixelTracker";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { EnhancedTracking } from "@/components/EnhancedTracking";
@@ -121,6 +122,7 @@ const App = () => {
               <Route path="/premium" element={<PremiumLanding />} />
               <Route path="/self-inspection" element={<SelfInspection />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/review" element={<ReviewGate />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
