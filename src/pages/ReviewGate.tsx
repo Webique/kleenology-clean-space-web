@@ -35,7 +35,7 @@ export default function ReviewGate() {
         {/* Logo */}
         <div className="text-center mb-8">
           <a href="/">
-            <img src="/lovable-uploads/2b564b9d-a11e-4fa8-9160-09de4f5b5e6b.png" alt="كلينولوجي" className="h-12 mx-auto mb-2" />
+            <img src="/logo.png" alt="كلينولوجي" className="h-12 mx-auto mb-2" />
           </a>
           <p className="text-sm text-muted-foreground">خدمات التنظيف الاحترافي بالرياض</p>
         </div>
