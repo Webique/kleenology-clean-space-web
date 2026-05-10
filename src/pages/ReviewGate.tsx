@@ -35,7 +35,7 @@ export default function ReviewGate() {
         {/* Logo */}
         <div className="text-center mb-8">
           <a href="/">
-            <img src="/logo.png" alt="كلينولوجي" className="h-12 mx-auto mb-2" />
+            <img src="/logo.png" alt="كلينولوجي" className="h-20 mx-auto mb-2" />
           </a>
           <p className="text-sm text-muted-foreground">خدمات التنظيف الاحترافي بالرياض</p>
         </div>
@@ -52,14 +52,14 @@ export default function ReviewGate() {
             </p>
 
             {/* Stars */}
-            <div className="flex justify-center gap-2 mb-6">
+            <div className="flex justify-center gap-3 mb-3">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
                   onClick={() => handleRating(star)}
                   onMouseEnter={() => setHovered(star)}
                   onMouseLeave={() => setHovered(0)}
-                  className="transition-transform hover:scale-110 focus:outline-none"
+                  className="flex flex-col items-center gap-1 transition-transform hover:scale-110 focus:outline-none"
                 >
                   <Star
                     className={`h-12 w-12 transition-colors ${
@@ -68,11 +68,14 @@ export default function ReviewGate() {
                         : "text-gray-200 fill-gray-200"
                     }`}
                   />
+                  <span className={`text-sm font-bold transition-colors ${
+                    star <= (hovered || rating) ? "text-yellow-500" : "text-gray-300"
+                  }`}>{star}</span>
                 </button>
               ))}
             </div>
 
-            <p className="text-xs text-muted-foreground">اضغط على النجوم لتقييمنا</p>
+            <p className="text-xs text-muted-foreground mt-2">اضغط على النجوم لتقييمنا</p>
           </div>
         )}
 
