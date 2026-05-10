@@ -8,14 +8,14 @@ const WHATSAPP = "966537519929";
 export default function ReviewGate() {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
-  const [stage, setStage] = useState<"stars" | "feedback" | "thanks">("stars");
+  const [stage, setStage] = useState<"stars" | "positive" | "feedback" | "thanks">("stars");
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
   const handleRating = (stars: number) => {
     setRating(stars);
     if (stars >= 4) {
-      window.location.href = GOOGLE_REVIEW_URL;
+      setStage("positive");
     } else {
       setStage("feedback");
     }
@@ -76,6 +76,36 @@ export default function ReviewGate() {
             </div>
 
             <p className="text-xs text-muted-foreground mt-2">اضغط على النجوم لتقييمنا</p>
+          </div>
+        )}
+
+        {/* Positive Stage */}
+        {stage === "positive" && (
+          <div className="bg-white rounded-2xl shadow-lg border border-border p-8 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+              <CheckCircle className="h-8 w-8 text-green-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">ممتاز! يسعدنا إنك راضٍ</h2>
+            <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+              شكراً لتقييمك الإيجابي 🙏<br />
+              اضغط الزر أدناه وشاركنا تجربتك على قوقل — ما يأخذ إلا دقيقة
+            </p>
+            {/* Selected stars */}
+            <div className="flex justify-center gap-1 mb-6">
+              {[1,2,3,4,5].map((s) => (
+                <Star key={s} className={`h-6 w-6 ${s <= rating ? "fill-yellow-400 text-yellow-400" : "text-gray-200 fill-gray-200"}`} />
+              ))}
+            </div>
+            <Button
+              onClick={() => window.open(GOOGLE_REVIEW_URL, "_blank")}
+              className="w-full mb-4"
+              size="lg"
+            >
+              اكتب تقييمك على قوقل ←
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              ستحتاج تختار النجوم مرة ثانية على صفحة قوقل
+            </p>
           </div>
         )}
 
