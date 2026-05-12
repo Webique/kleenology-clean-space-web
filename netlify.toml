@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[functions]
+  directory = "netlify/functions"
+
+[edge_functions]
+  directory = "netlify/edge-functions"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -32,7 +38,13 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # Hide server identity so nmap -sV and banner-grabbing tools see no useful info
+    Server = "Web Server"
+    # Block MIME-type sniffing used by some scanners
+    X-Download-Options = "noopen"
+    X-Permitted-Cross-Domain-Policies = "none"
     # Content Security Policy tuned to allow analytics/pixels used on the site
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com https://sc-static.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com https://tr.snapchat.com https://sc-static.net; frame-src https://www.googletagmanager.com https://connect.facebook.net; frame-ancestors 'self';"

@@ -1,7 +1,85 @@
 RewriteEngine On
 RewriteBase /
+
+# -----------------------------------------------------------------------
+# Block network scanners and vulnerability assessment tools by User-Agent
+# -----------------------------------------------------------------------
+RewriteCond %{HTTP_USER_AGENT} "nmap" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "Nmap Scripting Engine" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "masscan" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "zgrab" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "nikto" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "sqlmap" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "nessus" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "openvas" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "w3af" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "dirbuster" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "gobuster" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "feroxbuster" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "nuclei" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "hydra" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "metasploit" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "acunetix" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "qualys" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "netsparker" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "appscan" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "webinspect" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "whatweb" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "wapiti" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "skipfish" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "arachni" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "libwww-perl" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "ZAP\/" [NC]
+RewriteRule ^ - [F,L]
+
+# -----------------------------------------------------------------------
+# Block dangerous HTTP methods that scanners use (TRACE enables XST attacks)
+# -----------------------------------------------------------------------
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|CONNECT) [NC]
+RewriteRule ^ - [F,L]
+
+# -----------------------------------------------------------------------
+# Block nmap NSE probe paths and common vulnerability scanner targets
+# -----------------------------------------------------------------------
+RewriteCond %{REQUEST_URI} "^/HNAP1" [OR]
+RewriteCond %{REQUEST_URI} "^/sdk/info" [OR]
+RewriteCond %{REQUEST_URI} "^/evox/about" [OR]
+RewriteCond %{REQUEST_URI} "^/\.git" [OR]
+RewriteCond %{REQUEST_URI} "^/\.env" [OR]
+RewriteCond %{REQUEST_URI} "^/wp-login\.php" [OR]
+RewriteCond %{REQUEST_URI} "^/wp-admin" [OR]
+RewriteCond %{REQUEST_URI} "^/phpmyadmin" [OR]
+RewriteCond %{REQUEST_URI} "^/phpinfo\.php" [OR]
+RewriteCond %{REQUEST_URI} "^/server-status" [OR]
+RewriteCond %{REQUEST_URI} "^/server-info" [OR]
+RewriteCond %{REQUEST_URI} "^/actuator" [OR]
+RewriteCond %{REQUEST_URI} "^/manager/html" [OR]
+RewriteCond %{REQUEST_URI} "^/setup\.php" [OR]
+RewriteCond %{REQUEST_URI} "^/install\.php" [OR]
+RewriteCond %{REQUEST_URI} "^/config\.php" [NC]
+RewriteRule ^ - [F,L]
+
+# -----------------------------------------------------------------------
+# Security headers to hide server fingerprinting information
+# -----------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always unset X-Powered-By
+  Header always unset Server
+  Header always set Server "Web Server"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Download-Options "noopen"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# -----------------------------------------------------------------------
+# SPA fallback routing (keep existing behavior)
+# -----------------------------------------------------------------------
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule . /index.html [L] 
+RewriteRule . /index.html [L]
