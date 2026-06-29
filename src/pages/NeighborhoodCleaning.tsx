@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -38,7 +39,50 @@ export default function NeighborhoodCleaning() {
 
   if (!n) return <Navigate to="/cleaning-riyadh" replace />;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    const w = window as Window & { gtag?: (...args: unknown[]) => void; fbq?: (...args: unknown[]) => void; ttq?: { track: (...args: unknown[]) => void } };
+    if (w.gtag) {
+      w.gtag('event', 'neighborhood_view', {
+        neighborhood_name: n.nameAr,
+        neighborhood_full_name: n.fullNameAr,
+        neighborhood_slug: n.slug,
+        neighborhood_district: n.district,
+        page_path: `/cleaning-riyadh/${n.slug}`,
+      });
+    }
+    if (w.fbq) {
+      w.fbq('trackCustom', 'NeighborhoodView', {
+        neighborhood_name: n.nameAr,
+        neighborhood_district: n.district,
+        content_category: 'Neighborhood Cleaning',
+      });
+    }
+    if (w.ttq) {
+      w.ttq.track('ViewContent', {
+        content_name: n.fullNameAr,
+        content_category: n.district,
+        content_type: 'neighborhood',
+      });
+    }
+  }, [n]);
+
   const handleWhatsApp = () => {
+    const w = window as Window & { gtag?: (...args: unknown[]) => void; fbq?: (...args: unknown[]) => void };
+    if (w.gtag) {
+      w.gtag('event', 'neighborhood_whatsapp_click', {
+        neighborhood_name: n.nameAr,
+        neighborhood_slug: n.slug,
+        neighborhood_district: n.district,
+        event_category: 'conversion',
+      });
+    }
+    if (w.fbq) {
+      w.fbq('track', 'Lead', {
+        content_name: n.fullNameAr,
+        content_category: 'Neighborhood WhatsApp',
+      });
+    }
     const msg = `مرحباً، أريد الاستفسار عن خدمات التنظيف في ${n.fullNameAr} بالرياض`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
   };
