@@ -321,7 +321,7 @@ export default function PremiumLanding() {
       </section>
 
       <div style={{ borderTop: "1px solid #f0f0f0", padding: "16px", textAlign: "center", fontSize: 12, color: "#aaa" }}>
-        © 2024 كلينولوجي — الرياض
+        © {new Date().getFullYear()} كلينولوجي — الرياض
       </div>
 
     </div>
