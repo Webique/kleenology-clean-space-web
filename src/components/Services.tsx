@@ -6,8 +6,6 @@ import deepCleaningImg from "@/assets/deep-cleaning.jpg";
 import furnitureCleaningImg from "@/assets/furniture-cleaning.jpg";
 import acCleaningImg from "@/assets/ac-cleaning.jpg";
 import carpetCleaningImg from "@/assets/carpet-cleaning.jpg";
-import cleaningPattern from "@/assets/cleaning-pattern.jpg";
-import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
 import { useTranslation } from "react-i18next";
 
 export const Services = () => {
@@ -78,11 +76,9 @@ export const Services = () => {
 
   return (
       <section id="services" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-        {/* Enhanced Background Images and Elements */}
+        {/* Enhanced Background and Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute bottom-10 left-10 w-60 h-60 opacity-12">
-            <img src={cleaningPattern} alt="Cleaning services pattern background" className="w-full h-full object-cover rounded-2xl rotate-12 shadow-xl" />
-          </div>
+          <div className="absolute bottom-10 left-10 w-60 h-60 opacity-20 rounded-2xl rotate-12 shadow-xl bg-gradient-to-br from-brand-blue to-brand-yellow bg-dot-pattern-light"></div>
           {/* Enhanced floating decorative elements */}
           <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-brand-yellow/30 rounded-full animate-float shadow-lg"></div>
           <div className="absolute top-1/3 right-1/5 w-6 h-6 bg-primary/25 rounded-full animate-float shadow-md" style={{ animationDelay: '1s' }}></div>

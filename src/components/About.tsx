@@ -1,7 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Target, Eye, Heart } from "lucide-react";
-import aboutBlurredBg from "@/assets/about-blurred-bg.jpg";
-import cleaningPattern from "@/assets/cleaning-pattern.jpg";
 import { useTranslation } from "react-i18next";
 
 export const About = () => {
@@ -10,14 +8,10 @@ export const About = () => {
 
   return (
     <section id="about" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-      {/* Enhanced Background Images */}
+      {/* Brand Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-full h-full opacity-8">
-          <img src={aboutBlurredBg} alt="Professional cleaning background with blurred effect" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-full opacity-15">
-          <img src={cleaningPattern} alt="Cleaning pattern background texture" className="w-full h-full object-cover" />
-        </div>
+        <div className="absolute inset-0 bg-section-wash" />
+        <div className="absolute inset-0 bg-dot-pattern opacity-30" />
         {/* Moving decorative elements */}
         <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-primary/15 rounded-full animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-16 h-16 bg-brand-yellow/20 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
