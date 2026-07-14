@@ -114,6 +114,25 @@ All colors MUST be HSL.
   }
 }
 
+@layer utilities {
+  /* Reusable section backgrounds - replace stock photo washes with brand-colored design */
+  .bg-dot-pattern {
+    background-image: radial-gradient(hsl(var(--primary) / 0.18) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .bg-dot-pattern-light {
+    background-image: radial-gradient(hsl(0 0% 100% / 0.3) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .bg-section-wash {
+    background-image:
+      radial-gradient(circle at 15% 20%, hsl(var(--brand-blue) / 0.12), transparent 45%),
+      radial-gradient(circle at 85% 80%, hsl(var(--brand-yellow) / 0.14), transparent 45%);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

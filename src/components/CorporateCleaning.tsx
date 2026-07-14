@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building2, Users, Clock, Shield, MessageCircle, CheckCircle } from "lucide-react";
 import { useCallback } from "react";
-import officeBg from "@/assets/office-cleaning-bg.jpg";
 import { useTranslation } from "react-i18next";
 
 export const CorporateCleaning = () => {
@@ -20,11 +19,8 @@ export const CorporateCleaning = () => {
   return (
     <section id="corporate" className="py-16 sm:py-24 relative overflow-hidden">
       {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
-        style={{ backgroundImage: `url(${officeBg})` }}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-section-wash" aria-hidden="true" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-20" aria-hidden="true" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}

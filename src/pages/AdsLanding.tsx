@@ -244,7 +244,7 @@ export default function AdsLanding() {
 
       {/* Footer minimal */}
       <div className="border-t border-gray-100 py-6 text-center text-xs text-gray-400">
-        © 2024 كلينولوجي — الرياض، المملكة العربية السعودية
+        © {new Date().getFullYear()} كلينولوجي — الرياض، المملكة العربية السعودية
       </div>
 
     </div>

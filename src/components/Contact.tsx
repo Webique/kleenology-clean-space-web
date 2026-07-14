@@ -1,8 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
-import officeCleaningBg from "@/assets/office-cleaning-bg.jpg";
-import cleanResultsBg from "@/assets/clean-results-bg.jpg";
 import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
@@ -33,14 +31,10 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
-      {/* Enhanced Background Images */}
+      {/* Brand Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full opacity-8">
-          <img src={officeCleaningBg} alt="Professional office cleaning background" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute bottom-0 right-0 w-full h-full opacity-12">
-          <img src={cleanResultsBg} alt="Clean results background showing spotless surfaces" className="w-full h-full object-cover" />
-        </div>
+        <div className="absolute inset-0 bg-section-wash" />
+        <div className="absolute inset-0 bg-dot-pattern opacity-30" />
         {/* Moving decorative elements */}
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-brand-yellow/10 rounded-full blur-xl animate-float"></div>
         <div className="absolute bottom-1/3 left-1/5 w-24 h-24 bg-primary/10 rounded-full blur-lg animate-float" style={{ animationDelay: '2s' }}></div>

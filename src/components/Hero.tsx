@@ -1,6 +1,4 @@
 
-import heroBg from "@/assets/hero-background-white.jpg";
-import heroBgMobile from "@/assets/hero-background-mobile.jpg";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, Shield, Sparkles } from "lucide-react";
 import { useCallback } from "react";
@@ -30,14 +28,13 @@ export const Hero = () => {
       id="home"
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24 pb-24 sm:pt-36 sm:pb-36"
     >
-      {/* Professional Background with Gradient Overlay */}
-      <div
-        className="absolute inset-0 w-full h-full z-0 bg-cover bg-center bg-no-repeat scale-110 sm:scale-100"
-        style={{
-          backgroundImage: `linear-gradient(120deg, rgba(20,30,48,0.15) 30%, rgba(36,198,220,0.05)), url(${heroBg})`,
-        }}
-        aria-hidden="true"
-      />
+      {/* Brand-colored Background */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--brand-blue-dark))] via-[hsl(var(--brand-blue))] to-[hsl(200_75%_55%)]" />
+        <div className="absolute inset-0 bg-dot-pattern-light opacity-40" />
+        <div className="absolute -top-24 -right-24 w-72 h-72 sm:w-96 sm:h-96 bg-brand-yellow/25 rounded-full blur-3xl animate-float" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 sm:w-80 sm:h-80 bg-white/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 sm:px-0">
