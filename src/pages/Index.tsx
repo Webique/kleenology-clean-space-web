@@ -76,11 +76,9 @@ const Index = () => {
       <Header />
 
       <Hero />
-      <About />
       <Stats />
       <TrustBadges />
       <ClientSectors />
-      <CorporateCleaning />
       <Services />
       <BeforeAfterShowcase />
       <Testimonials />
