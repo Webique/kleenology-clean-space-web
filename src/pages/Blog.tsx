@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Clock, ArrowLeft, BookOpen } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
+import { SoroBlogWidget } from "@/components/SoroBlogWidget";
 
 const categoryColors: Record<string, string> = {
   emerald: "bg-emerald-100 text-emerald-800",
@@ -131,6 +132,13 @@ export default function Blog() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Soro Blog Widget */}
+      <section className="py-10 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <SoroBlogWidget />
         </div>
       </section>
 
